@@ -51,21 +51,21 @@ const Review = () => {
     }
 
     const Comment = async (cmnt) => {
-        
+
+        // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
         const modal = document.getElementById('exampleModal');
-        modal.classList.remove('show');
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
+        // modal.classList.remove('show');
+        // modal.style.display = 'none';
+        // document.body.classList.remove('modal-open');
         document.querySelector('.modal-backdrop').remove();
-
-            if(cu._===undefined || !cu){
-                toast.warning("Login to give feedback")
-            //  window.location.reload();
-               return move('/login')
-            }else{
-
                 console.log("comment working");
                 setLoading(true);
+                console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
+
+                if(!cu){
+                    toast.warning("Login to give feedback")
+                    return move('/login')
+                }
 
         let mediaUrl = "";
 
@@ -114,6 +114,7 @@ const Review = () => {
 
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
                 mediaUrl = response.data.url;
+                reset();
                 // console.log("Video uploaded successfully");
             } catch (error) {
                 // console.error("Video upload failed", error);
@@ -124,7 +125,10 @@ const Review = () => {
             setLoading(true);
 
             cmnt.mediaUrl = mediaUrl;
-            cmnt.userID = cu._id;
+            cmnt.userId = cu._id;
+            cmnt.name=cmnt.name;
+            cmnt.email=cmnt.email;
+
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, cmnt);
 
             if (response.data.message === "Comment Added") {
@@ -137,15 +141,13 @@ const Review = () => {
             imageSelected([])
             videoSelected([])
                 setLoading(false);
-                // window.location.reload();
-                reset();
                 toast.success("Feedback submitted");
+                window.location.reload();
+                reset();
             }
         } catch (e) {
             //   console.error("Comment submission failed", e);
         }
-    }
-
     };
 
 
@@ -309,7 +311,7 @@ const Review = () => {
 
                                             <div className="d-flex gap-2 mb-3">
                                                 {/* Image input */}
-                                                {imageSelected.length===0 &&
+                                             
  <div className="file-input-container">
  <label className="file-input-box">
      <i><MdOutlinePhotoLibrary /></i>
@@ -323,12 +325,6 @@ const Review = () => {
      <p className="text-muted m-0">Photo</p>
  </label>
 </div>
-}
-{imageSelected.length!=0 &&
-    <p>Image is selected</p>
-}
-                                               
-{videoSelected.length===0 &&
  <div className="file-input-container">
  <label className="file-input-box">
      <i><FaVideoSlash /></i>
@@ -342,11 +338,7 @@ const Review = () => {
      <p className="text-muted m-0">Video</p>
  </label>
 </div>
-}
-{videoSelected.length !=0&&
-    <p>Video is selected</p>
-}
-                                               
+                                              
                                             </div>
 
                                             <div className="mb-3">

@@ -107,7 +107,7 @@ const UserPanel = () => {
                     </div>
 
                     <div className='col-lg-8 col-md-8 col-sm-12'>
-                        <div className='d-flex justify-content-between mb-4'>
+                        <div className='d-flex gap-5 mb-4'>
                             <button className={`profile_btn ${component === 'orders' ? 'button-submit px-4' : ''}`} onClick={() => setComponent('orders')}>My Orders</button>
                             <button className={`profile_btn ${component === 'review' ? 'button-submit px-4' : ''}`} onClick={() => setComponent('review')}>My Reviews</button>
                             {/* <button className={`profile_btn ${component === 'feedback' ? 'button-submit px-4' : ''}`} onClick={() => setComponent('feedback')}>Give Feedback</button> */}
@@ -121,7 +121,7 @@ const UserPanel = () => {
                                 ) : filterOrder.length > 0 ? (
                                     <>
                                         <p className='fs-5 fw-bolder m-0' style={{ color: "#1b2950" }}>Orders : {filterOrder?.length}</p>
-                                        <div className='row row-cols-lg-2 row-cols-md-3 row-cols-sm-2 px-3'>
+                                        <div className='h_box_main'>
                                             {filterOrder?.map((item, index) => {
                                                 const orderItemsLength = item.orderItems.length;
                                                 let totalFprice = 0;
@@ -129,14 +129,12 @@ const UserPanel = () => {
                                                     totalFprice += parseFloat(data?.total);
                                                 });
                                                 return <>
-                                                    <div className='col my-2 p-3' key={index} style={{ backgroundColor: "white", position: "relative" }}>
-                                                        <div className='row'>
-                                                            <p className='panel_index'>{index + 1}</p>
-                                                            <div className='col-4'>
-                                                                <img src={item?.orderItems[0]?.image} style={{ maxHeight: '180px' }} className='rounded-3 img-fluid' alt="" />
-                                                            </div>
-                                                            <div className='col-8 ' style={{ position: "relative" }}>
-                                                                <p className='m-0'>
+                                                
+                                                <div className='card my-2 p-3' key={index} style={{ backgroundColor: "white", position: "relative" }}>
+                                                <p className='panel_index'>{index + 1}</p>
+                                                  
+                                                    <img src={item?.orderItems[0]?.image} style={{ maxHeight: '90%' }} className='rounded-3 img-fluid mb-3' alt="" />
+                                                    <p className='mb-0 mt-2 '>
                                                                     Tracking ID: {item?.orderId}
                                                                 </p>
                                                                 <p className='m-0'>
@@ -148,9 +146,6 @@ const UserPanel = () => {
                                                                 <p className='m-0'>
                                                                     <a href={`/order-detail/${item?._id}`}>Detail</a>
                                                                 </p>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
                                                 </>
                                             })}
@@ -173,7 +168,7 @@ const UserPanel = () => {
 
                         {component === "review" &&
                             <>
-                                <div className='row row-cols-lg-3 row-cols-md-3 row-cols-sm-2'>
+                                <div className='h_box_main'>
                                     {loading ? (
                                         <div
                                             className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
@@ -190,28 +185,28 @@ const UserPanel = () => {
                                         </div>
                                     ) : (comments?.filter((data) => data.userId === cu._id).map((item, index) => {
                                         return <>
-                                            <div className="col card" key={index}>
-                                                <div className="card_img mb-2" style={{ background: "transparent" }}>
-                                                    {item?.mediaUrl === undefined && item?.mediaUrl === "" && (
-                                                        <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                                                    )
-                                                    }
-                                                    {item?.mediaUrl && (
-                                                        <>
-                                                            {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') || item?.mediaUrl.endsWith('.webp') || item?.mediaUrl.endsWith('.gif') ? (
-                                                                <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                                                            ) : (
-                                                                <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
-                                                                    <source src={item?.mediaUrl} type="video/mp4" />
-                                                                    Your browser does not support the video tag.
-                                                                </video>
-                                                            )}
-                                                        </>
+                                           <div className='card border p-2' style={{ width: "270px" }} key={index}>
+                                        <div className="card_img mb-2" style={{ background: "transparent" }}>
+                                            {item?.mediaUrl === undefined && (
+                                                <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
+                                            )
+                                            }
+                                            {item?.mediaUrl && (
+                                                <>
+                                                    {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
+                                                        <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
+                                                    ) : (
+                                                        <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
+                                                            <source src={item?.mediaUrl} type="video/mp4" />
+                                                            Your browser does not support the video tag.
+                                                        </video>
                                                     )}
-                                                </div>
-                                                <p className="text-center">{item?.comment}</p>
-                                                <p className="fw-bolder text-center">{item?.name}</p>
-                                            </div>
+                                                </>
+                                            )}
+                                        </div>
+                                        <p className='text-center'>{item?.comment}</p>
+                                        <p className='text-center fw-bolder'>{item?.name}</p>
+                                    </div>
                                         </>
                                     })
                                     )}

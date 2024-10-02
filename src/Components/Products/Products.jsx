@@ -42,6 +42,14 @@ const Products = () => {
     setCategory(prodctName?.toLowerCase());
   }, [prodctName]);
 
+  const handleMaxRangeChange = (e) => {
+    const value = parseInt(e.target.value);
+    setMaxPrice(value);
+  };
+
+  const SearchInput = (e) => {
+    setSearch(e.target.value);
+  };
   useEffect(() => {
     const source = axios.CancelToken.source();
 
@@ -79,22 +87,16 @@ const Products = () => {
   // };
   console.log("category is =", category)
 
-  const handleMaxRangeChange = (e) => {
-    const value = parseInt(e.target.value);
-    setMaxPrice(value);
-  };
 
-  const SearchInput = (e) => {
-    setSearch(e.target.value);
-  };
-
-  function ClearFilter() {
+  const RemoveFilter=()=> {
     setCategory("all");
     setSortOrder("");
     setSearch("");
     setActiveGrid("grid");
     setMaxPrice(3000);
     setMinPrice(0);
+    setSize('')
+    setColor("")
   }
   useEffect(() => {
     setLoading(true)
@@ -211,7 +213,9 @@ const Products = () => {
               <p className="m-0 mt-2 px-3" style={{ color: "red" }}>
                 &pound;{minPrice} - &pound;{maxPrice}
               </p>
+
             </div>
+            <button className="button-submit w-100 px-5" onClick={RemoveFilter}>Remove Filter</button>
           </div>
           {/* <button
             className="btn btn-danger text-uppercase my-4 w-100"
@@ -323,6 +327,8 @@ const Products = () => {
                 </p>
               </div>
             </div>
+            <button className="button-submit w-100 px-5" onClick={RemoveFilter}>Remove Filter</button>
+
           </div>
 
           {/* Large screen filters End */}

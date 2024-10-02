@@ -308,72 +308,104 @@ const SingleAdd = () => {
   }
 
   const Comment = async (cmnt) => {
-    if (!cu?._id) {
-      toast.warning("Login to give feedback");
-      window.location.reload();
-      
-      // After reloading, this code will run to navigate to the login page
-      setTimeout(() => {
-          window.location.href = '/login'; // Redirect to the login page
-      }, 100); // Small delay to ensure page reload happens before redirecting
 
-      return;
-  }
-    setLoading(true);
+    // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
+    const modal = document.getElementById('exampleModal');
+    // modal.classList.remove('show');
+    // modal.style.display = 'none';
+    // document.body.classList.remove('modal-open');
+    document.querySelector('.modal-backdrop').remove();
+            console.log("comment working");
+            setLoading(true);
+            console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
+
+            if(!cu){
+                toast.warning("Login to give feedback")
+                return move('/login')
+            }
 
     let mediaUrl = "";
 
-    // If an image is selected, upload it to Cloudinary
-    if (cmnt.image && cmnt.image[0]) {
-      const formData = new FormData();
-      formData.append('file', cmnt.image[0]);
-      formData.append('upload_preset', 'zonfnjjo');
-      try {
-        const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData);
-        mediaUrl = response.data.url;
-        // console.log("Image is uploaded")
-      } catch (error) {
-        // console.error("Image upload failed", error);
-      }
+    if (cmnt.image && cmnt.image[0] && cmnt.video && cmnt.video[0]) {
+        setLoading(false);
+        return toast.warning("Select each media");
     }
 
-    // If a video is selected, upload it to Cloudinary
-    if (cmnt.video && cmnt.video[0]) {
-      const formData = new FormData();
-      formData.append('file', cmnt.video[0]);
-      formData.append('upload_preset', 'zonfnjjo');
-      try {
-        const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
-        mediaUrl = response.data.url;
-        // console.log("Image is uploaded")
+    if (cmnt.image && cmnt.image[0]) {
+    setLoading(true);
+        
+        const imageType = cmnt.image[0].type;
 
-      } catch (error) {
-        // console.error("Video upload failed", error);
-      }
+        if (!imageType.startsWith("image/")) {
+            setLoading(false);
+            return toast.warning("Select valid image file");
+        }
+
+        const formData = new FormData();
+        formData.append('file', cmnt.image[0]);
+        formData.append('upload_preset', 'zonfnjjo');
+        try {
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData);
+            mediaUrl = response.data.url;
+            // console.log("Image uploaded successfully");
+        } catch (error) {
+            // console.error("Image upload failed", error);
+        }
+    }
+
+    if (cmnt.video && cmnt.video[0]) {
+    setLoading(true);
+        
+        const videoType = cmnt.video[0].type;
+
+
+        if (!videoType.startsWith("video/")) {
+            setLoading(false);
+            return toast.warning("Select valid video format");
+        }
+        const formData = new FormData();
+        formData.append('file', cmnt.video[0]);
+        formData.append('upload_preset', 'zonfnjjo');
+        try {
+    setLoading(true);
+
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
+            mediaUrl = response.data.url;
+            reset();
+            // console.log("Video uploaded successfully");
+        } catch (error) {
+            // console.error("Video upload failed", error);
+        }
     }
 
     try {
-      cmnt.mediaUrl = mediaUrl;
-      cmnt.userId = cu._id;
-      const commentWithProductId = { ...cmnt, productId };
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
-      if (response.data.message === "Comment Added") {
-        dispatch({
-          type: "ADD_COMMENT",
-          payload: response.data.alldata,
-        });
-        setComments(response.data.alldata);
-        setLoading(false);
-        reset();
-        setForm(false);
-        // setSucess("comment");
-        toast.success("Feedback submitted");
-      }
-    } catch (e) {
-      // console.error("Comment submission failed", e);
-    }
-  };
+        setLoading(true);
 
+        cmnt.mediaUrl = mediaUrl;
+        cmnt.userId = cu._id;
+        cmnt.name=cmnt.name;
+        cmnt.email=cmnt.email;
+        const commentWithProductId = { ...cmnt, productId };
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
+  
+        if (response.data.message === "Comment Added") {
+
+            dispatch({
+                type: "ADD_COMMENT",
+                payload: response.data.alldata,
+            });
+            setComments(response.data.alldata);
+        // imageSelected([])
+        // videoSelected([])
+            setLoading(false);
+            toast.success("Feedback submitted");
+            window.location.reload();
+            reset();
+        }
+    } catch (e) {
+        //   console.error("Comment submission failed", e);
+    }
+};
 
   useEffect(() => {
     setLoading(true);
@@ -537,7 +569,7 @@ const SingleAdd = () => {
                     </Link>
                   </div>
                 )}
-
+               
               <div className="">
                 <span
                   className="fw-bold fs-5"
@@ -548,6 +580,27 @@ const SingleAdd = () => {
                     <s className="mx-2">{`£${product?.price.toFixed()}`}</s>
                   </span>}
               </div>
+
+  <div className="my-2">
+    <select name="size" id="size"  className="form-select">
+      <option value="">Select a size</option>
+      {product.sizes.map((size, index) => (
+        <option key={index} value={size}>
+          {size}
+        </option>
+      ))}
+    </select>
+  </div>
+     <div className="my-2">
+     <select name="color" id="color" className="form-select">
+<option value="">Select a Color</option>
+{product?.colors?.map((color, index) => (
+<option key={index} value={color}>
+{color}
+</option>
+))}
+</select>
+     </div>
               <div className="sigle_quatity_main mt-3">
                 <div className="">
                   <p
@@ -826,99 +879,112 @@ const SingleAdd = () => {
                   </div>
                 </div>
 
+                {loading ? (
+                        <div className='min-vh-50 d-flex justify-content-center align-items-center'>
+                            <Loader />
 
-                <div className="modal fade review_model"
-                        id="exampleModal"
-                        tabIndex={-1}
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                        Reviews
-                                    </h1>
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    />
-                                </div>
-                                <div className="modal-body p-3">
-                                    <form action="" onSubmit={handleSubmit(Comment)}>
-                                        <div className="mb-3">
-                                            <label className="form-label">Your Name</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                placeholder="Rose Merie"
-                                                required
-                                                {...register('name')}
-                                            />
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label className="form-label">Email address</label>
-                                            <input
-                                                type="email"
-                                                placeholder="asd@gmail.com"
-                                                className="form-control"
-                                                required
-                                                {...register('email')}
-                                            />
-                                        </div>
-
-                                        <div className="d-flex gap-2 mb-3">
-                                            <div className="file-input-container">
-                                                <label className="file-input-box">
-                                                    <i>
-                                                        <MdOutlinePhotoLibrary />
-                                                    </i>
-                                                    <input
-                                                        type="file"
-                                                        accept="image/*"
-                                                        {...register('image')}
-                                                        className="file-input"
-                                                    />
-                                                    <p className='text-muted m-0'>Photo</p>
-                                                </label>
-                                            </div>
-                                            <div className="file-input-container">
-                                                <label className="file-input-box">
-                                                    <i>
-                                                        <FaVideoSlash />
-                                                    </i>
-                                                    <input
-                                                        type="file"
-                                                        accept="video/*"
-                                                        {...register('video')}
-                                                        className="file-input"
-                                                    />
-                                                    <p className='text-muted m-0'>Video</p>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <label className="form-label">Write your feedback</label>
-                                            <textarea
-                                                type="text"
-                                                rows="5"
-                                                className="form-control"
-                                                required
-                                                {...register('comment')}
-                                            />
-                                        </div>
-                                        <button type="submit" className="button-submit w-100">
-                                            Submit
-                                        </button>
-                                    </form>
-
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div
+  className="modal fade"
+  id="exampleModal"
+  tabIndex={-1}
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">
+          Reviews
+        </h5>
+        <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        />
+      </div>
+      <div className="modal-body">
+      <div className="modal-body p-3">
+                                        <form action="" onSubmit={handleSubmit(Comment)}>
+                                           
+                                            <div className="mb-3">
+                                                <label className="form-label">Your Name</label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Rose Merie"
+                                                    defaultValue={cu?.name}
+                                                    required
+                                                    {...register('name')}
+                                                />
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <label className="form-label">Email address</label>
+                                                <input
+                                                    type="email"
+                                                    placeholder="asd@gmail.com"
+                                                    className="form-control"
+                                                    defaultValue={cu?.email}
+                                                    required
+                                                    {...register('email')}
+                                                />
+                                            </div>
+
+                                            <div className="d-flex gap-2 mb-3">
+                                                {/* Image input */}
+                                             
+ <div className="file-input-container">
+ <label className="file-input-box">
+     <i><MdOutlinePhotoLibrary /></i>
+     <input
+         type="file"
+         accept="image/*"
+         {...register('image')}
+         className="file-input"
+     />
+     <p className="text-muted m-0">Photo</p>
+ </label>
+</div>
+ <div className="file-input-container">
+ <label className="file-input-box">
+     <i><FaVideoSlash /></i>
+     <input
+         type="file"
+         accept="video/*"
+         {...register('video')}
+         className="file-input"
+     />
+     <p className="text-muted m-0">Video</p>
+ </label>
+</div>
+                                              
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <label className="form-label">Write your feedback</label>
+                                                <textarea
+                                                    rows="5"
+                                                    className="form-control"
+                                                    required
+                                                    {...register('comment')}
+                                                />
+                                            </div>
+                                            <button type="submit" className="button-submit w-100">
+                                                Submit
+                                            </button>
+                                        </form>
+                                    </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+                    )
+                    }
               
             </div>
           </div>

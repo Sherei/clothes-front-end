@@ -104,8 +104,7 @@ const Collections = () => {
                                                 <th>Sr #</th>
                                                 <th>Image</th>
                                                 <th>Category</th>
-                                                <th>Sub category</th>
-                                                <th>Status</th>
+                                               <th>Status</th>
                                                 <th>Date</th>
                                                 <th>Delete</th>
                                                 <th>Edit</th>
@@ -117,11 +116,6 @@ const Collections = () => {
                                                     <td className='text-center'>{index + 1}</td>
                                                     <td className='text-center'> <img src={data.image} className='rounded-3 img-fluid' style={{ maxWidth: '80px', height: '80px' }} alt="No Network" /></td>
                                                     <td className='text-center'>{data.category}</td>
-                                                    <td className='text-center'>{data.subCategory.map((data,index)=>(
-                                                      <>
-                                                      {data.name}<br/> 
-                                                      </>
-                                                    ))}</td>
                                                     <td className='text-center'>
                               <select
                                 className=''

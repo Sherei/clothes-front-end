@@ -30,7 +30,10 @@
     padding-left: 10px;
     transition: 0.2s ease-in-out;
   }
-  
+  .inputForm input:focus{
+    border: none !important;
+    outline: none !important;
+  }
   .input {
     margin-left: 10px;
     border-radius: 10px;

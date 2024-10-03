@@ -186,7 +186,7 @@ const Review = () => {
     };
 
     return <>
-        <div className='container-fluid my-5' style={{ backgroundColor: "#F2F0F1" }}>
+        <div className='container-fluid my-5' style={{ backgroundColor: "#F2F0F1" }} id='review'>
             <div className='container'>
                 <div className="row d-flex justify-content-center">
 

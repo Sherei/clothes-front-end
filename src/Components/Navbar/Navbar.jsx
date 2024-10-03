@@ -10,6 +10,10 @@ import axios from "axios";
 import "./navbar.css"
 import { FaBars, FaCross, FaPowerOff } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import {Link} from "react-scroll";
+import { IoLogOutOutline } from "react-icons/io5";
+
+
 
 const Navbar = () => {
 
@@ -73,9 +77,9 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div>
-            <NavLink className="nav-link" to="/review">
+            <Link className="nav-link cursor" to="review">
               Reviews
-            </NavLink>
+            </Link>
           </div>
           <div>
             <NavLink className="nav-link" to="/contact">
@@ -92,7 +96,7 @@ const Navbar = () => {
           <div className="navbar_right d-flex no-wrap gap-0 fs-3">
             <NavLink
               className="nav-link"
-              to={`/cart/${cu._id}`}
+              to={`/products/all`}
             ><CgSearch />
             </NavLink>
             {cu.role != "admin" &&
@@ -106,7 +110,7 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 onClick={Logout}>
-                <FaPowerOff />
+               <IoLogOutOutline />
               </NavLink>
             }
             {cu._id &&
@@ -155,7 +159,7 @@ const Navbar = () => {
           <div className="navbar_right d-flex no-wrap gap-0 fs-3">
             <NavLink
               className="nav-link"
-              to={`/cart/${cu._id}`}
+              to={`/products/all`}
             ><CgSearch />
             </NavLink>
             {cu.role != "admin" &&
@@ -169,7 +173,7 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 onClick={Logout}>
-                <FaPowerOff />
+                <IoLogOutOutline />
               </NavLink>
             }
             {cu._id &&
@@ -209,9 +213,9 @@ const Navbar = () => {
               </NavLink>
             </div>
             <div>
-              <NavLink className="nav-link" to="/review" onClick={toggleNav}>
+              <Link className="nav-link" to="review" onClick={toggleNav}>
                 Reviews
-              </NavLink>
+              </Link>
             </div>
             <div>
               <NavLink className="nav-link" to="/contact" onClick={toggleNav}>

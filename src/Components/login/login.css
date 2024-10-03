@@ -34,6 +34,10 @@
     border: none !important;
     outline: none !important;
   }
+  .inputForm .input:focus, .inputForm input:valid {
+    border: none !important;
+    outline: none;
+}
   .inputForm input:focus{
     border: none !important;
     outline: none !important;

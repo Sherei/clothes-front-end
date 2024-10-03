@@ -2,7 +2,7 @@ import React from 'react'
 import { FaTwitter, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import "./footer.css"
 import { NavLink } from 'react-router-dom';
-
+import {Link} from "react-scroll"
 const Footer = () => {
 
 
@@ -83,19 +83,24 @@ const Footer = () => {
                                         <div className='text-light'>
                                             <h6 className="text-uppercase fw-bolder mb-4">Useful links</h6>
                                             <p>
-                                                <NavLink to="products" className="text-reset">
+                                                <NavLink to="/products" className="text-reset">
                                                     Products
                                                 </NavLink>
                                             </p>
                                             <p>
-                                                <NavLink to="products" className="text-reset">
+                                                <NavLink to="/products" className="text-reset">
                                                     Special Offers
                                                 </NavLink>
                                             </p>
                                             <p>
-                                                <NavLink to="contact" className="text-reset">
+                                                <NavLink to="/contact" className="text-reset">
                                                     Contact
                                                 </NavLink>
+                                            </p>
+                                            <p>
+                                                <Link to="review" className="text-reset">
+                                                    Review
+                                                </Link>
                                             </p>
                                             <p>
                                                 <NavLink to="/faqs" className="text-reset">

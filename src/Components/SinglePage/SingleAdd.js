@@ -680,92 +680,12 @@ const SingleAdd = () => {
           <div className="col-lg-10 col-md-10 col-sm-12">
             <p
               className="fs-2 fw-bolder"
-              style={{
-                color: "#1b2950",
-                borderBottom: "1px solid #1b2950",
-                width: "fit-content"
-
-              }}
             >
               Product Detail
             </p>
-            {product?.descriptionHead1 && (
-              <p
-                className="fs-6 my-3 fw-bolder "
-                style={{ color: "#1b2950" }}
-              >
-                {product.descriptionHead1}
-              </p>
-            )}
-            {product?.description && (
-              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description}</p>
-            )}
-            {product?.descriptionHead2 && (
-              <p
-                className="fs-6 my-3 fw-bolder"
-                style={{ color: "#1b2950" }}
-              >
-                {product.descriptionHead2}
-              </p>
-            )}
-            {product?.description2 && (
-              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description2}</p>
-            )}
-            {product?.descriptionHead3 && (
-              <p
-                className="fs-6 my-3 fw-bolder"
-                style={{ color: "#1b2950" }}
-              >
-                {product.descriptionHead3}
-              </p>
-            )}
-            {product?.description3 && (
-              <p className="fs-6 " style={{ textAlign: "justify" }}>{product.description3}</p>
-            )}
-            {product?.descriptionHead4 && (
-              <p
-                className="fs-6 my-3 fw-bolder"
-                style={{ color: "#1b2950" }}
-              >
-                {product.descriptionHead4}
-              </p>
-            )}
-            {product?.description4 && (
-              <p className="fs-6" style={{ textAlign: "justify" }}>{product.description4}</p>
-            )}
-
-            {product?.dimensionHead && (
-              <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>
-                {product.dimensionHead}
-              </p>
-            )}
-            {product?.images &&
-              product.images.length > 0 &&
-              product?.description && (
-                <>
-                  <div className="my-4 row row-cols-lg-2 row-cols-1 g-4">
-                    <div className="cols">
-                      {product.images[0] && (
-                        <img
-                          src={product.images[0]}
-                          className="img-fluid rounded-3"
-                          alt="No Network"
-                        />
-                      )}
-                    </div>
-                    <div>
-                      {product.images[1] && (
-                        <img
-                          src={product.images[1]}
-                          className="img-fluid rounded-3"
-                          alt="No Network"
-                        />
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
-
+              <div className="d-flex justify-content-center">
+                <img src="/chart.png" className="img-fluid" alt="" />
+              </div>
           </div>
         </div>
 

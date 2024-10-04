@@ -46,7 +46,7 @@ const Footer = () => {
                             {/* Grid column */}
                             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                                 {/* Content */}
-                                <img src="logo.png" className='footer_logo' alt="" />
+                                <img src="logo2.png" className='footer_logo' alt="" />
                                 <p className='mt-3 text-light'>
                                     We have clothes that suits your style and which you’re proud to wear.
                                     From women to men.

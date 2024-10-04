@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { MdOutlineAlternateEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import "./login.css"
@@ -99,6 +100,7 @@ export const Login = () => {
                 <label>Password *</label>
               </div>
               <div className="inputForm">
+              <RiLockPasswordLine size={20}/>
                 <input
                   required={true}
                   autoComplete="off"

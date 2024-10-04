@@ -155,9 +155,9 @@ const [loading,setLoading]=useState(false)
                         <div className="inputForm">
                             <svg
                                 className='mt-3'
-                                height={20}
+                                height={40}
                                 viewBox="0 0 32 32"
-                                width={20}
+                                width={40}
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <FaAddressBook />

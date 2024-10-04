@@ -769,8 +769,8 @@ const SingleAdd = () => {
           </div>
         </div>
 
-        <div className="row mt-5 mb-3 d-flex justify-content-center">
-          <div className="col-lg-10 col-md-10 col-sm-12 mb-5">
+        <div className="row mt-5 d-flex justify-content-center">
+          <div className="col-lg-10 col-md-10 col-sm-12">
             <p className="fs-3 fw-bolder">Related Products
             </p>
             {loading ? (
@@ -807,7 +807,7 @@ const SingleAdd = () => {
           </div>
         </div>
 
-        <div className="row mb-5 py-5" id="review">
+        <div className="row mb-5" id="review">
           <div className="col-lg-12 col-md-12 col-sm-12 px-lg-5 px-3" >
             <div className="row d-flex justify-content-center">
            

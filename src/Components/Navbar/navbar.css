@@ -1,6 +1,6 @@
 .navbar-brand{
-  width: 105px;
-  height: 74px;
+  width: 140px;
+  height: 110px;
 }
 .navbar-brand img{
   width: 100%;
@@ -63,6 +63,11 @@
     display: flex;
     justify-content: start;
     align-items: center;
+  }
+  .navbar-brand{
+    width: 105px;
+    height: 74px;
+    margin-right: -31px;
   }
 }
 

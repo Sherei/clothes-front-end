@@ -743,7 +743,7 @@ const SingleAdd = () => {
                     </div>
                   </div>
                 </div>
-            {comments.length>0 &&
+            {comments.filter((item) => item.productId === productId).length === 0  &&
   <div className="col-lg-12 col-md-12 col-sm-12 my-5">
   <h1 className="fs-1 fw-bolder my-5">
     Riski-Brothers Society

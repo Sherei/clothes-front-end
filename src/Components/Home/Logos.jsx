@@ -8,7 +8,7 @@ import "./logos.css"
 const Logos = () => {
   return (
     <>
-      <div className='container-fluid bg-dark'>
+      <div className='container-fluid' style={{backgroundColor:"black"}}>
         <div className='row'>
           <div className='col'>
             <div className='d-flex flex-wrap justify-content-center align-items-center py-1'>

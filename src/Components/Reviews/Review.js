@@ -142,7 +142,7 @@ const Review = () => {
             videoSelected([])
                 setLoading(false);
                 toast.success("Feedback submitted");
-                window.location.reload();
+                // window.location.reload();
                 reset();
             }
         } catch (e) {

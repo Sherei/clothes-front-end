@@ -309,12 +309,12 @@ const SingleAdd = () => {
 
   const Comment = async (cmnt) => {
 
-    // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
-    const modal = document.getElementById('exampleModal');
-    // modal.classList.remove('show');
-    // modal.style.display = 'none';
-    // document.body.classList.remove('modal-open');
-    document.querySelector('.modal-backdrop').remove();
+        // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
+        const modal = document.getElementById('exampleModal');
+        // modal.classList.remove('show');
+        // modal.style.display = 'none';
+        // document.body.classList.remove('modal-open');
+        document.querySelector('.modal-backdrop').remove();
             console.log("comment working");
             setLoading(true);
             console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
@@ -399,7 +399,7 @@ const SingleAdd = () => {
         // videoSelected([])
             setLoading(false);
             toast.success("Feedback submitted");
-            window.location.reload();
+            // window.location.reload();
             reset();
         }
     } catch (e) {

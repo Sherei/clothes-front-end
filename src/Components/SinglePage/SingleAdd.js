@@ -731,62 +731,7 @@ const SingleAdd = () => {
           <div className="col-lg-12 col-md-12 col-sm-12 px-lg-5 px-3" >
             <div className="row d-flex justify-content-center">
            
-            <div className="col-lg-12 col-md-12 col-sm-12 my-5">
-                <h1 className="fs-1 fw-bolder my-5">
-                  Riski-Brothers Society
-                </h1>
-                {/* <p className=fs-6'>Over 10,000 happy customers!</p> */}
-
-                <div className='h_box_main'>
-                  {loading ? (
-                    <div
-                      className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                      style={{ height: "80vh" }}
-                    >
-                      <Loader />
-                    </div>
-                  ) : comments.filter((item) => item.productId === productId)
-                    .length === 0 ? (
-                    <div
-                      className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                      style={{ height: "50vh" }}
-                    >
-                      <h2>No Review available</h2>
-                    </div>
-                  ) : (comments
-                    .filter((item) => item.productId === productId)
-                    .map((item, index) => {
-                      return <>
-                        <div className='card border p-2' style={{ width: "270px" }} key={index}>
-                          <div className="card_img mb-2" style={{ background: "transparent" }}>
-                            {item?.mediaUrl ===undefined &&(
-                                  <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                            )
-                            }
-                            {item?.mediaUrl && (
-                              <div>
-                                {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
-                                  <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                                ) : (
-                                 <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
-                                    <source src={item?.mediaUrl} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                  </video>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                          <p className='text-center'>{item?.comment}</p>
-                          <p className='text-center fw-bolder'>{item?.name}</p>
-                        </div>
-                      </>
-                    })
-                  )}
-                </div>
-              </div>
-
-
-                <div className="col-12 p-2" style={{ backgroundColor: "#F2F0F1" }}>
+            <div className="col-12 p-2" style={{ backgroundColor: "#F2F0F1" }}>
                   <div className="border p-5 d-flex flex-column justify-content-center align-items-center">
                     <p className="fw-bolder fs-3">Customer Reviews</p>
                     <p className="text-center fs-5">No review yet. Any feedback? Let us know </p>
@@ -798,6 +743,63 @@ const SingleAdd = () => {
                     </div>
                   </div>
                 </div>
+            {comments.length>0 &&
+  <div className="col-lg-12 col-md-12 col-sm-12 my-5">
+  <h1 className="fs-1 fw-bolder my-5">
+    Riski-Brothers Society
+  </h1>
+  {/* <p className=fs-6'>Over 10,000 happy customers!</p> */}
+
+  <div className='h_box_main'>
+    {loading ? (
+      <div
+        className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
+        style={{ height: "80vh" }}
+      >
+        <Loader />
+      </div>
+    ) : comments.filter((item) => item.productId === productId)
+      .length === 0 ? (
+      <div
+        className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
+        style={{ height: "50vh" }}
+      >
+        <h2>No Review available</h2>
+      </div>
+    ) : (comments
+      .filter((item) => item.productId === productId)
+      .map((item, index) => {
+        return <>
+          <div className='card border p-2' style={{ width: "270px" }} key={index}>
+            <div className="card_img mb-2" style={{ background: "transparent" }}>
+              {item?.mediaUrl ===undefined &&(
+                    <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
+              )
+              }
+              {item?.mediaUrl && (
+                <div>
+                  {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
+                    <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
+                  ) : (
+                   <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
+                      <source src={item?.mediaUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                </div>
+              )}
+            </div>
+            <p className='text-center'>{item?.comment}</p>
+            <p className='text-center fw-bolder'>{item?.name}</p>
+          </div>
+        </>
+      })
+    )}
+  </div>
+</div>
+            }
+          
+
 
                 {loading ? (
                         <div className='min-vh-50 d-flex justify-content-center align-items-center'>

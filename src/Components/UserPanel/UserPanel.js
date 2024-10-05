@@ -181,7 +181,7 @@ const UserPanel = () => {
                                             className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
                                             style={{ height: "50vh" }}
                                         >
-                                            <h2>No Review available</h2>
+                                            <h2 className='text-center'>No Review available</h2>
                                         </div>
                                     ) : (comments?.filter((data) => data.userId === cu._id).map((item, index) => {
                                         return <>

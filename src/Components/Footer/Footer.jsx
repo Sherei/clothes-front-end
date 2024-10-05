@@ -17,7 +17,7 @@ const Footer = () => {
             {/* Footer */}
             <footer className="text-center text-lg-start" style={{ backgroundColor: "black" }} >
                 {/* Section: Social media */}
-                <section className="container d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <section className="container d-flex justify-content-start justify-content-lg-between p-4 border-bottom">
                     <div className="me-5 d-none d-lg-block fw-bold">
                         <span className='text-light'>Get connected with us on social networks:</span>
                     </div>

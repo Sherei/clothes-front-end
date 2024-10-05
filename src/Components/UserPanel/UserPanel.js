@@ -82,7 +82,7 @@ const UserPanel = () => {
 
     return (
         <section style={{ backgroundColor: "#F2F0F1", minHeight: "100vh" }}>
-            <div className="container py-5">
+            <div className="container py-lg-5 py-2">
                 <div className="row">
 
                     <div className="col-lg-4 col-md-4 col-sm-12">
@@ -154,7 +154,7 @@ const UserPanel = () => {
 
                                     </>
                                 ) : (
-                                    <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ height: '50vh', backgroundColor: '#eee' }}>
+                                    <div className='py-0 my-5 d-flex flex-column align-items-center justify-content-center gap-3' style={{ minHeight: '100vh', backgroundColor: '#eee' }}>
                                         <p className='fw-bolder text-muted'>No Order Placed yet</p>
                                         <Lottie animationData={userPanel} loop={true} style={{ width: "100%", height: "100%" }} />
                                         <button className='button-submit px-5 py-3 w-100' onClick={() => navigate('/Products/all')}>

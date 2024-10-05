@@ -63,9 +63,23 @@ const SingleAdd = () => {
   const [timeoutId, setTimeoutId] = useState(null);
   const [form, setForm] = useState(false)
   const [cmntLoading, setcmntLoading] = useState(false)
+  const [imageSelected, setImageSelected] = useState(false);
+  const [videoSelected, setVideoSelected] = useState(false);
 
   const dispatch = useDispatch();
 
+  
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+        setImageSelected(true);
+    }
+};
+
+const handleVideoChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+        setVideoSelected(true);
+    }
+};
 
   const sendWhatsAppMessage = () => {
     const message = `I'm interested in product\n${window.location.href}\n\nCan you provide more details?`;
@@ -307,13 +321,17 @@ const SingleAdd = () => {
     setForm(!form)
   }
 
+  const resetMediaSelection = () => {
+    setImageSelected(false);
+    setVideoSelected(false);
+};
+
   const Comment = async (cmnt) => {
 
-        // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
+    window.scrollTo({
+      top: 0,
+    });
         const modal = document.getElementById('exampleModal');
-        // modal.classList.remove('show');
-        // modal.style.display = 'none';
-        // document.body.classList.remove('modal-open');
         document.querySelector('.modal-backdrop').remove();
             console.log("comment working");
             setLoading(true);
@@ -395,6 +413,7 @@ const SingleAdd = () => {
                 payload: response.data.alldata,
             });
             setComments(response.data.alldata);
+          
         // imageSelected([])
         // videoSelected([])
             setLoading(false);
@@ -681,7 +700,7 @@ const SingleAdd = () => {
             <p
               className="fs-2 fw-bolder"
             >
-              Product Detail
+              Size Chart
             </p>
               <div className="d-flex justify-content-center">
                 <img src="/chart.png" className="img-fluid" alt="" />
@@ -825,6 +844,7 @@ const SingleAdd = () => {
           className="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          onClick={resetMediaSelection}
         />
       </div>
       <div className="modal-body">
@@ -856,32 +876,43 @@ const SingleAdd = () => {
                                             </div>
 
                                             <div className="d-flex gap-2 mb-3">
-                                                {/* Image input */}
-                                             
- <div className="file-input-container">
- <label className="file-input-box">
-     <i><MdOutlinePhotoLibrary /></i>
-     <input
-         type="file"
-         accept="image/*"
-         {...register('image')}
-         className="file-input"
-     />
-     <p className="text-muted m-0">Photo</p>
- </label>
-</div>
- <div className="file-input-container">
- <label className="file-input-box">
-     <i><FaVideoSlash /></i>
-     <input
-         type="file"
-         accept="video/*"
-         {...register('video')}
-         className="file-input"
-     />
-     <p className="text-muted m-0">Video</p>
- </label>
-</div>
+                                            {!imageSelected && !videoSelected && (
+            <>
+                {/* Image input */}
+                <div className="file-input-container">
+                    <label className="file-input-box">
+                        <i><MdOutlinePhotoLibrary /></i>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            {...register('image')}
+                            className="file-input"
+                            onChange={handleImageChange}
+                        />
+                        <p className="text-muted m-0">Photo</p>
+                    </label>
+                </div>
+
+                {/* Video input */}
+                <div className="file-input-container">
+                    <label className="file-input-box">
+                        <i><FaVideoSlash /></i>
+                        <input
+                            type="file"
+                            accept="video/*"
+                            {...register('video')}
+                            className="file-input"
+                            onChange={handleVideoChange}
+                        />
+                        <p className="text-muted m-0">Video</p>
+                    </label>
+                </div>
+            </>
+        )}
+
+        {/* Show success messages after selection */}
+        {imageSelected && <p className='text-success'>Image Selected</p>}
+        {videoSelected && <p className='text-success'>Video Selected</p>}                                      
                                               
                                             </div>
 

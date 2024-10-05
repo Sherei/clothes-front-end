@@ -35,6 +35,11 @@ const Review = () => {
     const dispatch = useDispatch();
     const move =useNavigate()
 
+    const resetMediaSelection = () => {
+        setImageSelected(false);
+        setVideoSelected(false);
+    };
+    
      const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             setImageSelected(true);
@@ -264,6 +269,7 @@ const Review = () => {
                         <div
   className="modal fade"
   id="exampleModal"
+  onHide={resetMediaSelection}
   tabIndex={-1}
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -279,6 +285,7 @@ const Review = () => {
           className="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+  onClick={resetMediaSelection}
         />
       </div>
       <div className="modal-body">
@@ -310,34 +317,44 @@ const Review = () => {
                                             </div>
 
                                             <div className="d-flex gap-2 mb-3">
-                                                {/* Image input */}
-                                             
- <div className="file-input-container">
- <label className="file-input-box">
-     <i><MdOutlinePhotoLibrary /></i>
-     <input
-         type="file"
-         accept="image/*"
-         {...register('image')}
-         className="file-input"
-         onChange={handleImageChange}
-     />
-     <p className="text-muted m-0">Photo</p>
- </label>
-</div>
- <div className="file-input-container">
- <label className="file-input-box">
-     <i><FaVideoSlash /></i>
-     <input
-         type="file"
-         accept="video/*"
-         {...register('video')}
-         className="file-input"
-         onChange={handleVideoChange}
-     />
-     <p className="text-muted m-0">Video</p>
- </label>
-</div>
+                                            {!imageSelected && !videoSelected && (
+            <>
+                {/* Image input */}
+                <div className="file-input-container">
+                    <label className="file-input-box">
+                        <i><MdOutlinePhotoLibrary /></i>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            {...register('image')}
+                            className="file-input"
+                            onChange={handleImageChange}
+                        />
+                        <p className="text-muted m-0">Photo</p>
+                    </label>
+                </div>
+
+                {/* Video input */}
+                <div className="file-input-container">
+                    <label className="file-input-box">
+                        <i><FaVideoSlash /></i>
+                        <input
+                            type="file"
+                            accept="video/*"
+                            {...register('video')}
+                            className="file-input"
+                            onChange={handleVideoChange}
+                        />
+                        <p className="text-muted m-0">Video</p>
+                    </label>
+                </div>
+            </>
+        )}
+
+        {/* Show success messages after selection */}
+        {imageSelected && <p className='text-success'>Image Selected</p>}
+        {videoSelected && <p className='text-success'>Video Selected</p>}
+
                                               
                                             </div>
 

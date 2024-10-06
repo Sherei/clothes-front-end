@@ -50,34 +50,28 @@ const SingleBlog = () => {
                 <Loader />
             </div>
         ) : (
-            <div className='container min-vh-100 '>
-                <div className='row mt-5'>
+            <div className='container my-5'>
+                <div className='row'>
                     <div className='col'>
-                        <h1 className='fw-bolder' style={{ color: "rgb(2, 2, 94)", textTransform: "capitalize" }}>{blog?.title}</h1>
+                        <h1 className='fw-bolder' style={{  textTransform: "capitalize" }}>{blog?.title}</h1>
                         {(blog.author && blog.issueDate) && <p className='text-muted'>{formatDateTime(blog?.issueDate)} &nbsp;&nbsp;{blog?.author}</p>}
                         <div className='my-5 px-lg-5 px-2' >
                             <ul className='' style={{ width: "95%" }}>
                                 <p className=''>
                                     Hey, <br /> <br />
                                 </p>
-                                <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>Introduction:</p>
+                                <p className='fw-bolder m-0'>Introduction:</p>
                                 {blog?.introduction && <li className='mb-3'>{blog?.introduction}</li>}
-                                {blog?.heading1 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading1}</p>}
                                 {blog?.description1 && <li className='mb-3'>{blog?.description1}</li>}
-                                {blog?.heading2 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading2}</p>}
                                 {blog?.description2 && <li className='mb-3'>{blog?.description2}</li>}
-                                {blog?.heading3 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading3}</p>}
                                 {blog?.description3 && <li className='mb-3'>{blog?.description3}</li>}
-                                {blog?.heading4 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading4}</p>}
                                 {blog?.description4 && <li className='mb-3'>{blog?.description4}</li>}
-                                {blog?.heading5 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading5}</p>}
                                 {blog?.description5 && <li className='mb-3'>{blog?.description5}</li>}
-                                {blog?.heading6 && <p className='fw-bolder m-0' style={{ color: "rgb(2, 2, 94)" }}>{blog?.heading6}</p>}
                                 {blog?.description6 && <li className='mb-3'>{blog?.description6}</li>}
                             </ul>
                         </div>
                         <div className='text-center'>
-                            <button className='btn review_btn' style={{ width: "fit-content" }} onClick={() => move("/all-blog")}>VIEW ALL POSTS <FaArrowRight /></button>
+                            <button className='button-submit px-4'onClick={() => move("/all-blog")}>View All</button>
                         </div>
                     </div>
                 </div>

@@ -150,49 +150,25 @@ const AddBlog = () => {
                                     {errors.introduction && errors.introduction.type == "required" ? <div className='error'>Introduction is required</div> : null}
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 1 *</label>
-                                    <input type="text"  {...register('heading1', { required: true })} className="form-control mb-2 mr-sm-2" />
-                               </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1 *</label>
                                     <textarea type="text" rows={3} {...register('description1', { required: true })} className="form-control mb-2 mr-sm-2" />
                                     {errors.description1 && errors.description1.type == "required" ? <div className='error'>Discription is required</div> : null}
-                                </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 2</label>
-                                    <input type="text" {...register('heading2')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 2</label>
                                     <textarea type="text" rows={3} {...register('description2')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 3</label>
-                                    <input type="text"{...register('heading3')} className="form-control mb-2 mr-sm-2" />
-                                </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 3</label>
                                     <textarea type="text" rows={3} {...register('description3')} className="form-control mb-2 mr-sm-2" />
-                                </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 4</label>
-                                    <input type="text" {...register('heading4')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 4</label>
                                     <textarea type="text" rows={3} {...register('description4')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 5</label>
-                                    <input type="text" {...register('heading5')} className="form-control mb-2 mr-sm-2" />
-                                </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 5</label>
                                     <textarea type="text" rows={3} {...register('description5')} className="form-control mb-2 mr-sm-2" />
-                                </div>
-                                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
-                                    <label style={{ fontSize: "17px", fontWeight: "600" }}>Heading 6</label>
-                                    <input type="text" {...register('heading6')} className="form-control mb-2 mr-sm-2" />
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
                                     <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 6</label>
@@ -202,14 +178,14 @@ const AddBlog = () => {
                             <div className='row'>
                                 {!blog &&
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                        <button type="button" className="btn review_btn" style={{ width: "200px" }} onClick={handleSubmit(submitBlog)}>
+                                        <button type="button" className="button-submit px-4" onClick={handleSubmit(submitBlog)}>
                                             Submit
                                         </button>
                                     </div>
                                 }
                                 {blog &&
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                        <button type="button" className="btn review_btn" style={{ width: "200px" }} onClick={handleSubmit(submitBlog)}>
+                                        <button type="button" className="button-submit px-4"  onClick={handleSubmit(submitBlog)}>
                                             Update
                                         </button>
                                     </div>

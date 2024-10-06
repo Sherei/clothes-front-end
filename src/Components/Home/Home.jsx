@@ -9,6 +9,7 @@ import Discover from './Discover'
 import Collections from "./Collections"
 import Benefits from "../Benefits/Benefits"
 import Review from "../Reviews/Review"
+import Blog from "../Blog/Blog"
 
 const Home = () => {
   return <>
@@ -22,7 +23,7 @@ const Home = () => {
 
   <Discover/>
   <Review/>
-  
+  <Blog/>
   <Benefits/>
   </>
 }

@@ -11,7 +11,7 @@ import "./benefit.css"
 
 const Benefits = () => {
     return <>
-        <div className='container-fluid main_container my-lg-5 my-md-3 my-sm-2' id='benefit'>
+        <div className='container-fluid main_container py-lg-5 py-md-3 py-2' id='benefit' style={{backgroundColor:"#F2F0F1"}}>
             <div className='my-5 text-center'>
                 <h1 className='fw-bolder home_heading text-capitalize fs-3'>100% Satisfaction is Guaranteed</h1>
                 <p >Over 10,000 Happy Customers!</p>
@@ -56,7 +56,7 @@ const Benefits = () => {
             </div>
             <div>
             <Swiper
-                    className="mb-5 mySwiper benefit_main_box_swiper"
+                    className="mySwiper benefit_main_box_swiper"
                     slidesPerView={2}
                     modules={[Autoplay]}
                     autoplay={{

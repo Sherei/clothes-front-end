@@ -202,6 +202,20 @@ export const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+                             {/* Blogs */}
+                             <div className='col'>
+                                <div className='p-3 admin_card' onClick={()=>setFile("blogs")}>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <div>
+                                            <p className='admin_card_title'>Blogs</p>
+                                            <p className='admin_card_number'>{blog.length}</p>
+                                        </div>
+                                        <div className='card_icon'>
+                                            <FaCommentDots />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </>
 
                     )}
@@ -238,8 +252,6 @@ export const Dashboard = () => {
                         <div className='col-12'>
                         <Orders />
                     </div>
-                
-
                     }
                 </div>
             </div>

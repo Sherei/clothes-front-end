@@ -191,12 +191,12 @@ const Review = () => {
     };
 
     return <>
-        <div className='container-fluid my-5' style={{ backgroundColor: "#F2F0F1" }} id='review'>
+        <div className='container-fluid my-5'  id='review'>
             <div className='container'>
                 <div className="row d-flex justify-content-center">
 
-                    <div className="col-lg-12 col-md-12 col-sm-12 my-5">
-                        <h1 className="fs-1 fw-bolder my-5">
+                    <div className="col-lg-12 col-md-12 col-sm-12 py-5" style={{ backgroundColor: "#F2F0F1" }}>
+                        <h1 className="fs-1 fw-bolder">
                             Riski-Brothers Society
                         </h1>
                         {/* <p className=fs-6'>Over 10,000 happy customers!</p> */}
@@ -229,7 +229,7 @@ const Review = () => {
                                                     {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
                                                         <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
                                                     ) : (
-                                                        <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
+                                                        <video controls autoPlay={false} style={{ maxWidth: '100%', maxHeight: '95%' }}>
                                                             <source src={item?.mediaUrl} type="video/mp4" />
                                                             Your browser does not support the video tag.
                                                         </video>
@@ -247,7 +247,7 @@ const Review = () => {
                     </div>
 
                     {!form && (
-                        <div className="col-12 p-2" style={{ backgroundColor: "#F2F0F1" }}>
+                        <div className="col-12 p-2">
                             <div className="border py-5 px-lg-5 px-md-3 px-sm-2 d-flex flex-column justify-content-center align-items-center">
                                 <p className="fw-bolder fs-3 text-center">Customer Reviews</p>
                                 <p className="text-center fs-5">No review yet. Any feedback? Let us know </p>

@@ -58,7 +58,7 @@ const Navbar = () => {
 
   return <>
     {/* For large screen */}
-    <div className="container-fluid px-5 py-2 navbar_display" style={{ backgroundColor: "#F2F0F1" }}>
+    <div className="container-fluid px-5 navbar_display" style={{ backgroundColor: "#F2F0F1" }}>
       <div className="d-flex justify-content-between align-items-center no-wrap">
         <div className="d-flex no-wrap align-items-center ">
           <a className="navbar-brand" href="/">

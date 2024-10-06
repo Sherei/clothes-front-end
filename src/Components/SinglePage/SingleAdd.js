@@ -800,7 +800,7 @@ const handleVideoChange = (e) => {
                   {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
                     <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
                   ) : (
-                   <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
+                   <video controls autoPlay={false} style={{ maxWidth: '100%', maxHeight: '95%' }}>
                       <source src={item?.mediaUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>

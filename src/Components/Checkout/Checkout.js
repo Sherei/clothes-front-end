@@ -159,20 +159,13 @@ const Checkout = () => {
                     productId: item.productId,
                     sn: item.sn,
                     category: item.category,
+                    size: item.size,
+                    color: item.color,
                     image: item.image,
-                    subCategory: item.subCategory,
                     price: parseFloat(item.price).toString(),
                     total: parseFloat(item.total).toString(),
                     quantity: parseInt(item.quantity).toString(),
                     discount: item.discount,
-                    size: item.size,
-                    color: item.color,
-                    fabric: item.fabric,
-                    detail: item.detail,
-                    base: item.base,
-                    headboard: item.headboard,
-                    ottoman: item.ottoman,
-                    mattress: item.mattress,
                 };
                 orderItems.push(itemData);
             });
@@ -233,32 +226,6 @@ const Checkout = () => {
     return <>
 
         <div className='container-fluid '>
-            {/* <div className="row">
-                <div className="col px-0" style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
-                    <img src="/chk.jpeg" alt="No Network" className='all_img' style={{ width: "100%", height: "100%" }} />
-                    <div
-                        className='d-flex align-items-center justify-content-center'
-                        style={{
-                            position: 'absolute',
-                            height: '100%',
-                            width: '100%',
-                            top: '0',
-                            left: '0',
-                            backgroundColor: 'rgb(27, 41, 80,0.5)',
-                            color: '#fff',
-                            padding: '10px',
-                            boxSizing: 'border-box',
-                        }}
-                    >
-                        <p
-                            className="fs-2 fw-bolder text-center"
-                            style={{ color: "white" }}
-                        >
-                            Checkout !
-                        </p>
-                    </div>
-                </div>
-            </div> */}
             <div className='row checkout_display d-flex justify-content-center my-lg-3'>
                 {loading ? (
                     <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
@@ -267,10 +234,10 @@ const Checkout = () => {
                 ) : filterCart?.length > 0 ? (
                     <>
                         <div className='col-lg-6 col-md-6 col-sm-12 py-3 px-3 mt-3 mt-lg-0 ' style={{ backgroundColor: "white", borderRight: "1px solid lightgray" }}>
-                            <h4 className="mb-3 fw-bolder" style={{ color: "rgb(27, 41, 80)" }}>Delivery Details</h4>
+                            <h4 className="mb-3 fw-bolder" style={{  }}>Delivery Details</h4>
                             <form action="" onSubmit={handleSubmit(Order)}>
                                 <div className="row py-3">
-                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Personal Information</p>
+                                    <p className='fs-6' style={{ fontWeight: "600",  }}>Personal Information</p>
                                     <div className="col-md-6 mb-3">
                                         <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', { required: true })} />
                                         {errors.name1 ? <div className='error'>This Field is required</div> : null}
@@ -287,7 +254,7 @@ const Checkout = () => {
                                 </div>
                                 <hr />
                                 <div className="row py-3">
-                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Address</p>
+                                    <p className='fs-6' style={{ fontWeight: "600",  }}>Shipping Address</p>
                                     <div className="col-md-12 mb-3">
                                         <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', { required: true })} />
                                         {errors.street ? <div className='error'>This Field is required</div> : null}
@@ -319,7 +286,7 @@ const Checkout = () => {
 
                                 <hr className="mb-4" />
                                 <div className="col-md-12 mb-3">
-                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Shipping Charges</p>
+                                    <p className='fs-6' style={{ fontWeight: "600",  }}>Shipping Charges</p>
                                     <div className='px-3 py-2 d-flex justify-content-between align-items-center  rounded-3'
                                         style={{ border: "1px solid lightgray" }}>
                                         <p className='m-0'>Standard Delivery</p>
@@ -327,7 +294,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
                                 <div className='py-3'>
-                                    <p className='fs-6' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Payment Method</p>
+                                    <p className='fs-6' style={{ fontWeight: "600",  }}>Payment Method</p>
                                     <div className="col-md-12 mb-3">
                                         <>
                                             <div className="d-flex gap-2" >
@@ -365,7 +332,7 @@ const Checkout = () => {
                                 </div>
                                 <hr className="mb-4" />
                                 <div className='py-3'>
-                                    <p className='fs-5' style={{ fontWeight: "600", color: "rgb(27, 41, 80)" }}>Order notes</p>
+                                    <p className='fs-5' style={{ fontWeight: "600",  }}>Order notes</p>
                                     <div className="col-md-12 mb-3">
                                         <textarea type="text" placeholder='Notes about your order, e.g. special notes for delivery.'
                                             className="form-control py-2 rounded" rows={7} {...register('note')}
@@ -393,7 +360,7 @@ const Checkout = () => {
                         </div>
                         <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
                             <div className='row'>
-                                <div className='col-12 d-flex justify-content-between' style={{ color: "rgb(27, 41, 80)" }}>
+                                <div className='col-12 d-flex justify-content-between' style={{  }}>
                                     <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
                                     <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                                 </div>
@@ -445,7 +412,7 @@ const Checkout = () => {
                             </div>
                             {/* <div className='chk_btns chk_btns2 mt-5'>
                             <button className="fw-bolder btn btn-lg"
-                                style={{ width: "100%", backgroundColor: "rgb(27, 41, 80)", color: "white" }}
+                                style={{ width: "100%", background, color: "white" }}
                             >
                                 COMPLETE ORDER
                             </button>

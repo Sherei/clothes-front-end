@@ -7,11 +7,12 @@ import { NavLink } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import "./navbar.css"
 import { FaBars, FaCross, FaPowerOff } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import {Link} from "react-scroll";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import "./navbar.css"
 
 
 
@@ -21,13 +22,42 @@ const Navbar = () => {
   const cu = useSelector((store) => store.userSection.cu);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const sideNavRef = useRef(null); // To reference the side nav element
+  const allCartItems = useSelector((store) => store.Cart.cart);
+  const { userId } = useParams();
+  const [cart, setCart] = useState([]);
+  const sideNavRef = useRef(null);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
+      try {
+        if (res) {
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: res.data,
+          });
+        }
+      } catch (e) {
+      }
+        });
+  }, []);
+
+  useEffect(() => {
+    if (allCartItems) {
+      setCart(allCartItems);
+    }
+
+  }, [allCartItems]);
+
+  const filterCart = cart.filter((item) => item.userId === userId)
+ 
+  const totalQuantity = filterCart.reduce((accumulator, item) => {
+    return accumulator + item.quantity;
+  }, 0);
+
 
   const toggleNav = () => {
     setOpen(!open);
   };
-
-  // Handle clicks outside the sidebar
   const handleClickOutside = (event) => {
     if (sideNavRef.current && !sideNavRef.current.contains(event.target)) {
       setOpen(false); // Close the sidebar if clicked outside
@@ -36,14 +66,11 @@ const Navbar = () => {
 
   useEffect(() => {
     if (open) {
-      // Add event listener when sidebar is open
       document.addEventListener('mousedown', handleClickOutside);
     } else {
-      // Remove event listener when sidebar is closed
       document.removeEventListener('mousedown', handleClickOutside);
     }
 
-    // Cleanup the event listener when the component unmounts or sidebar closes
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -104,13 +131,16 @@ const Navbar = () => {
               to={`/products/all`}
             ><CgSearch />
             </NavLink>
-            {cu.role != "admin" &&
-              <NavLink
-                className="nav-link"
-                to={`/cart/${cu._id}`}
-              ><BsCart />
-              </NavLink>
-            }
+            {cu.role != "admin" && (
+        <NavLink className="nav-link cart-link" to={`/cart/${cu._id}`}>
+          <div style={{ position: 'relative' }}>
+            <BsCart size={24} />
+            {/* {(cu._id != undefined) &&
+              <span className="cart-badge">{filterCart?.length}</span>
+            } */}
+          </div>
+        </NavLink>
+      )}
             {cu.role === "admin" &&
               <NavLink
                 className="nav-link"
@@ -167,13 +197,16 @@ const Navbar = () => {
               to={`/products/all`}
             ><CgSearch />
             </NavLink>
-            {cu.role != "admin" &&
-              <NavLink
-                className="nav-link"
-                to={`/cart/${cu._id}`}
-              ><BsCart />
-              </NavLink>
-            }
+            {cu.role !== "admin" && (
+        <NavLink className="nav-link cart-link" to={`/cart/${cu._id}`}>
+          <div style={{ position: 'relative' }}>
+            <BsCart size={24} />
+            {/* {filterCart?.length > 0 && (
+              <span className="cart-badge">{filterCart?.length}</span>
+            )} */}
+          </div>
+        </NavLink>
+      )}
             {cu.role === "admin" &&
               <NavLink
                 className="nav-link"

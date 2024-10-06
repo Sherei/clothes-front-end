@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
-import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { FiShoppingCart } from "react-icons/fi";
-import { Login } from "../login/Login"
 import Loader from "../Loader/Loader";
-import Lottie from "lottie-react";
-import CartAnimation from "../Animations/CartAnimation.json";
 import axios from "axios";
 import "./cart.css";
 
@@ -23,7 +17,7 @@ export const Cart = () => {
   
   const sendWhatsAppMessage = () => {
     const message = `I want to place this order \n\n${window.location.href}`;
-    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/+923259053922?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
 
@@ -231,7 +225,6 @@ export const Cart = () => {
                               <p
                                 className="m-0"
                                 style={{
-                                  color: "rgb(2, 2, 94 )",
                                   fontSize: "14px",
                                 }}
                               >
@@ -250,7 +243,6 @@ export const Cart = () => {
                               <p
                                 className="m-0"
                                 style={{
-                                  color: "rgb(2, 2, 94 )",
                                   fontSize: "14px",
                                 }}
                               >
@@ -265,7 +257,6 @@ export const Cart = () => {
                               <p
                                 className="mb-0"
                                 style={{
-                                  color: "rgb(2, 2, 94 )",
                                   fontSize: "14px",
                                 }}
                               >
@@ -297,7 +288,6 @@ export const Cart = () => {
                               <p
                                 className="mb-0 text-black"
                                 style={{
-                                  color: "rgb(2, 2, 94 )",
                                   fontSize: "14px",
                                 }}
                               >
@@ -453,10 +443,10 @@ export const Cart = () => {
           <div className="col-lg-3 col-md-12 col-sm-12">
             <div className="update mb-3 py-3 px-3 border">
               <div className="d-flex justify-content-between">
-                <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
+                <p className="fw-bolder fs-4" >
                   CART TOTALS
                 </p>
-                <p className="fw-bolder fs-4" style={{ color: "rgb(2, 2, 94)" }}>
+                <p className="fw-bolder fs-4" >
                   {totalQuantity}
                 </p>
               </div>

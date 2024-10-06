@@ -57,6 +57,8 @@ const SingleAdd = () => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
   const [selectedImage, setSelectedImage] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [sucess, setSucess] = useState("")
@@ -130,6 +132,14 @@ const handleVideoChange = (e) => {
 
   const totalImages = product?.images?.length || 0;
 
+  const handleSizeChange = (e) => {
+    setSize(e.target.value);
+  };
+
+  // Handle change for color
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
+  };
 
   const handleThumbnailClick = (index) => {
     setSelectedImage(index);
@@ -244,6 +254,8 @@ const handleVideoChange = (e) => {
   async function AddToCart(
     product,
     totalPrice,
+    color,
+    size,
   ) {
     if (cu._id === undefined) {
       move(`/login/${product.title}/${productId}`);
@@ -262,6 +274,8 @@ const handleVideoChange = (e) => {
         product.total = totalPrice;
         // product.price = product?.price;
         product.quantity = quantity;
+        product.color = color;
+        product.size = size;
         product.image = product?.images[0];
         product.discount = product?.discount;
 
@@ -308,6 +322,8 @@ const handleVideoChange = (e) => {
     await AddToCart(
       product,
       totalPrice,
+      size,
+      color,
     )
     if (cu._id && cu.role !== "admin") {
       move(`/cart-checkout/${cu._id}`);
@@ -572,13 +588,12 @@ const handleVideoChange = (e) => {
             <div className={`s_content ${product?.category === "bed" ? "bed_class" : ""}`}>
               <h1
                 className="fs-1 "
-                style={{ color: "#1b2950" }}
               >
                 {product?.title}
               </h1>
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
-                  <div className=" my-2 cursor" style={{ color: "#1b2950" }}>
+                  <div className=" my-2 cursor">
                     <Link to="review">
                       ({comments.filter(
                         (item) => item.productId === productId
@@ -600,33 +615,46 @@ const handleVideoChange = (e) => {
                   </span>}
               </div>
 
-  <div className="my-2">
-    <select name="size" id="size"  className="form-select">
-      <option value="">Select a size</option>
-      {product.sizes.map((size, index) => (
-        <option key={index} value={size}>
-          {size}
-        </option>
-      ))}
-    </select>
-  </div>
-     <div className="my-2">
-     <select name="color" id="color" className="form-select">
-<option value="">Select a Color</option>
-{product?.colors?.map((color, index) => (
-<option key={index} value={color}>
-{color}
-</option>
-))}
-</select>
-     </div>
+              <div className="my-2">
+        <select
+          name="size"
+          id="size"
+          className="form-select"
+          value={size}
+          onChange={handleSizeChange}
+        >
+          <option value="">Select a size</option>
+          {product.sizes.map((size, index) => (
+            <option key={index} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Color Dropdown */}
+      <div className="my-2">
+        <select
+          name="color"
+          id="color"
+          className="form-select"
+          value={color}
+          onChange={handleColorChange}
+        >
+          <option value="">Select a Color</option>
+          {product.colors.map((color, index) => (
+            <option key={index} value={color}>
+              {color}
+            </option>
+          ))}
+        </select>
+      </div>
               <div className="sigle_quatity_main mt-3">
                 <div className="">
                   <p
                     className="m-0"
                     style={{
                       fontSize: "17px",
-                      color: "#1b2950",
                       fontWeight: "600",
                     }}
                   >
@@ -658,7 +686,6 @@ const handleVideoChange = (e) => {
             <div className="mt-3 d-flex flex-wrap gap-3">
               <p className="m-0 d-flex align-items-center cursor" style={{
                 fontSize: "17px",
-                color: "#1b2950",
                 fontWeight: "600",
               }}>Share Product</p>
               <p className="m-0 fs-6 d-flex justify-content-center align-items-center cursor" onClick={() => handleShare("general")} style={{ width: "30px", height: "30px", borderRadius: "100%" }}><FaShareAlt /></p>

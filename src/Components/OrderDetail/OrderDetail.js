@@ -77,7 +77,7 @@ const OrderDetail = () => {
                     <div className='col'>
                         <center className='font' >
                             <p className='fw-bolder fs-3'
-                                style={{ color: "rgb(2, 2, 94)", textDecoration: "underline rgb(2,2,94)", fontFamily: "Times New Roman" }}
+                                style={{ textDecoration: "underline black", fontFamily: "Times New Roman" }}
                             >Order Detail</p>
                             <p ><b >Tracking ID: </b>{order?.orderId}</p>
                         <p className='text-left fs-' F><b >Date: </b>{formatDateTime(order?.date)}</p >
@@ -86,16 +86,16 @@ const OrderDetail = () => {
                 </div>
                 <div className='row' id="orderDetail">
                     <div className='col-12 font' >
-                        <p ><b style={{ color: "rgb(2,2,94)"}}>Name:</b> {order?.name1} {order?.name2}</p>
-                        {order?.email && <p ><b style={{ color: "rgb(2,2,94)" }}>E-mail: </b>{order?.email}</p>}
-                        <p ><b style={{ color: "rgb(2,2,94)" }}>Mobile Number: </b>{order?.number1}</p>
-                        {order?.country && <p ><b style={{ color: "rgb(2,2,94)" }}>Country: </b>{order?.country}</p>}
-                        {order?.city && <p ><b style={{ color: "rgb(2,2,94)" }}>City: </b>{order?.city}</p>}
-                        <p ><b style={{ color: "rgb(2,2,94)" }}>Street & House Number: </b>{order?.street}</p>
-                        {order?.appartment && <p ><b style={{ color: "rgb(2,2,94)" }}>Appartment: </b>{order?.appartment}</p>}
-                        {order?.postal && <p ><b style={{ color: "rgb(2,2,94)" }}>Postcode: </b>{order?.postal}</p>}
-                        {/* <p><b style={{ color: "rgb(2,2,94)" }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p > */}
-                        {order?.note && <p ><b style={{ color: "rgb(2,2,94)" }}>Note: </b>{order?.note}</p >}
+                        <p ><b style={{ }}>Name:</b> {order?.name1} {order?.name2}</p>
+                        {order?.email && <p ><b style={{  }}>E-mail: </b>{order?.email}</p>}
+                        <p ><b style={{  }}>Mobile Number: </b>{order?.number1}</p>
+                        {order?.country && <p ><b style={{  }}>Country: </b>{order?.country}</p>}
+                        {order?.city && <p ><b style={{  }}>City: </b>{order?.city}</p>}
+                        <p ><b style={{  }}>Street & House Number: </b>{order?.street}</p>
+                        {order?.appartment && <p ><b style={{  }}>Appartment: </b>{order?.appartment}</p>}
+                        {order?.postal && <p ><b style={{  }}>Postcode: </b>{order?.postal}</p>}
+                        {/* <p><b style={{  }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p > */}
+                        {order?.note && <p ><b style={{  }}>Note: </b>{order?.note}</p >}
                     </div>
                 </div>
                 <div className='col-12'>
@@ -137,67 +137,57 @@ const OrderDetail = () => {
                                             </div>
                                             <div className='col-8'>
                                                 <div className='w-100 px-2'>
-                                                    <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                    <div className='py-2 d-flex justify-content-between 
+                                                    align-items-center'>
+                                                        <p className='m-0 fw-bolder'>
                                                             {item?.title}
-                                                            {item?.size && <p className='text-muted fs-6 m-0'>Size: {item.size ? item.size.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.color && <p className='text-muted fs-6 m-0'>Colour: {item.color ? item.color.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.fabric && <p className='text-muted fs-6 m-0'>Fabric: {item.fabric ? item.fabric.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.headboard && <p className='text-muted fs-6 m-0'>Headboard: {item.headboard ? item.headboard.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.base && <p className='text-muted fs-6 m-0'>Base: {item.base ? item.base.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.detail && <p className='text-muted fs-6 m-0'>Detail: {item.detail ? item.detail.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.mattress && <p className='text-muted fs-6 m-0'>Mattress: {item.mattress ? item.mattress.replace(/-/g, " ") : ""}/</p>}
-                                                            {item?.side && <p className='text-muted fs-6 m-0'>Side: {item.side ? item.side.replace(/-/g, " ") : ""}/</p>}
-                                                            {(item?.category === "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Match with Ottoman: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
-                                                            {(item?.category !== "bed" && item?.ottoman) && <p className='text-muted fs-6 m-0'>Mattress Pillow: {item.ottoman ? item.ottoman.replace(/-/g, " ") : ""}/</p>}
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
-                                                    {/* <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                    <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        Code
-                                                    </p>
-                                                    <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        &pound;{item?.sn}
-                                                    </p>
-                                                </div>
-                                                <hr className='m-0 p-0' /> */}
-
-                                                    <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                    <div
+                                                     className='py-2 d-flex justify-content-between align-items-center'>
+                                                        <p className='m-0 fs-6'>
                                                             Category
                                                         </p>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             {item?.category}
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
-                                                    {/* 
-                                                <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                    <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        Sub Category
-                                                    </p>
-                                                    <p className='m-0' style={{ fontSize: "14px" }}>
-                                                        {item?.subCategory ? item?.subCategory : "No subcategory"}
-                                                    </p>
-                                                </div>
-                                                <hr className='m-0 p-0' /> */}
+                                                    <div className='py-2 d-flex justify-content-between align-items-center'>
+                                                        <p className='m-0 fs-6'>
+                                                            Size
+                                                        </p>
+                                                        <p className='m-0 fs-6'>
+                                                            {item.size? item.size:"Not Selected"}
+                                                        </p>
+                                                    </div>
+                                                    <hr className='m-0 p-0' />
+                                                    <div className='py-2 d-flex justify-content-between align-items-center'>
+                                                        <p className='m-0 fs-6'>
+                                                            Color
+                                                        </p>
+                                                        <p className='m-0 fs-6'>
+                                                            {item.color? item.color:"Not Selected"}
+                                                        </p>
+                                                    </div>
+                                                    <hr className='m-0 p-0' />
 
                                                     <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             Price
                                                         </p>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             &pound;{item?.price}
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
 
                                                     <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             Quantity
                                                         </p>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0  fs-6'>
                                                             {item?.quantity}
                                                         </p>
                                                     </div>
@@ -205,10 +195,10 @@ const OrderDetail = () => {
 
 
                                                     <div className='py-2 d-flex justify-content-between align-items-center'>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             Total Price
                                                         </p>
-                                                        <p className='m-0' style={{ fontSize: "14px" }}>
+                                                        <p className='m-0 fs-6'>
                                                             &pound;{item?.total.toFixed()}.00
                                                         </p>
                                                     </div>
@@ -223,6 +213,7 @@ const OrderDetail = () => {
                                 })
                                 }
                             </div>
+                            {/*For Large screen */}
                             <div className='table_display1'>
                                 <div className="table-responsive">
                                     <table className="table table-bordered" style={{ tableLayout: 'auto' }}>
@@ -233,7 +224,8 @@ const OrderDetail = () => {
                                                 <th>Picture</th>
                                                 <th>Title</th>
                                                 <th>Category</th>
-                                                {/* <th>Sub Category</th> */}
+                                                <th>Size</th>
+                                                <th>Color</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
                                                 <th>Discount</th>
@@ -256,7 +248,10 @@ const OrderDetail = () => {
                                                                 {data?.title}
                                                             </p>
                                                         </td>
-                                                        <td>{data?.category}</td>
+                                                        <td className='text-center'>{data?.category}</td>
+                                                        
+                                                        <td className='text-center'>{data.size? data.size:"Not Selected"}</td>
+                                                        <td className='text-center'>{data.color? data.color :"Not Selected"}</td>
                                                         {/* <td className='text-center'>{data?.subCategory ? data?.subCategory : "No subcategory"}</td> */}
                                                         <td className='text-center'>{`£${parseFloat(data?.price)?.toFixed()}`}.00</td>
                                                         <td className='text-center'>{`${parseInt(data?.quantity)}`}</td>

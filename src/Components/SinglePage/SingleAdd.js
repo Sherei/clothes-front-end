@@ -248,7 +248,20 @@ const handleVideoChange = (e) => {
     color,
     size,
   ) {
-    console.log(color, size)
+  
+    if (product?.sizes?.length > 0 && !size) {
+      return toast.warning("Select Options");
+    }
+    
+    if (product?.colors?.length > 0 && !color) {
+      return toast.warning("Select Options");
+    }
+     if (product?.sizes?.length > 0 && product?.colors?.length > 0) {
+      if (!size || !color) {
+        return toast.warning("Select Options");
+      }
+    }
+    
     if (cu._id === undefined) {
       move(`/login/${product.title}/${productId}`);
       toast.success("Login to Place Your Order");
@@ -318,6 +331,20 @@ const handleVideoChange = (e) => {
       size,
       color,
     )
+
+    if (product?.sizes?.length > 0 && !size) {
+      return toast.warning("Select Options");
+    }
+    
+    if (product?.colors?.length > 0 && !color) {
+      return toast.warning("Select Options");
+    }
+     if (product?.sizes?.length > 0 && product?.colors?.length > 0) {
+      if (!size || !color) {
+        return toast.warning("Select Options");
+      }
+    }
+
     if (cu._id && cu.role !== "admin") {
       move(`/cart-checkout/${cu._id}`);
     } else {

@@ -86,9 +86,14 @@ const Navbar = () => {
               Contact Us
             </NavLink>
           </div>
-          <div>
+          {/* <div>
               <NavLink className="nav-link" to="/faqs">
                 Faq's
+              </NavLink>
+            </div> */}
+            <div>
+              <NavLink className="nav-link" to="/all-blog">
+                Blog
               </NavLink>
             </div>
         </div>
@@ -225,6 +230,11 @@ const Navbar = () => {
             <div>
               <NavLink className="nav-link" to="/faqs" onClick={toggleNav}>
                 Faq's
+              </NavLink>
+            </div>
+            <div>
+              <NavLink className="nav-link" to="/all-blog">
+                Blog
               </NavLink>
             </div>
           </div>

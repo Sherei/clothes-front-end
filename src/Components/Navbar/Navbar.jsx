@@ -228,15 +228,16 @@ const Navbar = () => {
               </NavLink>
             </div>
             <div>
-              <NavLink className="nav-link" to="/faqs" onClick={toggleNav}>
-                Faq's
-              </NavLink>
-            </div>
-            <div>
               <NavLink className="nav-link" to="/all-blog">
                 Blog
               </NavLink>
             </div>
+            <div>
+              <NavLink className="nav-link" to="/faqs" onClick={toggleNav}>
+                Faq's
+              </NavLink>
+            </div>
+            
           </div>
         </div>
       )}

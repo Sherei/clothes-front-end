@@ -132,15 +132,6 @@ const handleVideoChange = (e) => {
 
   const totalImages = product?.images?.length || 0;
 
-  const handleSizeChange = (e) => {
-    setSize(e.target.value);
-  };
-
-  // Handle change for color
-  const handleColorChange = (e) => {
-    setColor(e.target.value);
-  };
-
   const handleThumbnailClick = (index) => {
     setSelectedImage(index);
     setScrollPosition(index * 23);
@@ -257,6 +248,7 @@ const handleVideoChange = (e) => {
     color,
     size,
   ) {
+    console.log(color, size)
     if (cu._id === undefined) {
       move(`/login/${product.title}/${productId}`);
       toast.success("Login to Place Your Order");
@@ -279,6 +271,7 @@ const handleVideoChange = (e) => {
         product.image = product?.images[0];
         product.discount = product?.discount;
 
+        console.log("product data is", product)
         let response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/addToCart`,
           product
@@ -471,7 +464,6 @@ const handleVideoChange = (e) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString("en-GB", options);
   };
-
   return <>
     {loading ? (
       <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
@@ -614,14 +606,14 @@ const handleVideoChange = (e) => {
                     <s className="mx-2">{`£${product?.price.toFixed()}`}</s>
                   </span>}
               </div>
-
-              <div className="my-2">
+{product.sizes.length>0 &&
+  <div className="my-2">
         <select
           name="size"
           id="size"
           className="form-select"
           value={size}
-          onChange={handleSizeChange}
+          onChange={(e)=>setSize(e.target.value)}
         >
           <option value="">Select a size</option>
           {product.sizes.map((size, index) => (
@@ -631,24 +623,27 @@ const handleVideoChange = (e) => {
           ))}
         </select>
       </div>
+}
 
-      {/* Color Dropdown */}
+      {product.colors.length>0 &&
       <div className="my-2">
-        <select
-          name="color"
-          id="color"
-          className="form-select"
-          value={color}
-          onChange={handleColorChange}
-        >
-          <option value="">Select a Color</option>
-          {product.colors.map((color, index) => (
-            <option key={index} value={color}>
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
+      <select
+        name="color"
+        id="color"
+        className="form-select"
+        value={color}
+        onChange={(e)=>setColor(e.target.value)}
+      >
+        <option value="">Select a Color</option>
+        {product.colors.map((color, index) => (
+          <option key={index} value={color}>
+            {color}
+          </option>
+        ))}
+      </select>
+    </div>
+      }
+      
               <div className="sigle_quatity_main mt-3">
                 <div className="">
                   <p
@@ -706,6 +701,8 @@ const handleVideoChange = (e) => {
                   AddToCart(
                     product,
                     totalPrice,
+                    size,
+                    color,
                   )
                 }
               >

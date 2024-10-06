@@ -27,7 +27,7 @@ const Blog = () => {
 
     return <>
         {blog.length !== 0 &&
-            <div className='container px-lg-5 px-md-3 px-2'>
+            <div className='container px-md-3 px-2'>
                 <div className='row mb-4'>
                     <div className='col'>
                         <p className='fs-3 fw-bolder text-center'>Our Blog</p>

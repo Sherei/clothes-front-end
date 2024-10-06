@@ -13,6 +13,7 @@ import {Link} from "react-scroll";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import "./navbar.css"
+import Loader from "../Loader/Loader";
 
 
 
@@ -20,12 +21,21 @@ const Navbar = () => {
 
   const move = useNavigate();
   const cu = useSelector((store) => store.userSection.cu);
+  const allCartItems = useSelector((store) => store.Cart.cart);
+
+
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const allCartItems = useSelector((store) => store.Cart.cart);
   const { userId } = useParams();
   const [cart, setCart] = useState([]);
+  const [openSearch, setOpenSearch]=useState(false)
   const sideNavRef = useRef(null);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+
+  const [loading, setLoading] = useState(false);
+ 
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
@@ -54,10 +64,16 @@ const Navbar = () => {
     return accumulator + item.quantity;
   }, 0);
 
+  const toggleSearch=()=>{
+    setOpenSearch(!openSearch)
+    setOpen(false)
+  }
 
   const toggleNav = () => {
     setOpen(!open);
+    setOpenSearch(false)
   };
+
   const handleClickOutside = (event) => {
     if (sideNavRef.current && !sideNavRef.current.contains(event.target)) {
       setOpen(false); // Close the sidebar if clicked outside
@@ -75,6 +91,41 @@ const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+    setLoading(true);
+    try {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/product`).then((res) => {
+        if (res) {
+          setProducts(res.data);
+        }
+      });
+    } catch (e) {
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const filtered = products?.filter((product) => {
+      const searchResult = searchValue?.toLowerCase();
+      const title = product?.title?.toLowerCase();
+      const category = product?.category?.toLowerCase();
+      const titleMatch = title?.includes(searchResult);
+      const categoryMatch = category?.includes(searchResult);
+      return (
+        (titleMatch || categoryMatch )
+      );
+    });
+    setFilteredProducts(filtered);
+  }, [searchValue]);
+
+
+
   function Logout() {
     dispatch({
       type: "LOGOUT_USER",
@@ -128,7 +179,7 @@ const Navbar = () => {
           <div className="navbar_right d-flex no-wrap gap-0 fs-3">
             <NavLink
               className="nav-link"
-              to={`/products/all`}
+              onClick={toggleSearch}
             ><CgSearch />
             </NavLink>
             {cu.role != "admin" && (
@@ -194,7 +245,7 @@ const Navbar = () => {
           <div className="navbar_right d-flex no-wrap gap-0 fs-3">
             <NavLink
               className="nav-link"
-              to={`/products/all`}
+              onClick={toggleSearch}
             ><CgSearch />
             </NavLink>
             {cu.role !== "admin" && (
@@ -275,6 +326,57 @@ const Navbar = () => {
         </div>
       )}
     {/* Small screen end */}
+
+{/* Seach Products */}
+{openSearch &&
+<>
+  <div className=" d-flex justify-content-center mb-1" style={{position:"relative"}}>
+      <input type="search" className="form-control"
+      placeholder="Search Anything"
+      style={{width:"300px"}}
+      onChange={(e)=>setSearchValue(e.target.value)}
+      />
+  </div>
+</>
+}
+{searchValue && (
+  <div className="container-fluid px-lg-3 px-2 nav_search_margin">
+    <div className="my-4 fs-5">Search Result...</div>
+    {filteredProducts?.length === 0 ? (
+      <div className="d-flex justify-content-center min-vh-50">
+          <p>No Product found try with different keyword!</p>
+      </div>
+    ) : (
+      <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+        {filteredProducts?.reverse().map((item, index) => (
+          <div className="col card" key={index}>
+            <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
+              <div className="card_img">
+                <img
+                  src={item?.images[0]}
+                  className="text-center"
+                  alt={item?.title}
+                />
+              </div>
+              <p className="card_title">{item?.title}</p>
+              <p className="final_price">
+                ${item?.Fprice.toFixed(0)}
+                {item?.discount > 0 && (
+                  <>
+                    <span className="mx-2 text-muted discounted_price">
+                      <s>${item?.price.toFixed(0)}</s>
+                    </span>
+                    <span className="mx-2 discount">-{item?.discount}%</span>
+                  </>
+                )}
+              </p>
+            </a>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
 
   </>
 }

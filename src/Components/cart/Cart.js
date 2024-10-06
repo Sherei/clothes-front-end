@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../Loader/Loader";
-import Lottie from "lottie-react";
-import CartAnimation from "../Animations/CartAnimation.json";
 import axios from "axios";
 import "./cart.css";
 

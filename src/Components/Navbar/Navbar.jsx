@@ -228,7 +228,7 @@ const Navbar = () => {
               </NavLink>
             </div>
             <div>
-              <NavLink className="nav-link" to="/all-blog">
+              <NavLink className="nav-link" to="/all-blog" onClick={toggleNav}>
                 Blog
               </NavLink>
             </div>

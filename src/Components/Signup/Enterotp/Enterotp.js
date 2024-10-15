@@ -39,11 +39,11 @@ const EnterOTP = () => {
 setLoading(false);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        toast.error('Error occurred');
+        toast.error('Invalid OTP');
         setLoading(false)
       } else {
         setLoading(false)
-        toast.error('Something went wrong');
+        toast.error('Invalid OTP');
       }
     }
   };
@@ -61,11 +61,15 @@ setLoading(false);
           maxLength="6"
           style={inputStyle}
         />
-        <button type="submit" style={buttonStyle}>
-        {loading ?
-                                <>
 
-                            <style>{`
+        <button type="submit"
+        className='button-submit' 
+        style={buttonStyle}
+        >
+        {loading ?
+           <>
+
+             <style>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }

@@ -118,7 +118,6 @@ export const Login = () => {
                 </span>
               </div>
 
-              {/* Forgot Password Link */}
               <div className="d-flex justify-content-end mb-0">
                 <a href="/enteremail" className="forgot-password-link">
                   Forgot password?
@@ -142,10 +141,11 @@ export const Login = () => {
             </form>
           </div>
         </div>
-        <div className='row'>
+        
+      </div>
+      <div className=''>
           <Benefits />
         </div>
-      </div>
     </>
   );
 }

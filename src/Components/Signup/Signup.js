@@ -69,8 +69,7 @@ const [loading,setLoading]=useState(false)
                         <p className='title'>Register</p>
                     </div>
                     <div>
-                        {/* <p className='m-0 fs-2 text-center fw-bolder'>Create Your Account</p> */}
-                        <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
+                       <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
                     </div>
                     <form className="form" action="" onSubmit={handleSubmit(SignUp)}>
                         {Error &&
@@ -214,11 +213,9 @@ const [loading,setLoading]=useState(false)
           width: "2rem",
           height: "2rem",
           borderTop: "4px solid white",
-        //   borderBottom: "4px solid white",
-        //   borderRight: "4px solid white",
           borderLeft: "4px solid white",
           borderRadius: "50%",
-          animation: "spin 1s linear infinite",  // Applying the spin animation
+          animation: "spin 1s linear infinite", 
         }}
       ></div>
     </>
@@ -245,10 +242,11 @@ const [loading,setLoading]=useState(false)
                     </form>
                 </div>
             </div>
-            <div className='row '>
+           
+        </div>
+        <div className=''>
                 <Benefits />
             </div>
-        </div>
     </>
 }
 

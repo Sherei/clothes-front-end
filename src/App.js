@@ -20,6 +20,7 @@ import {Login} from "./Components/login/Login"
 import Signup from "./Components/Signup/Signup"
 import CheckoutForm from './Components/Checkout/CheckoutForm';
 import {Error} from "./Components/Error/Error"
+import Search from './Components/Search/Search';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,6 +66,7 @@ return <>
           <Routes>
             
           <Route exact path='/' element={<Home />} />
+          <Route exact path='/search' element={<Search />} />
               {/*  User */}
               <Route exact path='/signup' element={<Signup />} />
               <Route exact path='/checkinbox' element={<Checkinbox />} />

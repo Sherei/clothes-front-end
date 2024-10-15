@@ -287,13 +287,9 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
     {/* Small screen end */}
-
-{/* Seach Products */}
-
-
-
-
+  
   </>
 }
 

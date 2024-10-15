@@ -18,6 +18,7 @@ import Contact from './Components/Contact/Contact';
 import Faq from "./Components/Faq/Faq"
 import {Login} from "./Components/login/Login"
 import Signup from "./Components/Signup/Signup"
+import CheckoutForm from './Components/Checkout/CheckoutForm';
 import {Error} from "./Components/Error/Error"
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
@@ -89,6 +90,7 @@ return <>
               {/* Cart */}
               <Route exact path='/cart/:userId' element={<Cart />} />
               <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
+              <Route exact path='/checkout/:userId' element={<CheckoutForm />} />
 
               {/* Order */}
               <Route path='/placed' element={<Orderplaced />} />

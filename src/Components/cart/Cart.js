@@ -29,7 +29,6 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
-  const [expandedItems, setExpandedItems] = useState({});
   const [quantity, setQuantity] = useState(1);
 
 
@@ -118,7 +117,7 @@ export const Cart = () => {
   const shippingFeeAmount = shippingFee();
 
   const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
-  const total = subtotal + shippingFeeAmount;
+  const total = subtotal;
 
   const updateCart = () => {
     try {
@@ -158,12 +157,6 @@ export const Cart = () => {
     }
   };
 
-  const toggleDetails = (index) => {
-    setExpandedItems((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
 
   return (
     <div className="container-fluid h-100">

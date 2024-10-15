@@ -31,7 +31,7 @@
 }
 .card:hover .card_img img {
     cursor: pointer;
-    transform: scale(1.09);
+    transform: scale(1.05);
     transition: all linear 1s;
 }
 

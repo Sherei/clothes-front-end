@@ -136,6 +136,10 @@ input:valid~label,textarea:valid~label,textarea:focus~label {
     color: #333;
 }
 
+.review_slide p{
+    color: black !important;
+}
+
 @media screen and (max-width:768px) {
     .review_btn{
         width: 100% !important;

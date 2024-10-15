@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import { useForm } from 'react-hook-form';
 import { FaVideoSlash } from "react-icons/fa";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
@@ -11,6 +8,13 @@ import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import "./review.css"
 import { useNavigate } from 'react-router-dom';
+
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 
 const Review = () => {
 
@@ -57,21 +61,16 @@ const Review = () => {
 
     const Comment = async (cmnt) => {
 
-        // console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
-        const modal = document.getElementById('exampleModal');
-        // modal.classList.remove('show');
-        // modal.style.display = 'none';
-        // document.body.classList.remove('modal-open');
-        document.querySelector('.modal-backdrop').remove();
-                console.log("comment working");
+        if (!imageSelected && !videoSelected) {
+            toast.warning("Please select either an image or a video.");
+            return; // Prevent form submission if no media is selected.
+          }
+        if(!cu){
+            toast.warning("Login to give feedback")
+            return move('/login')
+        }
+        else{
                 setLoading(true);
-                console.log("Commetn data is", cmnt.name, cmnt.email, cmnt.comment)
-
-                if(!cu){
-                    toast.warning("Login to give feedback")
-                    return move('/login')
-                }
-
         let mediaUrl = "";
 
         if (cmnt.image && cmnt.image[0] && cmnt.video && cmnt.video[0]) {
@@ -106,7 +105,6 @@ const Review = () => {
             
             const videoType = cmnt.video[0].type;
 
-
             if (!videoType.startsWith("video/")) {
                 setLoading(false);
                 return toast.warning("Select valid video format");
@@ -120,9 +118,7 @@ const Review = () => {
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
                 mediaUrl = response.data.url;
                 reset();
-                // console.log("Video uploaded successfully");
             } catch (error) {
-                // console.error("Video upload failed", error);
             }
         }
 
@@ -142,8 +138,12 @@ const Review = () => {
                     type: "ADD_COMMENT",
                     payload: response.data.alldata,
                 });
+            
                 setComments(response.data.alldata);
-            imageSelected([])
+                const modal = document.getElementById('exampleModal');
+                document.querySelector('.modal-backdrop').remove();
+                window.location.reload()
+                imageSelected([])
             videoSelected([])
                 setLoading(false);
                 toast.success("Feedback submitted");
@@ -152,7 +152,8 @@ const Review = () => {
             }
         } catch (e) {
             //   console.error("Comment submission failed", e);
-        }
+        }   
+    }
     };
 
 
@@ -191,17 +192,14 @@ const Review = () => {
     };
 
     return <>
-        <div className='container-fluid my-5'  id='review'>
-            <div className='container'>
+        <div className='container-fluid my-5'  id='review' style={{ backgroundColor: "#F2F0F1" }}>
+            <div className='px-lg-4 px-md-3 px-2'>
                 <div className="row d-flex justify-content-center">
-
-                    <div className="col-lg-12 col-md-12 col-sm-12 py-5" style={{ backgroundColor: "#F2F0F1" }}>
-                        <h1 className="fs-1 fw-bolder">
+                    <div className="col-lg-12 col-md-12 col-sm-12 py-5" >
+                        <h1 className="fs-1 fw-bolder mb-3">
                             Riski-Brothers Society
                         </h1>
-                        {/* <p className=fs-6'>Over 10,000 happy customers!</p> */}
-
-                        <div className='h_box_main'>
+                        <div>
                             {loading ? (
                                 <div
                                     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
@@ -216,54 +214,63 @@ const Review = () => {
                                 >
                                     <h2>No Review available</h2>
                                 </div>
-                            ) : (comments?.map((item, index) => {
-                                return <>
-                                    <div className='card border p-2' style={{ width: "270px" }} key={index}>
-                                        <div className="card_img mb-2" style={{ background: "transparent" }}>
-                                            {item?.mediaUrl === undefined && (
-                                                <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                                            )
-                                            }
-                                            {item?.mediaUrl && (
-                                                <>
-                                                    {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
-                                                        <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
-                                                    ) : (
-                                                        <video controls autoPlay={false} style={{ maxWidth: '100%', maxHeight: '95%' }}>
-                                                            <source src={item?.mediaUrl} type="video/mp4" />
-                                                            Your browser does not support the video tag.
-                                                        </video>
-                                                    )}
-                                                </>
-                                            )}
-                                        </div>
-                                        <p className='text-center'>{item?.comment}</p>
-                                        <p className='text-center fw-bolder'>{item?.name}</p>
+                            ) : (
+                                <Swiper
+                                breakpoints={{
+                                    590: { slidesPerView: 1, spaceBetween: 10 }, 
+                                    599: { slidesPerView: 2, spaceBetween: 10 }, 
+                                    768: { slidesPerView: 2, spaceBetween: 10 }, 
+                                    1024: { slidesPerView: 4, spaceBetween: 30 },
+                                  }}
+                                spaceBetween={30}
+                                modules={[Autoplay]}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false
+              }}
+                                className="mySwiper"
+                              >
+                                {comments.map((item, index) => (
+                                  <SwiperSlide key={index} className='review_slide'>
+                                    <div className='card border p-2' style={{ width: "270px" }}>
+                                      <div className="card_img mb-2" style={{ background: "transparent" }}>
+                                        {item?.mediaUrl ? (
+                                          item.mediaUrl.endsWith('.jpg') || item.mediaUrl.endsWith('.png') ? (
+                                            <img
+                                              src={item.mediaUrl}
+                                              alt={item.title}
+                                              style={{ maxWidth: '100%', height: '95%' }}
+                                            />
+                                          ) : (
+                                            <video
+                                              controls
+                                              autoPlay={false}
+                                              style={{ maxWidth: '100%', maxHeight: '95%' }}
+                                            >
+                                              <source src={item?.mediaUrl} type="video/mp4" />
+                                              Your browser does not support the video tag.
+                                            </video>
+                                          )
+                                        ) : (
+                                          <img
+                                            src="/feedback.png"
+                                            alt={item?.title}
+                                            style={{ maxWidth: '100%', height: '95%' }}
+                                          />
+                                        )}
+                                      </div>
+                                      <p className='text-center'>{item?.comment}</p>
+                                      <p className='text-center fw-bolder'>{item?.name}</p>
                                     </div>
-                                </>
-                            })
+                                  </SwiperSlide>
+                                ))}
+                              </Swiper>
                             )}
                         </div>
                     </div>
-
-                    {!form && (
-                        <div className="col-12 p-2">
-                            <div className="border py-5 px-lg-5 px-md-3 px-sm-2 d-flex flex-column justify-content-center align-items-center">
-                                <p className="fw-bolder fs-3 text-center">Customer Reviews</p>
-                                <p className="text-center fs-5">No review yet. Any feedback? Let us know </p>
-                                <div className="">
-                                    <button className="button-submit px-3"
-                                        data-bs-toggle="modal"
-                                         data-bs-target="#exampleModal"
-                                    >Write a review</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
                     {loading ? (
                         <div className='min-vh-50 d-flex justify-content-center align-items-center'>
                             <Loader />
-
                         </div>
                     ) : (
                         <div
@@ -384,6 +391,22 @@ const Review = () => {
                 </div>
             </div>
         </div>
+
+        
+        {!form && (
+                        <div className="container mb-5">
+                            <div className="border py-5 px-lg-5 px-md-3 px-sm-2 d-flex flex-column justify-content-center align-items-center">
+                                <p className="fw-bolder fs-3 text-center">Customer Reviews</p>
+                                <p className="text-center fs-5">No review yet. Any feedback? Let us know </p>
+                                <div className="">
+                                    <button className="button-submit px-3"
+                                        data-bs-toggle="modal"
+                                         data-bs-target="#exampleModal"
+                                    >Write a review</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
     </>
 }
 

@@ -7,6 +7,9 @@
     height: fit-content !important;
         transition: all linear 0.3s;
 }
+.checkout .card{
+    transform: none !important;
+}
 .cart_number{
     align-items: center;
     justify-content: center;

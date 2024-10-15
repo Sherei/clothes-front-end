@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import StripePayment from "./PaymentComponent";
 import { RxCross1 } from "react-icons/rx";
-import Loader from "../Loader/Loader";
+import Loader from '../Loader/Loader';
 import "./checkout.css";
 
 const Checkout = () => {

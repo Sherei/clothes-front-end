@@ -219,7 +219,7 @@ const Checkout = () => {
                  onPaymentSuccess={handlePaymentSuccess}
                />
              </div>
-                    <hr className="my-4" />
+                    {/* <hr className="my-4" />
                     <a href={`/checkout/${cu._id}`}>
                       
                     <button
@@ -235,7 +235,7 @@ const Checkout = () => {
                         </span>
                       </div>
                     </button>
-                    </a>
+                    </a> */}
 
                   </div>
                 </div>

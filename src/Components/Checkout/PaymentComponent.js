@@ -8,9 +8,12 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { toast } from "react-toastify";
 
-// Load Stripe using your public key
+
 const stripePromise = loadStripe(
   "pk_test_51Px4aqRsoQBPHlEDA15MLzUtHFbmsa9CSIidItQMaMQuNOjSsD7ywDaagl2YmlbZyq7OFOZdrSf8EESQ26voDAnI00xT47XSkh"
 );
@@ -20,17 +23,18 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const cu = useSelector((store) => store.userSection.cu);
+const move=useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) {
+      if (!stripe || !elements) {
       return;
     }
 
     setLoading(true);
 
     try {
-      // Call backend to create a payment intent
       const res = await fetch(
         `${process.env.REACT_APP_BASE_URL}/api/create-payment-intent`,
         {
@@ -44,7 +48,6 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
 
       const cardNumberElement = elements.getElement(CardNumberElement);
 
-      // Confirm card payment
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
@@ -64,6 +67,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
       } else if (paymentIntent.status === "succeeded") {
         toast.success("Payment Successful!", { position: "top-center" });
         onPaymentSuccess(paymentIntent);
+        move(`/checkout/${cu._id}`)
       }
     } catch (err) {
       setLoading(false);

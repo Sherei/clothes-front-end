@@ -31,8 +31,8 @@
 }
 .card:hover .card_img img {
     cursor: pointer;
-    transform: scale(1.05);
-    transition: all linear 1s;
+    transform: scale(1.02);
+    transition: all linear 1.5s;
 }
 
 .card:hover {
@@ -49,12 +49,12 @@
     font-weight: 500;
     margin-top: 10px;
     text-align: center;
-    color: black !important;
+    color: black;
 }
 
 .final_price {
     text-align: center;
-    color: black !important;
+    color: black;
     font-weight: 700;
 }
 

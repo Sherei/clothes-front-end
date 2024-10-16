@@ -48,15 +48,16 @@ const Blog = () => {
                 ) : (
                     <div className="h_box_main">
                         {blog?.slice(0, 3).map((item, index) => {
-                            return <a href={"/blog_detail/" + item._id}>
-                             <div className='card border p-2' style={{ width: "270px" }} key={index}>
-                                        <div className="card_img mb-2" style={{ background: "transparent" }}>
-                                             <img src={item?.image} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />  
-                                        </div>
-                                        <p className='text-center'>{item?.title}</p>
-                                        <p className='text-center fw-bolder'>Read more</p>
-                                    </div>
-                            </a> 
+                            return <a href={"/blog_detail/" + item._id}  style={{ width: "270px" }} >
+                             <div className="card" key={index}>
+                        
+                                <div className="card_img">
+                                    <img src={item?.image} className="text-center" alt={item?.title} />
+                                </div>
+                                <p className="card_title text-muted">{item?.title}</p>
+                                        <p className='text-center fw-bolder'>Read more</p>                              
+                        </div>
+                        </a> 
                         })
                         }
                     </div>

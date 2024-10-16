@@ -135,12 +135,12 @@ const Checkout = () => {
                             your cart
                           </p>
                         </div>
-                        {filterCart?.map((item) => (
-                          <div className="card mb-3 border" key={item._id}>
+                        {filterCart?.map((item, index) => (
+                          <div className="card mb-3 border" key={index}>
                             <div className="card-body">
                               <div className="d-flex justify-content-between">
                                 <div className="d-flex flex-row align-items-center">
-                                  <img
+                                <img
                                     src={item?.image}
                                     className="img-fluid rounded-3"
                                     alt="Shopping item"

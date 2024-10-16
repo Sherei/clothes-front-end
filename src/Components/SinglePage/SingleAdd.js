@@ -353,16 +353,15 @@ const handleVideoChange = (e) => {
     window.scrollTo({
       top: 0,
     });
+   
     if (!imageSelected && !videoSelected) {
       toast.warning("Please select either an image or a video.");
-      return; // Prevent form submission if no media is selected.
+      return; 
     }
-              setLoading(true);
-            
-            if(!cu){
-                toast.warning("Login to give feedback")
-                return move('/login')
-            }
+  if(!cu){
+      toast.warning("Login to give feedback")
+      return move('/login')
+  }
 
     let mediaUrl = "";
 
@@ -418,12 +417,14 @@ const handleVideoChange = (e) => {
     }
 
     try {
-        setLoading(true);
-
+      if(!mediaUrl){
+        setLoading(false)
+        return toast.error("Media uploaded failed")
+    }
+      setLoading(true);
         cmnt.mediaUrl = mediaUrl;
         cmnt.userId = cu._id;
-        cmnt.name=cmnt.name;
-        cmnt.email=cmnt.email;
+
         const commentWithProductId = { ...cmnt, productId };
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
   
@@ -434,17 +435,14 @@ const handleVideoChange = (e) => {
                 payload: response.data.alldata,
             });
             setComments(response.data.alldata);
-          
-        // imageSelected([])
-        // videoSelected([])
-            setLoading(false);
-            window.location.reload()
-            const modal = document.getElementById('exampleModal');
-            document.querySelector('.modal-backdrop').remove();
-            toast.success("Feedback submitted");
-            // window.location.reload();
-            reset();
-        }
+           const modal = document.getElementById('exampleModal');
+                document.querySelector('.modal-backdrop').remove();   
+                reset();
+                setImageSelected(false)
+                setVideoSelected(false)
+                setLoading(false);
+                toast.success("Feedback submitted");
+             }
     } catch (e) {
         //   console.error("Comment submission failed", e);
     }
@@ -928,7 +926,6 @@ aria-hidden="true"
                                                  type="text"
                                                  className="form-control"
                                                  placeholder="Rose Merie"
-                                                 defaultValue={cu?.name}
                                                  required
                                                  {...register('name')}
                                              />
@@ -940,16 +937,13 @@ aria-hidden="true"
                                                  type="email"
                                                  placeholder="asd@gmail.com"
                                                  className="form-control"
-                                                 defaultValue={cu?.email}
                                                  required
                                                  {...register('email')}
                                              />
                                          </div>
 
                                          <div className="d-flex gap-2 mb-3">
-                                         {!imageSelected && !videoSelected && (
-         <>
-             {/* Image input */}
+                                
              <div className="file-input-container">
                  <label className="file-input-box">
                      <i><MdOutlinePhotoLibrary /></i>
@@ -964,7 +958,6 @@ aria-hidden="true"
                  </label>
              </div>
 
-             {/* Video input */}
              <div className="file-input-container">
                  <label className="file-input-box">
                      <i><FaVideoSlash /></i>
@@ -978,12 +971,10 @@ aria-hidden="true"
                      <p className="text-muted m-0">Video</p>
                  </label>
              </div>
-         </>
-     )}
-     {imageSelected && <p className='text-success'>Image Selected</p>}
-     {videoSelected && <p className='text-success'>Video Selected</p>}                                      
                                            
                                          </div>
+                                         {imageSelected && <p className='text-success'>Image Selected</p>}
+     {videoSelected && <p className='text-success'>Video Selected</p>}                                      
 
                                          <div className="mb-3">
                                              <label className="form-label">Write your feedback</label>

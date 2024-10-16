@@ -176,18 +176,18 @@ const Checkout = () => {
                         ))}
                       </div>
                       <div className="col-lg-5">
-                        <div className="card bg-primary text-white rounded-3">
+                        <div className="card bg-primary pb-0 text-white rounded-3">
                           <div className="card-body">
                             <div className="d-flex justify-content-between align-items-center mb-4">
-                              <h5 className="mb-0">Card details</h5>
-                              <img
+                              <h4 className="mb-0">Card details</h4>
+                              {/* <img
                                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                                 className="img-fluid rounded-3"
                                 style={{ width: 45 }}
                                 alt="Avatar"
-                              />
+                              /> */}
                             </div>
-                            <h3>Payment</h3>
+                            {/* <h3>Payment</h3> */}
                             <div className="d-flex justify-content-between">
                               <p className="mb-2">Subtotal</p>
                               <p className="mb-2">

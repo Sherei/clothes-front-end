@@ -249,11 +249,11 @@ const handleVideoChange = (e) => {
     size,
   ) {
   
-    // if ((product?.sizes?.length > 0 && product?.colors?.length > 0)|| (product?.sizes?.length > 0 || product?.colors?.length > 0)) {
-    //   if (!size || !color) {
-    //     return toast.warning("Select Options");
-    //   }
-    // }
+    if ((product?.sizes?.length > 0 && product?.colors?.length > 0)|| (product?.sizes?.length > 0 || product?.colors?.length > 0)) {
+      if (!size || !color) {
+        return toast.warning("All options are required");
+      }
+    }
     
     if (cu._id === undefined) {
       move(`/login/${product.title}/${productId}`);

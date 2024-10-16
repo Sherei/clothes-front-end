@@ -616,10 +616,10 @@ const handleVideoChange = (e) => {
                 <span
                   className="fw-bold fs-5"
                   style={{ color: "red" }}
-                >{`£${totalPrice?.toFixed()}`}</span>
+                >{`$${totalPrice?.toFixed()}`}</span>
                 {product.discount > 0 &&
                   <span className="fs-6 text-muted">
-                    <s className="mx-2">{`£${product?.price.toFixed()}`}</s>
+                    <s className="mx-2">{`$${product?.price.toFixed()}`}</s>
                   </span>}
               </div>
 {product.sizes.length>0 &&

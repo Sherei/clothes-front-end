@@ -158,7 +158,7 @@ const Checkout = () => {
                                     {item?.quantity}
                                   </h5>
                                   <h5 className="mb-0" style={{ width: 80 }}>
-                                    &pound;{item?.total?.toFixed()}
+                                    ${item?.total?.toFixed()}
                                   </h5>
                                   <a
                                     href="#!"
@@ -189,7 +189,7 @@ const Checkout = () => {
                             <div className="d-flex justify-content-between">
                               <p className="mb-2">Subtotal</p>
                               <p className="mb-2">
-                                &pound;{subtotal?.toFixed()}.00
+                                ${subtotal?.toFixed()}.00
                               </p>
                             </div>
                             <div className="d-flex justify-content-between">
@@ -199,7 +199,7 @@ const Checkout = () => {
                             <div className="d-flex justify-content-between mb-4">
                               <p className="mb-2">Total (Incl. taxes)</p>
                               <p className="mb-2">
-                                &pound;{total?.toFixed()}.00
+                                ${total?.toFixed()}.00
                               </p>
                             </div>
                             <StripePayment

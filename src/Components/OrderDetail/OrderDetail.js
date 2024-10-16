@@ -178,7 +178,7 @@ const OrderDetail = () => {
                                                             Price
                                                         </p>
                                                         <p className='m-0 fs-6'>
-                                                            &pound;{item?.price}
+                                                            ${item?.price}
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
@@ -199,7 +199,7 @@ const OrderDetail = () => {
                                                             Total Price
                                                         </p>
                                                         <p className='m-0 fs-6'>
-                                                            &pound;{item?.total.toFixed()}.00
+                                                            ${item?.total.toFixed()}.00
                                                         </p>
                                                     </div>
                                                     <hr className='m-0 p-0' />
@@ -283,11 +283,11 @@ const OrderDetail = () => {
                         </div>
                         <div className='fw-normal d-flex justify-content-between'>
                             <p >Shipping Fee</p>
-                            <p>&pound;{order?.shipping}.00</p>
+                            <p>${order?.shipping}.00</p>
                         </div>
                         <div className='fw-bold d-flex justify-content-between'>
                             <p >Net Total:</p>
-                            <p>&pound;{order?.total.toFixed()}.00</p>
+                            <p>${order?.total.toFixed()}.00</p>
                         </div>
                         {/* <div className=''>
                         <a href="https://wa.me/+447392608087">

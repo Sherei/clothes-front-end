@@ -211,7 +211,7 @@ const Products = () => {
                 />
               </div>
               <p className="m-0 mt-2 px-3" style={{ color: "red" }}>
-                &pound;{minPrice} - &pound;{maxPrice}
+                ${minPrice} - ${maxPrice}
               </p>
 
             </div>
@@ -323,7 +323,7 @@ const Products = () => {
                   />
                 </div>
                 <p className="m-0 mt-2 px-3" style={{ color: "red" }}>
-                  &pound;{minPrice} - &pound;{maxPrice}
+                  ${minPrice} - ${maxPrice}
                 </p>
               </div>
             </div>

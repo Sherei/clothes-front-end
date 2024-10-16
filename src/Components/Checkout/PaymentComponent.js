@@ -13,28 +13,27 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
-
 const stripePromise = loadStripe(
   "pk_test_51Px4aqRsoQBPHlEDA15MLzUtHFbmsa9CSIidItQMaMQuNOjSsD7ywDaagl2YmlbZyq7OFOZdrSf8EESQ26voDAnI00xT47XSkh"
 );
 
 const PaymentComponent = ({ amount, onPaymentSuccess }) => {
-
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const cu = useSelector((store) => store.userSection.cu);
-const move=useNavigate();
+  const move = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      if (!stripe || !elements) {
+    if (!stripe || !elements) {
       return;
     }
 
     setLoading(true);
 
     try {
+      // First, create the payment intent on the backend
       const res = await fetch(
         `${process.env.REACT_APP_BASE_URL}/api/create-payment-intent`,
         {
@@ -48,13 +47,14 @@ const move=useNavigate();
 
       const cardNumberElement = elements.getElement(CardNumberElement);
 
+      // Confirm the payment and attach the card details
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
           payment_method: {
             card: cardNumberElement,
             billing_details: {
-              name: "Customer Name", // You might want to pass this as a prop
+              name: "Customer Name", // Add the customer's name dynamically
             },
           },
         }
@@ -66,8 +66,22 @@ const move=useNavigate();
         handleError(error);
       } else if (paymentIntent.status === "succeeded") {
         toast.success("Payment Successful!", { position: "top-center" });
+
+        // Send payment details and status to the backend
+        await fetch(
+          `${process.env.REACT_APP_BASE_URL}/api/save-payment-status`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              paymentId: paymentIntent.id,
+              status: "paid", // Set the status to "paid" after successful payment
+            }),
+          }
+        );
+
         onPaymentSuccess(paymentIntent);
-        move(`/checkout/${cu._id}`)
+        move(`/checkout/${cu._id}`);
       }
     } catch (err) {
       setLoading(false);
@@ -92,6 +106,7 @@ const move=useNavigate();
     style: {
       base: {
         color: "#32325d",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
@@ -107,7 +122,7 @@ const move=useNavigate();
 
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
-    {/* <div
+      {/* <div
       data-mdb-input-init=""
       className="form-outline form-white mb-4"
     >
@@ -122,47 +137,49 @@ const move=useNavigate();
         placeholder="Cardholder's Name"
       />
     </div> */}
-    <div
-      data-mdb-input-init=""
-      className="form-outline form-white mb-4"
-    >
-      <label className="form-label" htmlFor="typeText">
-        Card Number
-      </label>
-      <CardNumberElement options={inputStyle}  className="form-control p-3"
-                          id="cardNumber" />
-
-    </div>
-    <div className="row mb-4">
-      <div className="col-6">
-        <div
-          data-mdb-input-init=""
-          className="form-outline form-white"
-        >
-          <label className="form-label" htmlFor="typeExp">
-            Expiration
-          </label>
-      <CardExpiryElement options={inputStyle} id="cardExpiry"  className="form-control p-3"/>
-        </div>
+      <div data-mdb-input-init="" className="form-outline form-white mb-4">
+        <label className="form-label" htmlFor="typeText">
+          Card Number
+        </label>
+        <CardNumberElement
+          options={inputStyle}
+          className="form-control p-3"
+          id="cardNumber"
+        />
       </div>
-      <div className="col-6">
-        <div
-          data-mdb-input-init=""
-          className="form-outline form-white"
-        >
-          <label className="form-label" htmlFor="typeText">
-            Cvv
-          </label>
-      <CardCvcElement options={inputStyle} id="cardCvc" className="form-control p-3"/>
+      <div className="row mb-4">
+        <div className="col-6">
+          <div data-mdb-input-init="" className="form-outline form-white">
+            <label className="form-label" htmlFor="typeExp">
+              Expiration
+            </label>
+            <CardExpiryElement
+              options={inputStyle}
+              id="cardExpiry"
+              className="form-control p-3"
+            />
+          </div>
         </div>
+        <div className="col-6">
+          <div data-mdb-input-init="" className="form-outline form-white">
+            <label className="form-label" htmlFor="typeText">
+              Cvv
+            </label>
+            <CardCvcElement
+              options={inputStyle}
+              id="cardCvc"
+              className="form-control p-3"
+            />
+          </div>
+        </div>
+        <button
+          className="button-submit"
+          disabled={!stripe || loading}
+        >
+          {loading ? "Processing..." : "Pay Now"}
+        </button>
       </div>
-      <button type="submit" className="button-submit px-5" style={{width:"fit-content"}} disabled={!stripe || loading}>
-        {loading ? "Processing..." : "Pay Now"}
-      </button>
-    </div>
-  </form>
-
-  
+    </form>
   );
 };
 

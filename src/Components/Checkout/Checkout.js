@@ -149,19 +149,21 @@ const Checkout = () => {
                                   <div className="ms-3">
                                     <h5>{item?.title}</h5>
                                     {item?.size && (
-                                      <p className="small mb-0">{item?.size}</p>
+                                      <p className="small mb-0 d-lg-block d-md-block d-none">{item?.size}</p>
                                     )}
+                                     <p className="fw-normal mb-0 d-block d-md-none d-lg-none d-sm-none">
+                                   Quantity: <strong>{item?.quantity}</strong>
+                                  </p>
                                   </div>
                                 </div>
                                 <div className="d-flex flex-row align-items-center">
-                                  <h5 className="fw-normal mb-0" style={{ width: 50 }}>
+                                  <h5 className="fw-normal mb-0 d-lg-block d-md-block d-none" style={{ width: 50 }}>
                                     {item?.quantity}
                                   </h5>
                                   <h5 className="mb-0" style={{ width: 80 }}>
                                     ${item?.total?.toFixed()}
                                   </h5>
                                   <a
-                                    href="#!"
                                     style={{ color: "#cecece" }}
                                     onClick={() => DeleteCartItem(item._id)}
                                   >

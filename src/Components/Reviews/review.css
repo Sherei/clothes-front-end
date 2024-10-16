@@ -137,7 +137,7 @@ input:valid~label,textarea:valid~label,textarea:focus~label {
 }
 
 .review_slide p{
-    color: black !important;
+    color: black;
 }
 
 @media screen and (max-width:768px) {

@@ -60,7 +60,7 @@ const Review = () => {
     }
 
     const Comment = async (cmnt) => {
-        
+
         if (!imageSelected && !videoSelected) {
             toast.warning("Please select either an image or a video.");
             return; 
@@ -142,8 +142,6 @@ const Review = () => {
                 setComments(response.data.alldata);
                 const modal = document.getElementById('exampleModal');
                 document.querySelector('.modal-backdrop').remove();
-                // window.location.reload()
-                
                 reset();
                 setImageSelected(false)
                 setVideoSelected(false)
@@ -268,11 +266,7 @@ const Review = () => {
                             )}
                         </div>
                     </div>
-                    {loading ? (
-                        <div className='min-vh-50 d-flex justify-content-center align-items-center'>
-                            <Loader />
-                        </div>
-                    ) : (
+                    {(
                         <div
   className="modal fade"
   id="exampleModal"

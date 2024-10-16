@@ -92,7 +92,6 @@ const move=useNavigate();
     style: {
       base: {
         color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
@@ -157,7 +156,7 @@ const move=useNavigate();
       <CardCvcElement options={inputStyle} id="cardCvc" className="form-control p-3"/>
         </div>
       </div>
-      <button type="submit" className="button-submit" disabled={!stripe || loading}>
+      <button type="submit" className="button-submit px-5" style={{width:"fit-content"}} disabled={!stripe || loading}>
         {loading ? "Processing..." : "Pay Now"}
       </button>
     </div>

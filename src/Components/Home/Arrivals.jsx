@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Loader from "../Loader/Loader"
 import "./card.css";
 import axios from 'axios';
-
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const Arrivals = () => {
 
@@ -13,6 +14,14 @@ const Arrivals = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     /* User */
+    useEffect(() => {
+        Aos.init({
+          offset: 100,
+          duration: 600,
+          easing: 'ease-in',
+          delay: 25,
+        });
+      }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -50,7 +59,7 @@ const Arrivals = () => {
                     <p>Check your internet connection and try again!</p>
                 ) : (
                     products?.map((item, index) => (
-                        <div className="col card" key={index}>
+                        <div className="col card" key={index} data-aos='fade-up'>
                             <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
                                 <div className="card_img">
                                     <img src={item?.images[0]} className="text-center" alt={item?.title} />

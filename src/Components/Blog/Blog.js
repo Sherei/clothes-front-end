@@ -4,6 +4,8 @@ import { FaArrowRight } from "react-icons/fa"
 import Loader from "../Loader/Loader";
 import { useNavigate } from 'react-router-dom'
 import "./blog.css"
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const Blog = () => {
 
@@ -12,6 +14,16 @@ const Blog = () => {
     const [loading, setLoading] = useState(false)
     const [filter, setFilter] = useState([])
     const move = useNavigate()
+
+    useEffect(() => {
+        Aos.init({
+          offset: 100,
+          duration: 600,
+          easing: 'ease-in',
+          delay: 25,
+        });
+      }, []);
+
     useEffect(() => {
         setLoading(true);
         try {
@@ -48,7 +60,7 @@ const Blog = () => {
                 ) : (
                     <div className="h_box_main">
                         {blog?.slice(0, 3).map((item, index) => {
-                            return <a href={"/blog_detail/" + item._id}  style={{ width: "270px" }} >
+                            return <a href={"/blog_detail/" + item._id}  style={{ width: "270px" }} data-aos="flip-left">
                              <div className="card" key={index}>
                         
                                 <div className="card_img">

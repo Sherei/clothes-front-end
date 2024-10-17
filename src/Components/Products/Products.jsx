@@ -68,6 +68,7 @@ const Products = () => {
         };
         const res = await axios.get(apiUrl, { params, cancelToken: source.token });
         setData(res?.data);
+        console.log(res.data)
         setLoading(false);
 
       } catch (error) {

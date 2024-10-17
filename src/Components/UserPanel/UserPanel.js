@@ -205,7 +205,7 @@ const UserPanel = () => {
                                             )}
                                         </div>
                                         <p className='text-center'>{item?.comment}</p>
-                                        <p className='text-center fw-bolder'>{item?.name}</p>
+                                        <p className='text-center fw-bold fs-6'>{item?.name}</p>
                                     </div>
                                         </>
                                     })

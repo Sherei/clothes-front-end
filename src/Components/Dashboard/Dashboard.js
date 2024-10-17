@@ -24,6 +24,7 @@ import Blogs from './Blogs';
 import Collections from './Collections';
 import AddCollections from './AddCollections';
 import { Link } from 'react-scroll';
+import { toast } from 'react-toastify';
 
 export const Dashboard = () => {
 
@@ -68,6 +69,17 @@ export const Dashboard = () => {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    useEffect(() => {
+        setIsLoading(true); // Start loading
+
+        if (cu.role !== "admin") {
+           return move('/'); 
+         }
+
+        setIsLoading(false); // Stop loading
+    }, [cu.role, move]);
+
     return (
         <>
             <div className='container mt-2 mb-5'>

@@ -145,7 +145,7 @@ const Navbar = () => {
             ><CgSearch />
             </NavLink>
             {cu.role != "admin" && (
-        <NavLink className="nav-link cart-link" to={`/cart-checkout/${cu._id}`}>
+        <NavLink className="nav-link cart-link" to={`/cart/${cu._id}`}>
           <div style={{ position: 'relative' }}>
             <BsCart size={24} />
             {/* {(cu._id != undefined) &&
@@ -211,7 +211,7 @@ const Navbar = () => {
             ><CgSearch />
             </NavLink>
             {cu.role !== "admin" && (
-        <NavLink className="nav-link cart-link" to={`/cart-checkout/${cu._id}`}>
+        <NavLink className="nav-link cart-link" to={`/cart/${cu._id}`}>
           <div style={{ position: 'relative' }}>
             <BsCart size={24} />
             {/* {filterCart?.length > 0 && (

@@ -258,7 +258,7 @@ const Review = () => {
                                         )}
                                       </div>
                                       <p className='text-center text-muted'>{item?.comment}</p>
-                                      <p className='text-center fw-bolder'>{item?.name}</p>
+                                      <p className='text-center fs-6 fw-bold'>{item?.name}</p>
                                     </div>
                                   </SwiperSlide>
                                 ))}

@@ -30,11 +30,12 @@ import "./single.css";
 
 const SingleAdd = () => {
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   let cu = useSelector((store) => store.userSection.cu);
   const [formData, setFormData] = useState(new FormData());
@@ -486,7 +487,7 @@ const handleVideoChange = (e) => {
       <>
       <div className="container-fluid min-vh-100">
         <div className="row">
-          <div className="col-lg-12 col-sm-12 my-5 s_categories_P d-flex align-items-center">
+          <div className="col-lg-12 col-sm-12 my-3 s_categories_P d-flex align-items-center">
             {product?.category &&
               <p className="m-0 text-capitalize">
                 home <FaAngleRight />
@@ -877,7 +878,7 @@ disableOnInteraction: false
                                         )}
                                       </div>
                                       <p className='text-center'>{item?.comment}</p>
-                                      <p className='text-center fw-bolder'>{item?.name}</p>
+                                      <p className='text-center fw-bold fs-6'>{item?.name}</p>
                                     </div>
                                   </SwiperSlide>
                                 ))}

@@ -23,6 +23,7 @@ import "./dashboard.css";
 import Blogs from './Blogs';
 import Collections from './Collections';
 import AddCollections from './AddCollections';
+import { Link } from 'react-scroll';
 
 export const Dashboard = () => {
 
@@ -67,14 +68,9 @@ export const Dashboard = () => {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
-
-    if (cu?.role !="admin" || cu._id ===undefined) {
-        return move('/')
-    }
-
     return (
         <>
-            <div className='container my-3'>
+            <div className='container mt-2 mb-5'>
                 <div className='row'>
                     <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
                         <h1 className="p_head">
@@ -82,7 +78,7 @@ export const Dashboard = () => {
                         </h1>
                     </div>
                 </div>
-                <div className='row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-3'>
+                <div className='d-flex align-items-center gap-3 flex-wrap mt-3 mb-5 dash_row'>
                     {isLoading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
                             <Loader />
@@ -90,7 +86,7 @@ export const Dashboard = () => {
                     ) : (
                         <>
                             {/* Add Collection */}
-                            <div className='col'>
+                            <div className='dash_card'>
                                 <div className='p-3 admin_card' onClick={() => move('/admin-dashboard-add-collection')}>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
@@ -103,8 +99,9 @@ export const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+
                             {/* Add Products */}
-                            <div className='col'>
+                            <div className='dash_card'>
                                 <div className='p-3 admin_card'  onClick={() => move('/admin-dashboard-add-product')}>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
@@ -117,8 +114,9 @@ export const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+                            
                             {/* Add Blog */}
-                            <div className='col'>
+                            <div className='dash_card'>
                                 <div className='p-3 admin_card'   onClick={() => move('/admin-dashboard-add-blog')}>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
@@ -133,8 +131,9 @@ export const Dashboard = () => {
                             </div>
 
                             {/* Collections */}
-                            <div className='col'>
-                                <div className='p-3 admin_card' onClick={()=>setFile("collections")}>
+                            <div className='dash_card'>
+                                <Link to='collections'>
+                                <div className='p-3 admin_card' >
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Collections</p>
@@ -145,10 +144,14 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
+                                
                             </div>
+                            
                             {/* Orders */}
-                            <div className='col'>
-                                <div className='p-3 admin_card' onClick={()=>setFile("orders")}>
+                            <div className='dash_card'>
+                                <Link to='orders'>
+                                <div className='p-3 admin_card'>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Orders</p>
@@ -159,10 +162,13 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
                             </div>
+                            
                             {/* Users */}
-                            <div className='col'>
-                                <div className='p-3 admin_card'onClick={()=>setFile("users")}>
+                            <div className='dash_card'>
+                                <Link to='users'>
+                                <div className='p-3 admin_card'>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Users</p>
@@ -173,10 +179,14 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
+                                
                             </div>
+                            
                             {/* Products */}
-                            <div className='col'>
-                                <div className='p-3 admin_card' onClick={()=>setFile("products")}>
+                            <div className='dash_card'>
+                                <Link to='products'>
+                                <div className='p-3 admin_card'>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Products</p>
@@ -187,10 +197,14 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
+                                
                             </div>
+                            
                             {/* Reviews */}
-                            <div className='col'>
-                                <div className='p-3 admin_card' onClick={()=>setFile("reviews")}>
+                            <div className='dash_card'>
+                                <Link to='reviews'>
+                                <div className='p-3 admin_card'>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Reviews</p>
@@ -201,10 +215,13 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
                             </div>
+
                              {/* Blogs */}
-                             <div className='col'>
-                                <div className='p-3 admin_card' onClick={()=>setFile("blogs")}>
+                             <div className='dash_card'>
+                                <Link to='blogs'>
+                                <div className='p-3 admin_card'>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <div>
                                             <p className='admin_card_title'>Blogs</p>
@@ -215,6 +232,7 @@ export const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
                             </div>
                         </>
 
@@ -223,36 +241,27 @@ export const Dashboard = () => {
                 </div>
 
                 <div className='row'>
-                    {file === "collections" &&
-                        <div className='col-12'>
-                            <Collections />
-                        </div>
-                    }
-                    {file === "users" &&
-                        <div className='col-12'>
-                            <Users />
-                        </div>
-                    }
-                    {file === "products" &&
-                        <div className='col-12'>
-                            <Products />
-                        </div>
-                    }
-                    {file === "reviews" &&
-                        <div className='col-12'>
-                            <Comments />
-                        </div>
-                    }
-                    {file === "blogs" &&
-                        <div className='col-12'>
-                            <Blogs />
-                        </div>
-                    }
-                    {file ==="orders" &&
-                        <div className='col-12'>
+                    
+                <div className='col-12' id='orders'>
                         <Orders />
                     </div>
-                    }
+                <div className='col-12' id='users'>
+                            <Users />
+                        </div>
+                        <div className='col-12' id="collections">
+                            <Collections />
+                        </div>
+
+                        <div className='col-12' id='products'>
+                            <Products />
+                        </div>
+                        <div className='col-12' id='reviews'>
+                            <Comments />
+                        </div>
+                        <div className='col-12' id='blogs'>
+                            <Blogs />
+                        </div>
+                    
                 </div>
             </div>
         </>

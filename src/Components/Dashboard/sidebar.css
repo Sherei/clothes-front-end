@@ -6,7 +6,7 @@
 .sidebar {
     height: auto;
     position: relative;
-    background-color: rgb(2, 2, 94);
+    background-color: black;
     color: #fff;
     transition: all 0.5s;
 }
@@ -48,7 +48,7 @@
 
 .icon,
 .link_text {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .extra {

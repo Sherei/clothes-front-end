@@ -59,12 +59,12 @@ export const Products = () => {
   };
 
   return (
-    <div className="container my-5">
+    <div className="container mt-2 mb-5">
       <div className="row">
         <div className="col-lg-12 col-sm-12 d-flex justify-content-between">
           <div className="">
             <h1 className="p_head">
-              Products List
+              Products
             </h1>
           </div>
           <div>

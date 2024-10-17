@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
   FaTh,
-  FaBars,
-  FaDiscourse,
-  FaServicestack,
-  FaCameraRetro,
   FaHome,
-  FaQq
+  FaFirstOrder,
+  FaClipboardList,
+  FaUsers,
+  FaCommentDots,
+
 } from 'react-icons/fa';
 import { FaBlog } from "react-icons/fa6";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
@@ -21,6 +21,7 @@ import { Users } from './Users';
 import Comments from './Comments';
 import { Orders } from './Orders';
 import "./sidebar.css"
+import Collections from './Collections';
 
 
 const Sidebar = () => {
@@ -80,9 +81,27 @@ const Sidebar = () => {
             </div>
           </div>
 
+          <div className={`link ${activeComponent === 'orders' ? 'active' : ''}`} onClick={() => handleMenuClick('orders')}>
+            <div className="icon">
+              <FaFirstOrder />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Orders
+            </div>
+          </div>
+
+          <div className={`link ${activeComponent === 'collections' ? 'active' : ''}`} onClick={() => handleMenuClick('collections')}>
+            <div className="icon">
+              <FaBlog />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+          Collections
+            </div>
+          </div>
+
           <div className={`link ${activeComponent === 'product' ? 'active' : ''}`} onClick={() => handleMenuClick('product')}>
             <div className="icon">
-              <FaDiscourse />
+              <FaClipboardList />
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
               Products
@@ -92,7 +111,7 @@ const Sidebar = () => {
 
           <div className={`link ${activeComponent === 'users' ? 'active' : ''}`} onClick={() => handleMenuClick('users')}>
             <div className="icon">
-              <FaServicestack />
+              <FaUsers />
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
               Users
@@ -101,12 +120,23 @@ const Sidebar = () => {
 
           <div className={`link ${activeComponent === 'comments' ? 'active' : ''}`} onClick={() => handleMenuClick('comments')}>
             <div className="icon">
-              <FaCameraRetro />
+              <FaCommentDots />
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
-              Comments
+              Reviews
             </div>
           </div>
+
+          <div className={`link ${activeComponent === 'addCollection' ? 'active' : ''}`}
+            onClick={() => move('/admin-dashboard-add-collection')}>
+            <div className="icon">
+              <FaBlog />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+              Add Collection
+            </div>
+          </div>
+
 
           <div className={`link ${activeComponent === 'addProduct' ? 'active' : ''}`}
             onClick={() => move('/admin-dashboard-add-product')}>
@@ -162,10 +192,19 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
+
+
         <div className="dashboard">
           {activeComponent === 'dashboard' && 
           <Dashboard />
           }
+          {activeComponent==='orders' &&
+      <Orders/>
+          }
+          {activeComponent ==="collections" &&
+          <Collections/>
+          }
+
           {activeComponent === 'orders' && 
           <Orders />
           }
@@ -179,6 +218,8 @@ const Sidebar = () => {
            <Comments />
            }
         </div>
+
+
       </div>
 
     </div>

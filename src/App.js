@@ -100,7 +100,7 @@ return <>
               <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
 
               {/* Admin */}
-              <Route exact path='/admin-dashboard' element={<Dashboard />} />
+              <Route exact path='/admin-dashboard' element={<Sidebar />} />
 
               {/* Blog */}
               <Route exact path='/admin-dashboard-add-blog' element={<AddBlog />} />

@@ -3,8 +3,14 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     height: 100px;
-}
+    width: 230px;
 
+}
+@media screen and (max-width:560px) {
+    .dash_row{
+        justify-content: center;
+    }
+}
 .admin_card:hover {
     cursor: pointer;
     /* color: white; */

@@ -45,7 +45,7 @@ const Search = () => {
 
   return <>
     <div className='container' style={{minHeight:"80vh"}}>
-        <div className='row d-flex justify-content-center mt-5 mb-3'>
+        <div className='row d-flex justify-content-center my-3'>
             <div className='col-lg-6 col-md-8 col-12'>
                 <input type="text" 
                  className="form-control"
@@ -54,9 +54,8 @@ const Search = () => {
                  />
             </div>
         </div>
-{searchValue &&
         <div className="row">
-        <div className="col-12 my-4 fs-5">Search Result...</div>
+        <div className="col-12 my-4 fs-5">Searching</div>
         {filteredProducts?.length === 0 ? (
           <div className="d-flex justify-content-center min-vh-50">
               <p>No Product found try with different keyword!</p>
@@ -91,7 +90,6 @@ const Search = () => {
           </div>
         )}
             </div>
-}
 
 
     </div>

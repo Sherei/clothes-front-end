@@ -218,7 +218,7 @@ const Review = () => {
                                     590: { slidesPerView: 1, spaceBetween: 10 }, 
                                     599: { slidesPerView: 2, spaceBetween: 10 }, 
                                     768: { slidesPerView: 2, spaceBetween: 10 }, 
-                                    1024: { slidesPerView: 4, spaceBetween: 30 },
+                                    1024: { slidesPerView: 4, spaceBetween: 20 },
                                   }}
                                 spaceBetween={30}
                                 modules={[Autoplay]}

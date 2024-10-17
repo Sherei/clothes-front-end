@@ -258,7 +258,7 @@ const handleVideoChange = (e) => {
     
     if (cu._id === undefined) {
       move(`/login/${product.title}/${productId}`);
-      toast.success("Login to Place Your Order");
+      toast.warning("Login to Place Your Order");
     } else if (cu.role === "admin") {
       dispatch({
         type: "LOGOUT_USER",

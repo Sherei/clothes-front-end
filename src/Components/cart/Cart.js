@@ -468,7 +468,7 @@ const [btnLoading, setBtnLoading]=useState(false);
                     <span className="fw-bolder text-danger">
                    Free
                       {/* ${shippingFeeAmount?.toFixed()} */}
-                    </span>{" "}
+                    </span>{""}
                   </p>
                   <p className="m-0 text-end" style={{ fontSize: "11px" }}>
                     Shipping options will be updated during checkout.

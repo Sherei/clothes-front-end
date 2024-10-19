@@ -120,7 +120,7 @@ const Checkout = () => {
     });
 
     try {
-        setLoading(true);
+        setbtnLoading(true);
         const orderItems = [];
         const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
         filterCart.forEach((item) => {
@@ -148,11 +148,11 @@ const Checkout = () => {
 
         const shippingFee = () => {
             if (totalQuantity === 1) {
-                return 50;
+                return 0;
             } else if (totalQuantity === 2) {
-                return 70;
+                return 0;
             } else {
-                return 99;
+                return 0;
             }
         };
         const shippingFeeAmount = shippingFee();
@@ -177,7 +177,7 @@ const Checkout = () => {
                 type: "ADD_TO_CART",
                 payload: response.data.alldata,
             });
-            setLoading(false);
+            setbtnLoading(false);
             move(`/order-placed/${userId}`)
         }
 
@@ -301,7 +301,15 @@ const Checkout = () => {
       />
       
     }
-                            </form>
+{!payment &&
+<button
+          className="button-submit"
+        >
+          {btnLoading ? "Processing..." : "Order Now"}
+        </button>
+
+}
+</form>
                        
                       </div>
                       <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>

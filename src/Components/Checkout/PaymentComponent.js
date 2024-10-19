@@ -122,21 +122,6 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
 
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
-      {/* <div
-      data-mdb-input-init=""
-      className="form-outline form-white mb-4"
-    >
-      <label className="form-label" htmlFor="typeName">
-        Cardholder's Name
-      </label>
-      <input
-        type="text"
-        id="typeName"
-        className="form-control form-control-lg"
-        siez={17}
-        placeholder="Cardholder's Name"
-      />
-    </div> */}
       <div data-mdb-input-init="" className="form-outline form-white mb-4">
         <label className="form-label" htmlFor="typeText">
           Card Number

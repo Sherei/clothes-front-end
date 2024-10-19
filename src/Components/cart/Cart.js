@@ -30,7 +30,7 @@ export const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
-
+const [btnLoading, setBtnLoading]=useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -60,7 +60,7 @@ export const Cart = () => {
 
   const DeleteCartItem = async (itemId) => {
     try {
-      setLoading(true);
+      setBtnLoading(true);
       const response = await axios.delete(
         `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
       );
@@ -69,7 +69,7 @@ export const Cart = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-        setLoading(false);
+        setBtnLoading(false);
         // toast.success("Item Removed");
       }
     } catch (e) {
@@ -223,12 +223,12 @@ export const Cart = () => {
                               >
                                 {item?.title}
                               </p>
-                              <button
-                                className="btn text-danger cross_btn"
+                              <p
+                                className="cross_btn m-0 p-0 fs-6 text-center"
                                 onClick={() => DeleteCartItem(item._id)}
                               >
-                                <RxCross1 />
-                              </button>
+                                {btnLoading? "Removing...":<RxCross1/>}
+                              </p>
                             </div>
                             <hr className="m-0 p-0" />
 
@@ -242,11 +242,12 @@ export const Cart = () => {
                                 Price
                               </p>
                               <p className="m-0" style={{ fontSize: "14px" }}>
-                                &pound;{item?.total?.toFixed()}
+                                ${item?.total?.toFixed()}
                               </p>
                             </div>
                             <hr className="m-0 p-0" />
                             <div className="py-2  d-flex justify-content-between align-items-center">
+                              <div>
                               <p
                                 className="mb-0"
                                 style={{
@@ -255,6 +256,8 @@ export const Cart = () => {
                               >
                                 Quantity
                               </p>
+                              </div>
+                              
                               <div
                                 className="sigle_quatity "
                                 style={{ border: "none" }}
@@ -265,7 +268,7 @@ export const Cart = () => {
                             >
                               <FaMinus />
                             </button> */}
-                                <p className="input_single text-center m-0 p-0">
+                                <p className="text-center m-0 p-0">
                                   {item.quantity}
                                 </p>
                                 {/* <button
@@ -290,7 +293,7 @@ export const Cart = () => {
                                 className="m-0 fw-bolder fs-5"
                                 style={{ color: "red", fontSize: "17px" }}
                               >
-                                &pound;{item?.total?.toFixed()}
+                                ${item?.total?.toFixed()}
                               </p>
                             </div>
                           </div>
@@ -380,13 +383,13 @@ export const Cart = () => {
                               </td>
                               <td className="text-center">{`£${item?.total?.toFixed()}`}</td>
                               <td className="text-center">
-                                <button
-                                  className=" btn text-danger "
-                                  style={{ fontSize: "20px", width:"fit-content", outline:"none", border:"none" }}
+                                <p
+                                  className="m-0 p-0 fs-6 text-center"
                                   onClick={() => DeleteCartItem(item._id)}
                                 >
-                                  <RxCross1 />
-                                </button>
+                                 {btnLoading? "Removing...":<RxCross1/>}
+
+                                </p>
                               </td>
                             </tr>
                           ))}
@@ -448,7 +451,7 @@ export const Cart = () => {
                   Subtotal
                 </p>
                 <p className="text-muted m-0" style={{ fontSize: "15px" }}>
-                  &pound;{subtotal?.toFixed()}.00
+                  ${subtotal?.toFixed()}.00
                 </p>
               </div>
               <hr className="m-1" />
@@ -462,8 +465,9 @@ export const Cart = () => {
                     style={{ fontSize: "13px" }}
                   >
                     Standard Delivery:{" "}
-                    <span className="fw-bolder">
-                      &pound;{shippingFeeAmount?.toFixed()}
+                    <span className="fw-bolder text-danger">
+                   Free
+                      {/* ${shippingFeeAmount?.toFixed()} */}
                     </span>{" "}
                   </p>
                   <p className="m-0 text-end" style={{ fontSize: "11px" }}>
@@ -478,7 +482,7 @@ export const Cart = () => {
                   Total:
                 </p>
                 <p className="fw-bolder m-0" style={{ color: "red", fontSize: "17px" }}>
-                  &pound;{total?.toFixed()}.00
+                  ${total?.toFixed()}.00
                 </p>
               </div>
 

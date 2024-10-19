@@ -12,6 +12,8 @@ import { useForm } from 'react-hook-form';
 import "./checkout.css";
 
 const Checkout = () => {
+
+
   const { userId } = useParams();
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
@@ -23,7 +25,8 @@ const Checkout = () => {
     const move = useNavigate()
     const dispatch = useDispatch();
 
-    const [payment, setPayment] = useState(false)
+    const [payment, setPayment] = useState(true)
+  const [setbtnLoading, btnLoading]=useState(false)
 
     const togglePayment = () => {
         setPayment(!payment)
@@ -64,7 +67,7 @@ const Checkout = () => {
 
   const DeleteCartItem = async (itemId) => {
     try {
-      setLoading(true);
+      setbtnLoading(true);
       const response = await axios.delete(
         `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
       );
@@ -73,11 +76,11 @@ const Checkout = () => {
           type: "ADD_TO_CART",
           payload: response.data.alldata,
         });
-        setLoading(false);
-        toast.success("Item Removed");
+        setbtnLoading(false);
+        // toast.success("Item Removed");
       }
     } catch (e) {
-      console.error(e);
+      // console.log(e);
     }
   };
 
@@ -204,13 +207,8 @@ const Checkout = () => {
                 <div className="card">
                   <div className="card-body p-4">
                     <div className="row">
-                      <div className="col-lg-7">
-                    
+                      <div className="col-lg-8">
                         <div className="d-flex justify-content-between align-items-center mb-4">
-                          {/* <p className="mb-0">
-                            You have <strong>{totalQuantity}</strong> items in
-                            your cart
-                          </p> */}
                         </div>
                         <h4 className="mb-3 fw-bolder" style={{  }}>Delivery Details</h4>
                             <form action="" onSubmit={handleSubmit(Order)}>
@@ -256,10 +254,6 @@ const Checkout = () => {
                                     <div className="col-md-6 mb-3">
                                         <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email')} />
                                    </div>
-                                    {/* <div className="col-md-12 mt-3">
-                                        <p className='mb-0 fw-bold' style={{ fontSize: "16px" }}>Note: Remember all orders are delivered on ground floor.
-                                            Extra charges for uplift or desired room.</p>
-                                    </div> */}
                                 </div>
 
                                 <hr className="mb-4" />
@@ -267,25 +261,25 @@ const Checkout = () => {
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Payment Method</p>
                                     <div className="col-md-12 mb-3">
                                         <>
-                                            <div className="d-flex gap-2" >
+                                            <div className="d-flex gap-2" onClick={()=>setPayment(false)}>
                                                 <input
                                                     type="radio"
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault1"
                                                     defaultChecked="true"
-                                                    onClick={()=>setPayment(false)}
+                                                    
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault1">
                                                     Cash on delivery
                                                 </p>
                                             </div>
                                            
-                                            <div className="d-flex gap-2 mt-1" >
+                                            <div className="d-flex gap-2 mt-1" onClick={()=>setPayment(true)}>
                                                 <input
                                                     type="radio"
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault2"
-                                                    onClick={togglePayment}
+                                                    
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault2">
                                                     Credit Card
@@ -294,91 +288,81 @@ const Checkout = () => {
                                         </>
                                     </div>
                                 </div>
-                                <hr className="mb-4" />
 
-                                {filterCart?.length > 0 &&
-                                    <div className='chk_btns chk_btns1 mt-5'>
-                                        <button className="fw-bolder btn btn-lg" style={{ width: "100%", backgroundColor: "black", color: "white" }}>
-                                            COMPLETE ORDER
-                                        </button>
-                                    </div>
-                                }
-                            </form>
-                       
-                      </div>
-                      <div className="col-lg-5">
-                      {payment &&
-  
-  <div className="card bg-primary pb-0 text-white rounded-3">
-    <div className="card-body">
-      <div className="d-flex justify-content-between align-items-center mb-4 mt-4">
-        <h4 className="mb-0">Card details</h4>
-        {/* <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-          className="img-fluid rounded-3"
-          style={{ width: 45 }}
-          alt="Avatar"
-        /> */}
-      </div>
-      {/* <h3>Payment</h3> */}
-      <div className="d-flex justify-content-between">
-        <p className="mb-2">Subtotal</p>
-        <p className="mb-2">
-          ${subtotal?.toFixed()}.00
-        </p>
-      </div>
-      <div className="d-flex justify-content-between">
-        <p className="mb-2">Shipping</p>
-        <p className="mb-2">Free</p>
-      </div>
-      <div className="d-flex justify-content-between mb-4">
-        <p className="mb-2">Total (Incl. taxes)</p>
-        <p className="mb-2">
-          ${total?.toFixed()}.00
-        </p>
-      </div>
-      <StripePayment
+                                <hr className="mb-4" />
+                                {payment &&
+
+                                <StripePayment
         amount={total}
         onPaymentSuccess={handlePaymentSuccess}
       />
-    </div>
-  </div>
-
-                      }
-                    {!payment &&
-                    <>
-                    <div className='col-12 d-flex justify-content-between' style={{  }}>
+      
+    }
+                            </form>
+                       
+                      </div>
+                      <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
+                            <div className='row'>
+                                <div className='col-12 d-flex justify-content-between'>
                                     <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
                                     <p className='fw-bolder fs-4'>{filterCart?.length}</p>
                                 </div>
-                    {filterCart?.map((item, index) => (
-                      <div className='row border py-2 mb-1 d-flex align-items-center' key={index} style={{position:"relative"}}>
-                      <div className="" style={{position:"absolute", bottom:"10px", right:"0px"}}>
-                      < RxCross1 />
-                      </div>
-                      <div className='col-3'>
-                          <img className='img-fluid' src={item?.image} alt="No Internet" 
-                          style={{height:"90px",}}
-                           />
-                          
-                      </div>
-                      <div className='col-9 d-flex justify-content-between'>
-                          <div>
-                              <p className='m-0'>{item?.title.slice(0, 50)}</p>
-                              <p className='m-0 '>Quantity: {item?.quantity}</p>
-                          </div>
-                          <div className="d-flex justify-content-between flex-column">
-                              <div>
-                                  <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                        ))} 
-                      </>   
+                            </div>
+                            {filterCart?.map((item, index) => {
+                                return <>
+                                    <div className='row border mb-1 py-3' key={index} style={{position:"relative"}}>
+                                            <div className="fs-5" style={{position:"absolute", bottom:"10px", right:"10px",
+                                              width:"fit-content",
+                                         }} onClick={() => DeleteCartItem(item._id)}>
+                                                {btnLoading? <RxCross1/>:"Removing..."}
+                                            </div>
+                                        <div className='col-3' style={{ position: "relative" }}>
+                                            <img className='img-fluid' src={item?.image} alt="No Internet" />
+                                            <p className='m-0 cart_number' style={{
+                                                top: "-4px",
+                                                right: "4px,"
+                                            }}>
+                                                {item?.quantity}
+                                            </p>
+                                        </div>
+                                        <div className='col-9 d-flex justify-content-between '>
+                                            <div>
+                                                <p className='m-0'>{item?.title.slice(0, 50)}</p>
+                                            </div>
+                                            <div className="d-flex justify-content-between flex-column">
+                                                <div>
+                                                    <p className='text-center fw-bolder'>{`£${item?.total?.toFixed()}`}</p>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            })
+                            }
 
-                      }
-                    </div>
+                            <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
+                                <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
+                                    <p className='fs-6'>Subtotal</p>
+                                    <p className='fs-6'>{`£${total?.toFixed()}`}.00</p>
+                                </div>
+                                <div className='px-3 col-12 d-flex justify-content-between align-items-center'>
+                                    <p className=' fs-6'>Shipping</p>
+                                    <p className=' fs-6'>Free</p>
+                                </div>
+                                <div className='px-3 col-12 d-flex justify-content-between align-items-center' style={{ fontWeight: "600" }}>
+                                    <p className='fs-5'>Total</p>
+                                    <p className='fs-5'>{`£${total?.toFixed()}`}.00</p>
+                                </div>
+                            </div>
+                            <a href="/Products/all">
+                  <button
+                    className="button-submit px-4 w-100"
+                  >
+                    Continue Shopping
+                  </button>
+                </a>
+                        </div>
                     </div>
                   </div>
                 </div>

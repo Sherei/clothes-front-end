@@ -10,8 +10,9 @@
 .cross_btn{
     width: fit-content;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 10px;
+
     outline: none !important;
     border: none !important;
 }

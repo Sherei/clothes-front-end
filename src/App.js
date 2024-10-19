@@ -58,8 +58,8 @@ function App() {
     }
   }, []);
   const sendWhatsAppMessage = () => {
-    const message = `https://sofabedsltd.co.uk/\n\nHow can we help you?`;
-    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    const message = `https://riskibrothers.com/\n\nHow can we help you?`;
+    const whatsappURL = `https://wa.me/+923259053922?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
 

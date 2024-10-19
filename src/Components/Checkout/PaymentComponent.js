@@ -81,7 +81,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
         );
 
         onPaymentSuccess(paymentIntent);
-        move(`/checkout/${cu._id}`);
+       
       }
     } catch (err) {
       setLoading(false);

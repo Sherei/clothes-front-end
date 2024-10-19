@@ -260,31 +260,34 @@ const Checkout = () => {
                                 <div className='py-3'>
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Payment Method</p>
                                     <div className="col-md-12 mb-3">
+
                                         <>
-                                            <div className="d-flex gap-2" onClick={()=>setPayment(false)}>
-                                                <input
-                                                    type="radio"
-                                                    name="flexRadioDefault"
-                                                    id="flexRadioDefault1"
-                                                    defaultChecked="true"
-                                                    
-                                                />
-                                                <p className="m-0" htmlFor="flexRadioDefault1">
-                                                    Cash on delivery
-                                                </p>
-                                            </div>
-                                           
-                                            <div className="d-flex gap-2 mt-1" onClick={()=>setPayment(true)}>
+                                        <div className="d-flex gap-2 mt-1" onClick={()=>setPayment(true)}>
                                                 <input
                                                     type="radio"
                                                     name="flexRadioDefault"
                                                     id="flexRadioDefault2"
+                                                     defaultChecked="true"
                                                     
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault2">
                                                     Credit Card
                                                 </p>
                                             </div>
+
+                                            <div className="d-flex gap-2" onClick={()=>setPayment(false)}>
+                                                <input
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                          
+                                                />
+                                                <p className="m-0" htmlFor="flexRadioDefault1">
+                                                    Cash on delivery
+                                                </p>
+                                            </div>
+                                           
+
                                         </>
                                     </div>
                                 </div>
@@ -311,11 +314,11 @@ const Checkout = () => {
                             {filterCart?.map((item, index) => {
                                 return <>
                                     <div className='row border mb-1 py-3' key={index} style={{position:"relative"}}>
-                                            <div className="fs-5" style={{position:"absolute", bottom:"10px", right:"10px",
+                                            {/* <div className="fs-5" style={{position:"absolute", bottom:"10px", right:"10px",
                                               width:"fit-content",
                                          }} onClick={() => DeleteCartItem(item._id)}>
                                                 {btnLoading? <RxCross1/>:"Removing..."}
-                                            </div>
+                                            </div> */}
                                         <div className='col-3' style={{ position: "relative" }}>
                                             <img className='img-fluid' src={item?.image} alt="No Internet" />
                                             <p className='m-0 cart_number' style={{

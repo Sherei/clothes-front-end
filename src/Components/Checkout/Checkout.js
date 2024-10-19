@@ -303,7 +303,7 @@ const Checkout = () => {
     }
 {!payment &&
 <button
-          className="button-submit"
+          className="button-submit w-100"
         >
           Order Now
         </button>

@@ -73,11 +73,11 @@ const CheckoutForm = () => {
                     }, 0);
                     const shippingFee = () => {
                         if (totalQuantity === 1) {
-                            return 50;
+                            return 0;
                         } else if (totalQuantity === 2) {
-                            return 70;
+                            return 0;
                         } else {
-                            return 99;
+                            return 0;
                         }
                     };
                     const shippingFeeAmount = shippingFee();

@@ -36,6 +36,7 @@ import { VerifyEmail } from './Components/ForgetPassword/Enteremail/VerifyEmail/
 import EnterOTP from './Components/Signup/Enterotp/Enterotp';
 import Checkinbox from './Components/Signup/Checkinbox/Checkinbox';
 import CategoriesProducts from './Components/CategoriesProducts/CategoriesProducts';
+import { IoLogoWhatsapp } from "react-icons/io5";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
@@ -56,13 +57,23 @@ function App() {
 
     }
   }, []);
-
+  const sendWhatsAppMessage = () => {
+    const message = `https://sofabedsltd.co.uk/\n\nHow can we help you?`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
 
 return <>
 
+<div style={{ position: 'relative' }}>
+        <div className='whatsapp-button' onClick={sendWhatsAppMessage}>
+          <IoLogoWhatsapp />
+        </div>
+      </div>
+
     <BrowserRouter>
       <Logos/>
-      <Navbar   />
+      <Navbar/>
           <Routes>
             
           <Route exact path='/' element={<Home />} />

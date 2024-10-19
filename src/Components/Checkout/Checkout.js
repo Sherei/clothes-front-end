@@ -271,7 +271,7 @@ const Checkout = () => {
                                                     
                                                 />
                                                 <p className="m-0" htmlFor="flexRadioDefault2">
-                                                    Credit Card
+                                                   Pay with Credit Card/Debit Card
                                                 </p>
                                             </div>
 
@@ -305,7 +305,7 @@ const Checkout = () => {
 <button
           className="button-submit"
         >
-          {btnLoading ? "Processing..." : "Order Now"}
+          Order Now
         </button>
 
 }

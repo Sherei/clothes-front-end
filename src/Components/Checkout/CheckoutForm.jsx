@@ -40,7 +40,7 @@ const CheckoutForm = () => {
 
     const sendWhatsAppMessage = () => {
         const message = `I want to place this order \n\n${window.location.href}`;
-        const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+        const whatsappURL = `https://wa.me/+923259053922?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, "_blank");
     };
 

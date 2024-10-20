@@ -86,7 +86,7 @@ const handleVideoChange = (e) => {
 
   const sendWhatsAppMessage = () => {
     const message = `I'm interested in product\n${window.location.href}\n\nCan you provide more details?`;
-    const whatsappURL = `https://wa.me/+923067208343?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/+923259053922?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
 

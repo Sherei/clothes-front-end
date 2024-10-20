@@ -66,10 +66,8 @@ const [loading,setLoading]=useState(false)
             <div className='row d-flex justify-content-center ل'>
                 <div className='col-lg-6 col-md-8 col-sm-12 border rounded-3 p-lg-5 p-sm-2'>
                     <div>
-                        <p className='title'>Register</p>
-                    </div>
-                    <div>
-                       <p className='my-3 fs-6 text-center '>Please fill in the infromation below</p>
+                    <p className='fs-2 fw-bold text-center m-0'>Create your Account`</p>
+                    <p className='text-center text-muted'>Please fill in the infromation below</p>
                     </div>
                     <form className="form" action="" onSubmit={handleSubmit(SignUp)}>
                         {Error &&

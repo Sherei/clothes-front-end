@@ -12,10 +12,10 @@ const Loader = () => {
             zIndex: "100"
         }}>
             <div>
-                <FadeLoader   color="#1b2950" />
+                <FadeLoader   color="white" />
             </div>
             <div>
-                <p className='text-muted m-0'>Please Wait </p>
+                <p className='text-white m-0'>Please Wait </p>
             </div>
 
         </div>

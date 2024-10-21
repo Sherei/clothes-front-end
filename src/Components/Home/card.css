@@ -24,6 +24,7 @@
 
 .card:hover{
     box-shadow: 0 0px 2px 1px white !important;
+    transition: all linear 0.3s;
 
 }
 

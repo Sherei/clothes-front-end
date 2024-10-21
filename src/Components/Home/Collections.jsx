@@ -41,10 +41,10 @@ const Collections = () => {
                                 className="cursor px-3 my-3 "
                                 key={index}
                             >
-                                    <div className="image_wrapper collection_card border">
+                                    <div className="collection_card border border-0 border-bottom border-light shadow-sm">
                                         <img src={data.image} alt="" className="collection_image" />
                                     </div>
-                                            <p className="mt-2 text-center fw-bolder fs-3">{data.category}</p>
+                                            <p className="mt-2 text-center fw-bolder fs-3 text-light">{data.category}</p>
                             </Link>
                         );
                     })

@@ -14,35 +14,35 @@ const Benefits = () => {
         <div className='container-fluid main_container py-lg-5 py-md-3 py-2' id='benefit' style={{backgroundColor:"#F2F0F1"}}>
             <div className='my-5 text-center'>
                 <h1 className='fw-bolder home_heading text-capitalize fs-3'>100% Satisfaction is Guaranteed</h1>
-                <p >Over 10,000 Happy Customers!</p>
+                <p className='text-dark' >Over 10,000 Happy Customers!</p>
             </div>
             <div className='row row-cols-lg-4 row-cols-md-4 benefit_main_box'>
                 <div className='cols'>
                     <div className='d-flex flex-column gap-2 justify-content-center align-items-center'>
-                        <div className='fs-3'><FaSyncAlt /></div>
-                        <div><p className='text-center fw-bolder'>12 Months Warranty</p></div>
+                        <div className='fs-3 text-dark'><FaSyncAlt /></div>
+                        <div><p className='text-center fw-bolder text-dark'>12 Months Warranty</p></div>
                         {/* <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>The Most of the U.K</p></div> */}
                     </div>
                 </div>
                 <div className='cols'>
                     <div className='d-flex flex-column gap-2  justify-content-center align-items-center '>
-                        <div className='fs-3'><FaRegCreditCard /></div>
-                        <div><p className='text-center fw-bolder'>Flexible Payments</p></div>
+                        <div className='fs-3 text-dark'><FaRegCreditCard /></div>
+                        <div><p className='text-center fw-bolder text-dark'>Flexible Payments</p></div>
                         {/* <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>100% Secure Payments</p></div> */}
                     </div>
                 </div>
                 <div className='cols'>
                     <div className='d-flex flex-column gap-2  justify-content-center align-items-center '>
-                        <div className='fs-3'><FaShuttleVan /></div>
-                        <div><p className='text-center  fw-bolder'>Fast Delivery</p></div>
+                        <div className='fs-3 text-dark'><FaShuttleVan /></div>
+                        <div><p className='text-center  fw-bolder text-dark'>Fast Delivery</p></div>
                         {/* <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>Delivery in as little as 5-7  days</p></div> */}
                     </div>
                 </div>
 
                 <div className='cols'>
                     <div className='d-flex flex-column gap-2  justify-content-center align-items-center '>
-                        <div className='fs-3'><MdOutlineSupportAgent /></div>
-                        <div><p className='text-center  fw-bolder'>Customer Support</p></div>
+                        <div className='fs-3 text-dark '><MdOutlineSupportAgent /></div>
+                        <div><p className='text-center  fw-bolder text-dark'>Customer Support</p></div>
                         {/* <div><p className='text-center' style={{ fontSize: "15px", fontWeight: "500", marginTop: "-20px" }}>24/7 Customer Support Available</p></div> */}
                     </div>
                 </div>

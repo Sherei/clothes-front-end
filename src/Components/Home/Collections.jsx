@@ -28,7 +28,7 @@ const Collections = () => {
     return <>
         <div className="container mt-5">
             <div className="row">
-                <div className="col-12"><h1 className='home_heading text-center mb-1 text-capitalize fs-3'>Premium 1st</h1></div>
+                <div className="col-12"><h1 className='home_heading text-center mb-1 text-capitalize fs-3 text-light'>Premium 1st</h1></div>
             </div>
             <div className='d-flex flex-wrap align-center justify-content-center'>
                 {isLoading ? (

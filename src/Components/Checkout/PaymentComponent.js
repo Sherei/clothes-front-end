@@ -18,7 +18,7 @@ const stripePromise = loadStripe(
 );
 
 const PaymentComponent = ({ amount, onPaymentSuccess }) => {
-  const [loading, setLoading] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const cu = useSelector((store) => store.userSection.cu);
@@ -30,7 +30,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
       return;
     }
 
-    setLoading(true);
+    setBtnLoading(true);
 
     try {
       // First, create the payment intent on the backend
@@ -60,7 +60,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
         }
       );
 
-      setLoading(false);
+      setBtnLoading(false);
 
       if (error) {
         handleError(error);
@@ -84,7 +84,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
        
       }
     } catch (err) {
-      setLoading(false);
+      setBtnLoading(false);
       handleError(err);
     }
   };
@@ -119,6 +119,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
       },
     },
   };
+
 
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
@@ -159,9 +160,9 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
         </div>
         <button
           className="button-submit"
-          disabled={!stripe || loading}
+          disabled={!stripe || btnLoading}
         >
-          {loading ? "Processing..." : "Pay Now"}
+          {btnLoading ? "Processing..." : "Pay Now"}
         </button>
       </div>
     </form>

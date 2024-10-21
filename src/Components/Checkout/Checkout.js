@@ -86,7 +86,7 @@ const Checkout = () => {
 
   const handlePaymentSuccess = async (paymentIntent) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/create-order`,
         {
@@ -107,7 +107,6 @@ const Checkout = () => {
         });
       }
     } catch (error) {
-      console.error("Error creating order:", error);
       toast.error("Failed to create order. Please try again.");
     } finally {
       setLoading(false);
@@ -120,7 +119,7 @@ const Checkout = () => {
     });
 
     try {
-        setbtnLoading(true);
+        // setbtnLoading(true);
         const orderItems = [];
         const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
         filterCart.forEach((item) => {

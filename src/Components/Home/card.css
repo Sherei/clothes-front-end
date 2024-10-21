@@ -14,16 +14,20 @@
 }
 
 .card {
+    background-color: #1a1a1a; 
+    color: white !important;
     overflow: hidden;
     border: none;
     flex-shrink: 0;
+    box-shadow: 0 0px 2px 1px white !important;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .card_img {
     height: 270px ;
     border-radius: 20px;
     box-shadow: 10px 10ox 10px #F2F0F1;
-    background-color: #F2F0F1;
+    background-color: #1a1a1a; 
     padding: 10px;
     display: flex;
     justify-content: center !important;
@@ -45,16 +49,16 @@
 }
 
 .card_title {
+    color: white;
     text-transform: capitalize;
     font-weight: 500;
     margin-top: 10px;
     text-align: center;
-    color: black;
 }
 
 .final_price {
+    color: white;
     text-align: center;
-    color: black;
     font-weight: 700;
 }
 
@@ -63,10 +67,10 @@
 }
 
 .discount {
-    background-color: black !important;
+    background-color: white !important;
     padding: 2px 7px !important;
     border-radius: 10px !important;
-    color: white !important;
+    color: black !important;
     font-weight: 500 !important;
     font-size: 15px !important;
 }

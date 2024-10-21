@@ -19,8 +19,12 @@
     overflow: hidden;
     border: none;
     flex-shrink: 0;
+    /* transition: box-shadow 0.3s ease-in-out; */
+}
+
+.card:hover{
     box-shadow: 0 0px 2px 1px white !important;
-    transition: box-shadow 0.3s ease-in-out;
+
 }
 
 .card_img {

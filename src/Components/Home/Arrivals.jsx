@@ -58,9 +58,9 @@ const Arrivals = () => {
                 ) : error ? (
                     <p>Check your internet connection and try again!</p>
                 ) : (
-                    products?.map((item, index) => (
-                        <div className='p-2'>
- <div className="col card border-0 border-bottom border-light shadow-sm" key={index} >
+                    products?.reverse().map((item, index) => (
+                        <div className='p-2' key={index} >
+ <div className="col card border-0 border-bottom border-light shadow-sm" >
                             <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
                                 <div className="card_img">
                                     <img src={item?.images[0]} className="text-center" alt={item?.title} />

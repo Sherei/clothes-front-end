@@ -48,7 +48,7 @@ const Search = () => {
         <div className='row d-flex justify-content-center my-3'>
             <div className='col-lg-6 col-md-8 col-12'>
                 <input type="text" 
-                 className="form-control"
+                 className="form-control text-dark"
                  placeholder="Search Anything"
                  onChange={(e)=>setSearchValue(e.target.value)}
                  />
@@ -63,7 +63,8 @@ const Search = () => {
         ) : (
           <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
             {filteredProducts?.reverse().map((item, index) => (
-              <div className="col card" key={index}>
+             <div className='p-2' key={index} >
+             <div className="col card border-0 border-bottom border-light shadow-sm">
                 <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
                   <div className="card_img">
                     <img
@@ -85,6 +86,7 @@ const Search = () => {
                     )}
                   </p>
                 </a>
+              </div>
               </div>
             ))}
           </div>

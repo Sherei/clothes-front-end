@@ -95,7 +95,11 @@
     width: 100%;
     overflow: hidden;
 }
+.cart_display_layout1:hover{
+    box-shadow: 0 0px 2px 1px white !important;
+    transition: all linear 0.3s;
 
+}
 @media(max-width:768px) {
 
     .cart-total {

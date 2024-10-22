@@ -22,14 +22,10 @@
 .review_btn:hover {
     font-weight: 600;
     color: white;
-    background-color: rgb(2, 2, 94);
+    background-color: white;
     transition: all linear 0.1s;
 }
 
-.review_img {
-    width: 100px !important;
-    height: 100px !important;
-}
 
 .review_detail {
     color: white;
@@ -65,19 +61,19 @@
 
 .input:focus,
 input:valid {
-    color: rgb(2, 2, 94);
+    color: white;
     outline: none;
-    border: 1.5px solid rgb(2, 2, 94);
+    border: 1.5px solid white;
 }
 textarea, input{
-    color: rgb(2, 2, 94) !important;
+    color: white !important;
 }
 .input:focus~label,
 input:valid~label,textarea:valid~label,textarea:focus~label {
     transform: translateY(-50%) scale(0.8);
     background-color: white;
     padding: 0 .2em;
-    color: rgb(2, 2, 94) !important;
+    color: white !important;
     font-weight: 500;
 }
 

@@ -102,9 +102,9 @@ const Checkout = () => {
           `${process.env.REACT_APP_BASE_URL}/api/clear-cart/${cu._id}`
         );
         toast.success("Order placed successfully!");
-        navigate("/order-confirmation", {
-          state: { orderId: response.data.orderId },
-        });
+        // navigate("/order-confirmation", {
+        //   state: { orderId: response.data.orderId },
+        // });
       }
     } catch (error) {
       toast.error("Failed to create order. Please try again.");
@@ -198,15 +198,14 @@ const Checkout = () => {
       ) : filterCart?.length > 0 ? (
         <section
           className="min-vh-100 checkout"
-          style={{ backgroundColor: "#eee" }}
         >
           <div className="container py-5 h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col">
-                <div className="card">
+                <div className="" style={{backgroundColor:"#1a1a1a"}}>
                   <div className="card-body p-4">
                     <div className="row">
-                      <div className="col-lg-8">
+                      <div className="col-lg-8 border">
                         <div className="d-flex justify-content-between align-items-center mb-4">
                         </div>
                         <h4 className="mb-3 fw-bolder" style={{  }}>Delivery Details</h4>
@@ -214,16 +213,16 @@ const Checkout = () => {
                                 <div className="row py-3">
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Personal Information</p>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='First Name*' className="form-control py-2 border" {...register('name1', { required: true })} />
+                                        <input type="text" placeholder='First Name*' className="form-control py-2 border  text-dark" {...register('name1', { required: true })} />
                                         {errors.name1 ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Last Name *' className="form-control py-2 border"{...register('name2', { required: true })} />
+                                        <input type="text" placeholder='Last Name *' className="form-control py-2 border  text-dark"{...register('name2', { required: true })} />
                                         {errors.name2 ? <div className='error'>This Field is required</div> : null}
 
                                     </div>
                                     <div className="col-12 mb-3">
-                                        <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border" {...register('number1', { required: true })} />
+                                        <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border  text-dark" {...register('number1', { required: true })} />
                                         {errors.number1 ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                 </div>
@@ -231,27 +230,27 @@ const Checkout = () => {
                                 <div className="row py-3">
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Shipping Address</p>
                                     <div className="col-md-12 mb-3">
-                                        <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border" {...register('street', { required: true })} />
+                                        <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border text-dark" {...register('street', { required: true })} />
                                         {errors.street ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-12 mb-3">
-                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border" {...register('appartment')} />
+                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border  text-dark" {...register('appartment')} />
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Country*' className="form-control py-2 border" {...register('country', { required: true })} />
+                                        <input type="text" placeholder='Country*' className="form-control py-2 border  text-dark" {...register('country', { required: true })} />
                                         {errors.country ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Town/City*' className="form-control py-2 border" {...register('city', { required: true })} />
+                                        <input type="text" placeholder='Town/City*' className="form-control py-2 border  text-dark" {...register('city', { required: true })} />
                                         {errors.city ? <div className='error'>This Field is required</div> : null}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Postcode*' min={0} className="form-control py-2 border" {...register('postal', { required: true })} />
+                                        <input type="text" placeholder='Postcode*' min={0} className="form-control py-2 border  text-dark" {...register('postal', { required: true })} />
                                         {errors.postal ? <div className='error'>This Field is required</div> : null}
                                     </div>
 
                                     <div className="col-md-6 mb-3">
-                                        <input type="email" placeholder='E-mail' className="form-control py-2 border" {...register('email')} />
+                                        <input type="email" placeholder='E-mail' className="form-control py-2 border  text-dark" {...register('email')} />
                                    </div>
                                 </div>
 
@@ -301,7 +300,7 @@ const Checkout = () => {
       
     }
 {!payment &&
-<button
+<button type="button"
           className="button-submit w-100"
         >
           Order Now
@@ -312,7 +311,7 @@ const Checkout = () => {
                        
                       </div>
                       <div className='col-lg-4 col-md-6 col-sm-12 px-4 pt-5 pt-lg-3'>
-                            <div className='row'>
+                            <div className='row text-light'>
                                 <div className='col-12 d-flex justify-content-between'>
                                     <p className='fw-bolder fs-4'>ORDER SUMMARY</p>
                                     <p className='fw-bolder fs-4'>{filterCart?.length}</p>
@@ -320,7 +319,7 @@ const Checkout = () => {
                             </div>
                             {filterCart?.map((item, index) => {
                                 return <>
-                                    <div className='row border mb-1 py-3' key={index} style={{position:"relative"}}>
+                                    <div className='row border-0 border-bottom border-light shadow-sm mb-1 py-3 chk_Card' key={index} style={{position:"relative"}}>
                                             {/* <div className="fs-5" style={{position:"absolute", bottom:"10px", right:"10px",
                                               width:"fit-content",
                                          }} onClick={() => DeleteCartItem(item._id)}>
@@ -351,7 +350,7 @@ const Checkout = () => {
                             })
                             }
 
-                            <div className='row mt-3 py-3 border' style={{ backgroundColor: "white" }}>
+                            <div className='row mt-3 py-3 border text-dark' style={{ backgroundColor: "white",  }}>
                                 <div className='px-3 pt-3 col-12  d-flex justify-content-between align-items-center'>
                                     <p className='fs-6'>Subtotal</p>
                                     <p className='fs-6'>{`£${total?.toFixed()}`}.00</p>
@@ -386,7 +385,7 @@ const Checkout = () => {
           style={{ minHeight: "70vh" }}
         >
           <img src="/cart.png" alt="" style={{ width: "150px" }} />
-          <p className="fw-bolder mt-3" style={{ color: "rgb(2,2,94)" }}>
+          <p className="fw-bolder mt-3" style={{ color: "white" }}>
             Your Cart is Empty
           </p>
           <a href="/Products/all">

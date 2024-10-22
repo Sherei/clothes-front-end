@@ -2,7 +2,10 @@
     height: 20px;
     overflow: hidden;
 }
-
+.chk_Card:hover{
+    box-shadow: 0 0px 2px 1px white !important;
+    transition: all linear 0.3s;    
+}
 .detail_height {
     height: fit-content !important;
         transition: all linear 0.3s;

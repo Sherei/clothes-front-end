@@ -230,16 +230,16 @@ const Review = () => {
                                 className="mySwiper"
                               >
                                 {comments.map((item, index) => (
-                                  <SwiperSlide key={index} className='review_slide p-2'>
+                                  <SwiperSlide key={index} className='review_slide'>
                                     <div className='card border border-0 border-bottom border-light shadow-sm' 
                                     style={{ width: "270px" }}>
-                                      <div className="card_img mb-2" style={{ background: "transparent" }}>
+                                      <div className="card_img mb-2">
                                         {item?.mediaUrl ? (
                                           item.mediaUrl.endsWith('.jpg') || item.mediaUrl.endsWith('.png') ? (
                                             <img
                                               src={item.mediaUrl}
                                               alt={item.title}
-                                              style={{ maxWidth: '100%', maxHeight: '100%' }}
+                                              style={{ width: '100%', height: '100%' }}
                                             />
                                           ) : (
                                             <video

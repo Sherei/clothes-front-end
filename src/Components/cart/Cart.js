@@ -162,7 +162,7 @@ const [btnLoading, setBtnLoading]=useState(false);
     <div className="container-fluid h-100">
       <div className="row d-flex justify-content-center min-h-100 gap-4 my-lg-3">
 
-        <div className="col-lg-8 col-md-12 col-sm-12">
+        <div className="col-lg-8 col-md-12 col-sm-12 my-4">
           {loading ? (
             <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
               <Loader />
@@ -173,14 +173,13 @@ const [btnLoading, setBtnLoading]=useState(false);
                 {filterCart?.map((item, index) => {
                   return (
                     <div
-                      className="d-flex gap-4 border py-3 cart_display_layout1 mb-2"
+                      className="d-flex gap-4  border-0 border-bottom border-light shadow-sm cursor  py-3 cart_display_layout1 mb-2"
                       style={{
                         position:'relative',
-                        marginBottom: "1px solid lightgray",
                       }}
                       key={index}
                     >
-                      <div className="row">
+                      <div className="row ">
                         <div className="col-4">
                           <a href={`/product/${item.title.replace(/ /g, '-')}/${item.productId}`}>
                             <div
@@ -308,7 +307,7 @@ const [btnLoading, setBtnLoading]=useState(false);
                     <div className="table-responsive">
                       <table className="table">
                         <thead>
-                          <tr>
+                          <tr className="text-light">
                             <th>Image</th>
                             <th>Title</th>
                             <th>Price</th>
@@ -319,7 +318,7 @@ const [btnLoading, setBtnLoading]=useState(false);
                         </thead>
                         <tbody>
                           {filterCart?.map((item, index) => (
-                            <tr key={index} className="cart_row">
+                            <tr key={index} className="cart_row text-light">
                               <td className="text-center">
                                 <a href={`/product/${item.title.replace(/ /g, '-')}/${item.productId}`}>
                                   <div className="text-center"
@@ -337,8 +336,8 @@ const [btnLoading, setBtnLoading]=useState(false);
                                           position: "absolute",
                                           top: "-5px",
                                           right: "2px",
-                                          backgroundColor: "red",
-                                          color: "white",
+                                          backgroundColor: "white",
+                                          color: "black",
                                           borderRadius: "40px",
                                         }}
                                       >
@@ -437,7 +436,7 @@ const [btnLoading, setBtnLoading]=useState(false);
 
         {filterCart?.length > 0 && (
           <div className="col-lg-3 col-md-12 col-sm-12">
-            <div className="update mb-3 py-3 px-3 border">
+            <div className="update mb-3 py-3 px-3 border text-dark">
               <div className="d-flex justify-content-between">
                 <p className="fw-bolder fs-4" >
                   CART TOTALS

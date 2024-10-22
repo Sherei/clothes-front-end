@@ -50,7 +50,13 @@ const AllBlog = () => {
             ) : (
                 <div className="h_box_main">
                     {blog?.map((item, index) => {
-                        return <a href={"/blog_detail/" + item._id}  style={{ width: "270px" }} >
+                        return <div className='my-3' key={index} >
+                        <div className="col card border-0 border-bottom border-light shadow-sm"
+                         style={{ width: "270px" }}
+                         key={index}
+                       
+                         >
+                        <a href={"/blog_detail/" + item._id}>
                                <div className="card" key={index}>
                         
                         <div className="card_img">
@@ -62,6 +68,9 @@ const AllBlog = () => {
                                                     
                 </div>
                         </a>
+                        </div>
+                        </div>
+
                     })
                     }
                 </div>

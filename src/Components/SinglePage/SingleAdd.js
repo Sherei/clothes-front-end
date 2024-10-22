@@ -636,7 +636,7 @@ const handleVideoChange = (e) => {
         <select
           name="size"
           id="size"
-          className="form-select text-light"
+          className="form-select text-dark"
           value={size}
           onChange={(e)=>setSize(e.target.value)}
         >
@@ -655,7 +655,7 @@ const handleVideoChange = (e) => {
       <select
         name="color"
         id="color"
-        className="form-select text-light"
+        className="form-select text-dark"
         value={color}
         onChange={(e)=>setColor(e.target.value)}
       >

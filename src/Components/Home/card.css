@@ -22,11 +22,9 @@
     /* transition: box-shadow 0.3s ease-in-out; */
 }
 
-.card:hover{
-    box-shadow: 0 0px 2px 1px white !important;
-    transition: all linear 0.3s;
 
-}
+
+
 
 .card_img {
     height: 270px;
@@ -43,11 +41,13 @@
 }
 
 .card:hover {
+    box-shadow: 0 0px 2px 1px white !important;
+    transition: all linear 0.3s;
     cursor: pointer;
 }
 
 .card img {
-    max-width: 100% !important;
+    width: 100% !important;
     max-height: 100% !important;
 }
 

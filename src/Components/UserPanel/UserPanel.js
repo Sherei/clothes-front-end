@@ -136,10 +136,10 @@ const UserPanel = () => {
                                                 });
                                                 return <>
                                                 
-                                                <div className='card my-2 p-3' key={index} style={{ backgroundColor: "white", position: "relative" }}>
+                                                <div className='card card border-0 border-bottom border-light shadow-sm m-3' key={index} style={{  position: "relative" }}>
                                                 <p className='panel_index'>{index + 1}</p>
                                                   
-                                                    <img src={item?.orderItems[0]?.image} style={{ maxHeight: '90%' }} className='rounded-3 img-fluid mb-3' alt="" />
+                                                    <img src={item?.orderItems[0]?.image} style={{ maxHeight: '150px' }} className='rounded-3 img-fluid mb-1' alt="" />
                                                     <p className='mb-0 mt-2'>
                                                                     Tracking ID: {item?.orderId}
                                                                 </p>
@@ -150,7 +150,7 @@ const UserPanel = () => {
                                                                     Date: {formatDateTime(item?.date)}
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                    <a href={`/order-detail/${item?._id}`}>Detail</a>
+                                                                    <a className='text-light' href={`/order-detail/${item?._id}`}>Detail</a>
                                                                 </p>
                                                     </div>
                                                 </>
@@ -191,7 +191,9 @@ const UserPanel = () => {
                                         </div>
                                     ) : (comments?.filter((data) => data.userId === cu._id).map((item, index) => {
                                         return <>
-                                           <div className='card border border-0 border-bottom border-light shadow-sm p-2' style={{ width: "270px" }} key={index}>
+                                           <div 
+                                           className='card m-2 border border-0 border-bottom border-light shadow-sm' 
+                                           style={{ width: "270px" }} key={index}>
                                         <div className="card_img mb-2" style={{ background: "transparent" }}>
                                             {item?.mediaUrl === undefined && (
                                                 <img src="/feedback.png" alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />

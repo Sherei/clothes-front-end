@@ -396,7 +396,8 @@ const Products = () => {
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
                 data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => (
-                  <div className="col card" key={index}>
+                  <div className='p-2' key={index} >
+                 <div className="col card border-0 border-bottom border-light shadow-sm">
                     <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                       <div className="card_img">
                         <img src={product?.images[0]} className="text-center" alt={product?.title} />
@@ -412,6 +413,7 @@ const Products = () => {
                         )}
                       </p>
                     </a>
+                  </div>
                   </div>
                 ))}
             </div>

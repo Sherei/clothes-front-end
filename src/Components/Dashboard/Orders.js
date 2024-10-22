@@ -104,10 +104,10 @@ export const Orders = () => {
             ) : (
               <>
                 {filteredOrder.length > 0 ? (
-                  <div className='table-responsive' style={{ backgroundColor: 'white' }}>
+                  <div className='table-responsive'>
                     <table className='table table-striped table-bordered table-hover' >
                       <thead>
-                        <tr className='text-center'>
+                        <tr className='text-center text-light'>
                           <th>Sr#</th>
                           <th>OrderId</th>
                           <th>Status</th>
@@ -131,7 +131,7 @@ export const Orders = () => {
                           });
                           const rowClassName = data.status === 'delivered' ? 'completed-row' : '';
                           return (
-                            <tr key={index} className={`text-center ${rowClassName}`}>
+                            <tr key={index} className={`text-center text-light ${rowClassName}`}>
                               <td className='text-center'>{index + 1}</td>
                               <td>{data.orderId}</td>
                               <td>

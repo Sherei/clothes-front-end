@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #ffffff;
   }
   .login_row{
     min-height: 70vh;
@@ -81,9 +80,9 @@
   
   .button-submit {
     margin: 20px 0 10px 0;
-    background-color: #151717;
+    background-color: white;
     border: none;
-    color: white;
+    color: black;
     font-size: 15px;
     font-weight: 500;
     border-radius: 10px;
@@ -92,7 +91,10 @@
   }
   
   .button-submit:hover {
-    background-color: #252727;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    transition: all linear 0.2s;
   }
   
   .p {

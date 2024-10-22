@@ -281,7 +281,7 @@ const Review = () => {
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">
+        <h5 className="modal-title text-dark" id="exampleModalLabel">
           Reviews
         </h5>
         <button
@@ -297,10 +297,10 @@ const Review = () => {
                                         <form action="" onSubmit={handleSubmit(Comment)}>
                                            
                                             <div className="mb-3">
-                                                <label className="form-label">Your Name</label>
+                                                <label className="form-label text-dark">Your Name</label>
                                                 <input
                                                     type="text"
-                                                    className="form-control"
+                                                    className="form-control text-dark"
                                                     placeholder="Rose Merie"
                                                     required
                                                     {...register('name')}
@@ -308,11 +308,11 @@ const Review = () => {
                                             </div>
 
                                             <div className="mb-3">
-                                                <label className="form-label">Email address</label>
+                                                <label className="form-label text-dark">Email address</label>
                                                 <input
                                                     type="email"
                                                     placeholder="asd@gmail.com"
-                                                    className="form-control"
+                                                    className="form-control text-dark"
                                                     required
                                                     {...register('email')}
                                                 />
@@ -321,21 +321,21 @@ const Review = () => {
                                             <div className="d-flex gap-2 mb-3">
                                           
                 <div className="file-input-container">
-                    <label className="file-input-box">
+                    <label className="file-input-box text-dark">
                         <i><MdOutlinePhotoLibrary /></i>
                         <input
                             type="file"
                             accept="image/*"
                             {...register('image')}
-                            className="file-input"
+                            className="file-input text-dark"
                             onChange={handleImageChange}
                         />
-                        <p className="text-muted m-0">Photo</p>
+                        <p className="text-muted m-0 text-dark">Photo</p>
                     </label>
                 </div>
 
                 <div className="file-input-container">
-                    <label className="file-input-box">
+                    <label className="file-input-box text-dark">
                         <i><FaVideoSlash /></i>
                         <input
                             type="file"
@@ -344,25 +344,25 @@ const Review = () => {
                             className="file-input"
                             onChange={handleVideoChange}
                         />
-                        <p className="text-muted m-0">Video</p>
+                        <p className="text-muted m-0 text-dark">Video</p>
                     </label>
                 </div>
        
                                               
                                             </div>
-                                            {imageSelected && <p className='text-success'>Image Selected</p>}
-        {videoSelected && <p className='text-success'>Video Selected</p>}
+                                            {imageSelected && <p className='text-success text-dark'>Image Selected</p>}
+        {videoSelected && <p className='text-success text-dark'>Video Selected</p>}
 
                                             <div className="mb-3">
-                                                <label className="form-label">Write your feedback</label>
+                                                <label className="form-label text-dark">Write your feedback</label>
                                                 <textarea
                                                     rows="5"
-                                                    className="form-control"
+                                                    className="form-control text-dark"
                                                     required
                                                     {...register('comment')}
                                                 />
                                             </div>
-                                            <button type="submit" className="button-submit w-100">
+                                            <button type="submit" className="button-submit w-100 bg-dark text-white">
                                                 Submit
                                             </button>
                                         </form>

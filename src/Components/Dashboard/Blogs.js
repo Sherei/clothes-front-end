@@ -83,9 +83,9 @@ const Blogs = () => {
                         <>
                             {blog.length > 0 && (
                                 <div className="table-responsive">
-                                    <table className="table table-striped table-bordered table-hover">
+                                    <table className="table table-striped table-bordered">
                                         <thead>
-                                            <tr>
+                                            <tr className='text-light'>
                                                 <th>Sr #</th>
                                                 <th>Image</th>
                                                 <th>Title</th>
@@ -98,10 +98,10 @@ const Blogs = () => {
                                         </thead>
                                         <tbody>
                                             {blog?.map((data, index) => (
-                                                <tr key={index} >
+                                                <tr key={index} className='text-light'>
                                                     <td className='text-center'>{index + 1}</td>
                                                     <td> <img src={data.image} className='rounded-3 img-fluid' style={{ maxWidth: '80px', height: '80px' }} alt="No Network" /></td>
-                                                    <td><a href={"/blog_detail/" + data._id} style={{color:"black"}}>{data.title}</a></td>
+                                                    <td><a href={"/blog_detail/" + data._id} className='text-light'>{data.title}</a></td>
                                                     <td>{data.author ? data.author : "Not Entered"}</td>
                                                     {/* <td>{data.description1}</td> */}
                                                     <td className='text-center'>{formatDateTime(data.date)}</td>
@@ -113,8 +113,8 @@ const Blogs = () => {
                                                     <td className='text-center'>
                                                         <a href={`/admin-dashboard-add-blog/${data?._id}`}>
                                                             <button
-                                                                className="delete_btn"
-                                                                style={{ color: "rgb(2, 2, 94)" }}>
+                                                                className="delete_btn text-light"
+                                                            >
                                                                 <FaPencilAlt />
                                                             </button>
                                                         </a>

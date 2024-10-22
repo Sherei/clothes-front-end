@@ -1,12 +1,13 @@
 .p_head {
-    color: rgb(2, 2, 94);
+    color: white;
     font-weight: 700;
-    border-bottom: 1px solid rgb(2, 2, 94);
+    border-bottom: 1px solid white;
 }
 
 .table-container {
     width: 100%;
     overflow-x: auto;
+
 }
 
 .table-container::-webkit-scrollbar {
@@ -20,9 +21,12 @@
 }
 
 .table-container::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
 }
 
+td tr th {
+color: white;
+}
 .user_row {
     height: 80vh;
     overflow: auto;
@@ -44,7 +48,6 @@ tr{
 }
 tr:hover{
     cursor: pointer;
-    background-color: white;
 }
 
 th{

@@ -96,7 +96,7 @@ export const Products = () => {
                 <div className="table-responsive">
                   <table className="table table-striped table-bordered table-hover">
                     <thead>
-                      <tr>
+                      <tr className='text-light'>
                         <th>Sr#</th>
                         <th>Serial</th>
                         <th>Picture</th>
@@ -117,7 +117,7 @@ export const Products = () => {
                     </thead>
                     <tbody>
                       {filterProducts?.map((data, index) => (
-                        <tr key={index} >
+                        <tr key={index} className='text-light'>
                           <td className='text-center'>{index + 1}</td>
                           <td>{data.sn}</td>
                           <td onClick={() => navigate(`/product/${data.title.replace(/ /g, '-')}/${data._id}`)}>
@@ -126,7 +126,7 @@ export const Products = () => {
                           {/* <td className='text-center'>{data.stock ? 'Yes' : 'No'}</td>
                           <td className='text-center'>{data.home ? 'Yes' : 'No'}</td> */}
 
-                          <td><a href={"/product/" + data._id} style={{color:"black"}}>{data.title}</a></td>
+                          <td><a href={"/product/" + data._id} className='text-light'>{data.title}</a></td>
                           <td >{data?.category}</td>
                           {/* <td className='text-center'>
                             {data.subCategory === undefined || data.subCategory === "" ? "No subCategory" : data.subCategory}
@@ -145,8 +145,8 @@ export const Products = () => {
                           <td className='text-center'>
                             <a href={`/admin-dashboard-add-product/${data._id}`}>
                               <button
-                                className="delete_btn"
-                                style={{ color: "rgb(2, 2, 94)" }}>
+                                className="delete_btn text-light"
+                                >
                                 <FaPencilAlt />
                               </button>
                             </a>

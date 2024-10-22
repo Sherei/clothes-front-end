@@ -93,9 +93,9 @@ export const Users = () => {
               <>
                 {Users.length > 0 && (
                   <div className="table-responsive">
-                    <table className="table table-striped table-bordered table-hover">
+                    <table className="table table-striped table-bordered">
                       <thead>
-                        <tr>
+                        <tr  className='text-light'>
                           <th>Sr #</th>
                           <th>Name</th>
                           <th>Email</th>
@@ -106,7 +106,7 @@ export const Users = () => {
                       </thead>
                       <tbody>
                         {Users.map((data, index) => (
-                          <tr key={index}>
+                          <tr key={index} className='text-light'>
                             <td className='text-center'>{index + 1}</td>
                             <td>{data.name}</td>
                             <td >{data.email}</td>

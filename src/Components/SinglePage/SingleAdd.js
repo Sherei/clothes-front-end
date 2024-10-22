@@ -26,6 +26,8 @@ import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import axios from "axios";
 import { Link } from "react-scroll";
 import "./single.css";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 
 const SingleAdd = () => {
@@ -37,6 +39,14 @@ const SingleAdd = () => {
     });
   }, []);
 
+  useEffect(() => {
+    Aos.init({
+      offset: 100,
+      duration: 600,
+      easing: 'ease-in',
+      delay: 25,
+    });
+  }, []);
   let cu = useSelector((store) => store.userSection.cu);
   const [formData, setFormData] = useState(new FormData());
 
@@ -600,7 +610,7 @@ const handleVideoChange = (e) => {
               </h1>
               {comments.filter((item) => item.productId === productId)
                 .length > 0 && (
-                  <div className=" my-2 cursor">
+                  <div className=" my-2 cursor text-light">
                     <Link to="review">
                       ({comments.filter(
                         (item) => item.productId === productId
@@ -626,7 +636,7 @@ const handleVideoChange = (e) => {
         <select
           name="size"
           id="size"
-          className="form-select"
+          className="form-select text-light"
           value={size}
           onChange={(e)=>setSize(e.target.value)}
         >
@@ -645,7 +655,7 @@ const handleVideoChange = (e) => {
       <select
         name="color"
         id="color"
-        className="form-select"
+        className="form-select text-light"
         value={color}
         onChange={(e)=>setColor(e.target.value)}
       >
@@ -672,26 +682,26 @@ const handleVideoChange = (e) => {
                   </p>
                 </div>
                 <div className="sigle_quatity">
-                  <button className="plus_btn fs-6" onClick={Decrement}>
+                  <button className="plus_btn fs-6 text-light" onClick={Decrement}>
                     <FaMinus />
                   </button>
-                  <p className="input_single text-center m-0 p-0">
+                  <p className="input_single text-center m-0 p-0 text-light">
                     {quantity}
                   </p>
-                  <button className="plus_btn fs-6" onClick={Increment}>
+                  <button className="plus_btn fs-6 text-light" onClick={Increment}>
                     <FaPlus />
                   </button>
                 </div>
               </div>
             </div>
             <div className="d-flex mt-3">
-              <p className="fs-6 fw-bolder">🌟 3-4 Days - </p><p className="text-muted"> Fast-Delivery</p>
+              <p className="fs-6 fw-bolder">🌟 3-4 Days - </p><p> Fast-Delivery</p>
             </div>
             <div className="d-flex">
-              <p className="fs-6 fw-bolder ">🌟 7 Days - </p><p className="text-muted"> Warrenty Replacements</p>
+              <p className="fs-6 fw-bolder ">🌟 7 Days - </p><p> Warrenty Replacements</p>
             </div>
             <div className="d-flex">
-              <p className="fs-6 fw-bolder ">🌟 24/7 - </p><p className="text-muted"> Customer Support</p>
+              <p className="fs-6 fw-bolder ">🌟 24/7 - </p><p> Customer Support</p>
             </div>
             <div className="mt-3 d-flex flex-wrap gap-3">
               <p className="m-0 d-flex align-items-center cursor" style={{
@@ -759,25 +769,27 @@ const handleVideoChange = (e) => {
                 <Loader />
               </div>
             ) : (
-              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4 my-5">
+              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 my-5">
                 {data?.filter((item)=>item.category===product.category)
-                .map((item, index) => (
-                  <div className="col card" key={index}>
-                    <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
+                .map((product, index) => (
+                  <div className='p-2'data-aos='fade-up'>
+                  <div className="col card border-0 border-bottom border-light shadow-sm" key={index} >                         
+                    <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                       <div className="card_img">
-                        <img src={item?.images[0]} className="text-center" alt={item?.title} />
+                        <img src={product?.images[0]} className="text-center" alt={product?.title} />
                       </div>
-                      <p className="card_title">{item?.title}</p>
+                      <p className="card_title">{product?.title}</p>
                       <p className="final_price">
-                        ${item?.Fprice.toFixed(0)}
-                        {item?.discount > 0 && (
+                        ${product?.Fprice.toFixed(0)}
+                        {product?.discount > 0 && (
                           <>
-                            <span className="mx-2 text-muted discounted_price"><s>${item?.price.toFixed(0)}</s></span>
-                            <span className="mx-2 discount">-{item?.discount}%</span>
+                            <span className="mx-2 text-muted discounted_price"><s>${product?.price.toFixed(0)}</s></span>
+                            <span className="mx-2 discount">-{product?.discount}%</span>
                           </>
                         )}
                       </p>
                     </a>
+                  </div>
                   </div>
                 ))}
               </div>
@@ -786,7 +798,7 @@ const handleVideoChange = (e) => {
         </div>
       </div >
 
-      <div className="container-fluid px-lg-4 px-md-3 px-2" style={{ backgroundColor: "#F2F0F1" }}>
+      <div className="container-fluid px-lg-4 px-md-3 px-2">
         <div className="row">
             <div className="col-12 p-2">
                <div className="p-5 d-flex flex-column justify-content-center align-items-center">
@@ -868,7 +880,6 @@ const handleVideoChange = (e) => {
                                               <source  
                                               src={item.mediaUrl.startsWith('http:') ? item.mediaUrl.replace('http:', 'https:') : item.mediaUrl}
           type="video/mp4" />
-                                              Your browser does not support the video tag.
                                             </video>
                                           )
                                         ) : (
@@ -890,8 +901,6 @@ const handleVideoChange = (e) => {
 </div>
          }
        
-
-
              {loading ? (
                      <div className='min-vh-50 d-flex justify-content-center align-items-center'>
                          <Loader />
@@ -908,7 +917,7 @@ aria-hidden="true"
 <div className="modal-dialog">
  <div className="modal-content">
    <div className="modal-header">
-     <h5 className="modal-title" id="exampleModalLabel">
+     <h5 className="modal-title text-dark" id="exampleModalLabel">
        Reviews
      </h5>
      <button
@@ -924,10 +933,10 @@ aria-hidden="true"
                                      <form action="" onSubmit={handleSubmit(Comment)}>
                                         
                                          <div className="mb-3">
-                                             <label className="form-label">Your Name</label>
+                                             <label className="form-label text-dark">Your Name</label>
                                              <input
                                                  type="text"
-                                                 className="form-control"
+                                                 className="form-control text-dark"
                                                  placeholder="Rose Merie"
                                                  required
                                                  {...register('name')}
@@ -935,11 +944,11 @@ aria-hidden="true"
                                          </div>
 
                                          <div className="mb-3">
-                                             <label className="form-label">Email address</label>
+                                             <label className="form-label text-dark" >Email address</label>
                                              <input
                                                  type="email"
                                                  placeholder="asd@gmail.com"
-                                                 className="form-control"
+                                                 className="form-control text-dark"
                                                  required
                                                  {...register('email')}
                                              />
@@ -948,47 +957,47 @@ aria-hidden="true"
                                          <div className="d-flex gap-2 mb-3">
                                 
              <div className="file-input-container">
-                 <label className="file-input-box">
+                 <label className="file-input-box text-dark">
                      <i><MdOutlinePhotoLibrary /></i>
                      <input
                          type="file"
                          accept="image/*"
                          {...register('image')}
-                         className="file-input"
+                         className="file-input text-dark"
                          onChange={handleImageChange}
                      />
-                     <p className="text-muted m-0">Photo</p>
+                     <p className="text-muted m-0 text-dark">Photo</p>
                  </label>
              </div>
 
              <div className="file-input-container">
-                 <label className="file-input-box">
+                 <label className="file-input-box text-dark">
                      <i><FaVideoSlash /></i>
                      <input
                          type="file"
                          accept="video/*"
                          {...register('video')}
-                         className="file-input"
+                         className="file-input text-dark"
                          onChange={handleVideoChange}
                      />
-                     <p className="text-muted m-0">Video</p>
+                     <p className="text-muted m-0 text-dark">Video</p>
                  </label>
              </div>
                                            
                                          </div>
-                                         {imageSelected && <p className='text-success'>Image Selected</p>}
-     {videoSelected && <p className='text-success'>Video Selected</p>}                                      
+                                         {imageSelected && <p className='text-success text-dark'>Image Selected</p>}
+     {videoSelected && <p className='text-success text-dark'>Video Selected</p>}                                      
 
                                          <div className="mb-3">
-                                             <label className="form-label">Write your feedback</label>
+                                             <label className="form-label text-dark">Write your feedback</label>
                                              <textarea
                                                  rows="5"
-                                                 className="form-control"
+                                                 className="form-control text-dark"
                                                  required
                                                  {...register('comment')}
                                              />
                                          </div>
-                                         <button type="submit" className="button-submit w-100">
+                                         <button type="submit" className="button-submit w-100 bg-dark text-light">
                                              Submit
                                          </button>
                                      </form>

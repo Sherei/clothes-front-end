@@ -77,7 +77,7 @@ export const Login = () => {
                 <div className='error mb-3'> Invalid Credentials </div>
               )}
               <div className="flex-column">
-                <label>Email *</label>
+                <label className='text-light'>Email *</label>
               </div>
               <div className="inputForm">
                 <MdOutlineAlternateEmail size={20} />
@@ -86,7 +86,7 @@ export const Login = () => {
                   autoComplete="off"
                   type="email"
                   placeholder='Enter Your Email'
-                  className="input w-100"
+                  className="input w-100 text-light"
                   {...register('email', {
                     required: true,
                     validate: (typedValue) => {
@@ -98,7 +98,7 @@ export const Login = () => {
               {errors.email && <div className='error'>Valid email is required</div>}
 
               <div className="flex-column">
-                <label>Password *</label>
+                <label className='text-light'>Password *</label>
               </div>
               <div className="inputForm">
               <RiLockPasswordLine size={20}/>
@@ -107,7 +107,7 @@ export const Login = () => {
                   autoComplete="off"
                   placeholder='Enter Your Password'
                   type={showPassword ? "text" : "password"}
-                  className="input w-100"
+                  className="input w-100 text-light"
                   {...register('password', { required: true })}
                 />
                 {errors.password && <div className='error'>Password is required</div>}

@@ -100,7 +100,7 @@ const Collections = () => {
                                 <div className="table-responsive">
                                     <table className="table table-striped table-bordered table-hover">
                                         <thead>
-                                            <tr>
+                                            <tr className='text-light'>
                                                 <th>Sr #</th>
                                                 <th>Image</th>
                                                 <th>Category</th>
@@ -112,7 +112,7 @@ const Collections = () => {
                                         </thead>
                                         <tbody>
                                             {collection?.map((data, index) => (
-                                                <tr key={index} >
+                                                <tr key={index} className='text-light'>
                                                     <td className='text-center'>{index + 1}</td>
                                                     <td className='text-center'> <img src={data.image} className='rounded-3 img-fluid' style={{ maxWidth: '80px', height: '80px' }} alt="No Network" /></td>
                                                     <td className='text-center'>{data.category}</td>

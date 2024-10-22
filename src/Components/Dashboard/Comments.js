@@ -105,7 +105,7 @@ const Comments = () => {
                                 <div className="table-responsive">
                                     <table className="table table-striped table-bordered table-hover">
                                         <thead>
-                                            <tr>
+                                            <tr className='text-light'>
                                                 <th>Sr#</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
@@ -117,11 +117,11 @@ const Comments = () => {
                                         </thead>
                                         <tbody>
                                             {comments.map((data, index) => (
-                                                <tr key={index}>
+                                                <tr key={index} className='text-light'>
                                                     <td className='text-center'>{index + 1}</td>
                                                     <td>{data.name}</td>
                                                     <td>{data.email}</td>
-                                                    <td><textarea className='textarea' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
+                                                    <td><textarea className='textarea text-light' name="" id="" cols="30" rows="2" value={data.comment}></textarea></td>
                                                     <td className='text-center'>{formatDateTime(data.date1 ? data.date1 : data.date)}</td>
                                                     <td className='text-center'>
                                                         <button className="delete_btn" onClick={() => DeleteComment(data._id)}>

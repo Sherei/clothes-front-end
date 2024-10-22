@@ -841,10 +841,10 @@ const handleVideoChange = (e) => {
     }}
   spaceBetween={30}
   modules={[Autoplay]}
-autoplay={{
-delay: 5000,
-disableOnInteraction: false
-}}
+// autoplay={{
+// delay: 5000,
+// disableOnInteraction: false
+// }}
   className="mySwiper"
 >
 {comments.filter((item) => item.productId === productId)
@@ -865,7 +865,9 @@ disableOnInteraction: false
                                               autoPlay={false}
                                               style={{ maxWidth: '100%', maxHeight: '95%' }}
                                             >
-                                              <source src={item?.mediaUrl} type="video/mp4" />
+                                              <source  
+                                              src={item.mediaUrl.startsWith('http:') ? item.mediaUrl.replace('http:', 'https:') : item.mediaUrl}
+          type="video/mp4" />
                                               Your browser does not support the video tag.
                                             </video>
                                           )

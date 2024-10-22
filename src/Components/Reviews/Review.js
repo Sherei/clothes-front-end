@@ -115,6 +115,7 @@ const Review = () => {
 
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
                 mediaUrl = response.data.url;
+                console.log("video url is =", mediaUrl)
                 reset();
             } catch (error) {
             }
@@ -222,10 +223,10 @@ const Review = () => {
                                   }}
                                 spaceBetween={30}
                                 modules={[Autoplay]}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false
-              }}
+            //   autoplay={{
+            //     delay: 5000,
+            //     disableOnInteraction: false
+            //   }}
                                 className="mySwiper"
                               >
                                 {comments.map((item, index) => (
@@ -245,7 +246,9 @@ const Review = () => {
                                               autoPlay={false}
                                               style={{ maxWidth: '100%', maxHeight: '95%' }}
                                             >
-                                              <source src={item?.mediaUrl} type="video/mp4" />
+                                              <source
+                                            src={item.mediaUrl.startsWith('http:') ? item.mediaUrl.replace('http:', 'https:') : item.mediaUrl}
+ type="video/mp4" />
                                               Your browser does not support the video tag.
                                             </video>
                                           )

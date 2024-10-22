@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Benefits from "../Benefits/Benefits"
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router'
-import { FaEye, FaEyeSlash, FaRegUser, FaPhoneAlt, FaAddressBook } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaRegUser, FaPhoneAlt, FaAddressBook,FaLock } from 'react-icons/fa';
+import { MdOutlineAlternateEmail } from "react-icons/md";
+
 import { toast } from "react-toastify";
 
 import axios from 'axios';
@@ -63,25 +65,24 @@ const [loading,setLoading]=useState(false)
 
     return <>
         <div className='container my-5'>
-            <div className='row d-flex justify-content-center ل'>
+            <div className='row d-flex justify-content-center px-2'>
                 <div className='col-lg-6 col-md-8 col-sm-12 border rounded-3 p-lg-5 p-sm-2'>
                     <div>
-                    <p className='fs-2 fw-bold text-center m-0'>Create your Account`</p>
+                    <p className='fs-2 fw-bold text-center m-0'>Create your Account</p>
                     <p className='text-center text-muted'>Please fill in the infromation below</p>
                     </div>
                     <form className="form" action="" onSubmit={handleSubmit(SignUp)}>
                         {Error &&
-                            <div className='error mb-3 py-2'>{Error}</div>
+                            <div className='error mb-3 py-2 text-light'>{Error}</div>
                         }
                         <div className="flex-column">
-                            <label>Name *</label>
+                            <label className="text-light">Name *</label>
                         </div>
-                        <div className="inputForm">
+                        <div className="inputForm text-light">
                             <svg className='mt-3'
                                 height={40}
                                 viewBox="0 0 32 32"
                                 width={40}
-                                xmlns="http://www.w3.org/2000/svg"
                             >
                                 <FaRegUser />
                             </svg>
@@ -90,29 +91,26 @@ const [loading,setLoading]=useState(false)
                                 autocomplete="off"
                                 type="text"
                                 placeholder='Enter Your Name'
-                                className="input w-100" {...register('name', { required: true })} />
+                                className="input w-100 text-light" {...register('name', { required: true })} />
                         </div>
                         {errors.name ? <div className='error'>Name is required </div> : null}
                         <div className="flex-column">
-                            <label>Email *</label>
+                            <label className="text-light">Email *</label>
                         </div>
-                        <div className="inputForm">
-                            <svg
-                                height={20}
+                        <div className="inputForm text-light">
+                        <svg className='mt-3'
+                                height={40}
                                 viewBox="0 0 32 32"
-                                width={20}
-                                xmlns="http://www.w3.org/2000/svg"
+                                width={40}
                             >
-                                <g id="Layer_3" data-name="Layer 3">
-                                    <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z" />
-                                </g>
+                                <MdOutlineAlternateEmail />
                             </svg>
                             <input
                                 required="true"
                                 autocomplete="off"
                                 type="email"
                                 placeholder='Enter Your Email'
-                                className="input w-100" {...register('email', {
+                                className="input w-100 text-light" {...register('email', {
                                     required: true, validate: function (typedValue) {
                                         if (typedValue.match(
                                             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -125,15 +123,13 @@ const [loading,setLoading]=useState(false)
                                 })} />
                         </div>
                         <div className="flex-column">
-                            <label>Contact *</label>
+                            <label className="text-light">Contact *</label>
                         </div>
-                        <div className="inputForm">
-                            <svg
-                                className='mt-3'
+                        <div className="inputForm text-light">
+                        <svg className='mt-3'
                                 height={40}
                                 viewBox="0 0 32 32"
                                 width={40}
-                                xmlns="http://www.w3.org/2000/svg"
                             >
                                 <FaPhoneAlt />
                             </svg>
@@ -143,19 +139,17 @@ const [loading,setLoading]=useState(false)
                                 type="number"
                                 min={0}
                                 placeholder='Enter Your Contact Number'
-                                className="input w-100" {...register('number', { required: true })} />
+                                className="input w-100 text-light" {...register('number', { required: true })} />
                         </div>
                         {errors.number ? <div className='error'>Contact Number is required </div> : null}
                         <div className="flex-column">
-                            <label>Shipping Address *</label>
+                            <label className="text-light">Shipping Address *</label>
                         </div>
-                        <div className="inputForm">
-                            <svg
-                                className='mt-3'
+                        <div className="inputForm text-light">
+                        <svg className='mt-3'
                                 height={40}
                                 viewBox="0 0 32 32"
                                 width={40}
-                                xmlns="http://www.w3.org/2000/svg"
                             >
                                 <FaAddressBook />
                             </svg>
@@ -163,29 +157,27 @@ const [loading,setLoading]=useState(false)
                                 autocomplete="off"
                                 type="text"
                                 placeholder='Enter Your Shipping Address'
-                                className="input w-100" {...register('address')} />
+                                className="input w-100 text-light" {...register('address')} />
                         </div>
 
 
                         <div className="flex-column">
-                            <label>Password *</label>
+                            <label className="text-light">Password *</label>
                         </div>
-                        <div className="inputForm">
-                            <svg
-                                height={20}
-                                viewBox="-64 0 512 512"
-                                width={20}
-                                xmlns="http://www.w3.org/2000/svg"
+                        <div className="inputForm text-light">
+                        <svg className='mt-3'
+                                height={40}
+                                viewBox="0 0 32 32"
+                                width={40}
                             >
-                                <path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0" />
-                                <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
-                            </svg>
+                         <FaLock />
+                           </svg>
                             <input
                                 required="true"
                                 autocomplete="off"
                                 placeholder='Enter Your Password'
                                 type={showPassword ? "text" : "password"}
-                                className="input w-100"
+                                className="input w-100 text-light"
                                 {...register('password', { required: true })} />
                             {errors.password ? <div className='error'>Password is required </div> : null}
                             <span
@@ -224,7 +216,7 @@ const [loading,setLoading]=useState(false)
     }
 
       </button>
-                        <p className="p">
+                        <p className="text-light">
                             Already have an account?  &nbsp;&nbsp;
                             {productId && <a href={`/login/${title}/${productId}`}>
                                 <span className='register_btn'>

@@ -59,7 +59,7 @@ const Arrivals = () => {
                     <p>Check your internet connection and try again!</p>
                 ) : (
                     products?.map((item, index) => (
-                        <div className='p-2' data-aos='fade-up'>
+                        <div className='p-2'>
  <div className="col card border-0 border-bottom border-light shadow-sm" key={index} >
                             <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
                                 <div className="card_img">

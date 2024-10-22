@@ -14,7 +14,9 @@
     align-self: flex-end;
     width: 100%;
 }
-  
+  .password-toggle-btn{
+    margin-right: 10px;
+  }
   .flex-column > label {
     color: #151717;
     font-weight: 600;

@@ -120,14 +120,14 @@ export const Login = () => {
               </div>
 
               <div className="d-flex justify-content-end mb-0">
-                <a href="/enteremail" className="forgot-password-link">
+                <a href="/enteremail" className="forgot-password-link text-light">
                   Forgot password?
                 </a>
               </div>
 
               <button className="button-submit">Login</button>
 
-              <p className="p">
+              <p className="text-light">
                 Don't have an account?&nbsp;&nbsp;
                 {productId ? (
                   <a href={`/signup/${title}/${productId}`}>

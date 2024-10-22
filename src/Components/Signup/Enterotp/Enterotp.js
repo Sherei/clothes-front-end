@@ -106,18 +106,17 @@ const containerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-  backgroundColor: '#f7f7f7',
   padding: '20px',
 };
 
 const headingStyle = {
-  color: '#333',
+  color: 'white',
   fontSize: '24px',
   marginBottom: '10px',
 };
 
 const textStyle = {
-  color: '#555',
+  color: 'white',
   fontSize: '16px',
   textAlign: 'center',
   marginBottom: '20px',
@@ -134,15 +133,15 @@ const inputStyle = {
   width: '200px',
   fontSize: '16px',
   marginBottom: '15px',
-  border: '1px solid #ccc',
+  border: '1px solid white',
   borderRadius: '5px',
   textAlign: 'center',
 };
 
 const buttonStyle = {
   padding: '10px 20px',
-  backgroundColor: '#007bff',
-  color: '#fff',
+  backgroundColor: 'white',
+  color: 'black',
   border: 'none',
   borderRadius: '5px',
   cursor: 'pointer',

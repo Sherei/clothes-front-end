@@ -231,7 +231,7 @@ const Review = () => {
                               >
                                 {comments.map((item, index) => (
                                   <SwiperSlide key={index} className='review_slide p-2'>
-                                    <div className='card border border-0 border-bottom border-primary shadow-sm' 
+                                    <div className='card border border-0 border-bottom border-light shadow-sm' 
                                     style={{ width: "270px" }}>
                                       <div className="card_img mb-2" style={{ background: "transparent" }}>
                                         {item?.mediaUrl ? (

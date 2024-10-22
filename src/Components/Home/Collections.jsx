@@ -34,18 +34,18 @@ const Collections = () => {
                 {isLoading ? (
                     <Loader />
                 ) : (
-                    collection.map((data, index) => {
+                    collection.map((item, index) => {
                         return (
-                            <Link
-                                to={`/Products/${data.category}`}
-                                className="cursor px-3 my-3 "
-                                key={index}
-                            >
-                                    <div className="collection_card border border-0 border-bottom border-light shadow-sm">
-                                        <img src={data.image} alt="" className="collection_image" />
-                                    </div>
-                                            <p className="mt-2 text-center fw-bolder fs-3 text-light">{data.category}</p>
-                            </Link>
+                            <div className='p-2'>
+ <div className="col card border-0 border-bottom border-light shadow-sm" key={index} data-aos='fade-up'>
+                            <a href={`/Products/${item.category}`}>
+                                <div className="card_img">
+                                    <img src={item?.image} className="text-center" alt={item?.title} />
+                                </div>
+                                <p className="card_title fs-4">{item?.category}</p>
+                            </a>
+                        </div>
+                        </div>
                         );
                     })
                 )}

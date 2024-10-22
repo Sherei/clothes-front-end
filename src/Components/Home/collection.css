@@ -1,9 +1,9 @@
 .collection_card{
-    height: 130px;
-    width: 130px;
-    /* border-radius: 100%; */
+    height: 200px !important;
+    width: fit-content;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -13,8 +13,8 @@
 
 }
 .collection_card .collection_image {
-    width: 70%;
-    height: 70%;
+    max-width: 90%;
+    max-height: 100%;
 }
 .collection_card:hover .collection_image {
     transform: scale(1.06);

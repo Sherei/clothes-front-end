@@ -29,11 +29,9 @@
 }
 
 .card_img {
-    height: 270px ;
+    height: 270px;
     border-radius: 20px;
     box-shadow: 10px 10ox 10px #F2F0F1;
-    background-color: #1a1a1a; 
-    padding: 10px;
     display: flex;
     justify-content: center !important;
     align-items: center !important;
@@ -49,8 +47,8 @@
 }
 
 .card img {
-    max-width: 95% !important;
-    max-height: 95% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
 }
 
 .card_title {

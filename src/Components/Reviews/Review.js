@@ -195,7 +195,7 @@ const Review = () => {
             <div className='px-lg-4 px-md-3 px-2'>
                 <div className="row d-flex justify-content-center">
                     <div className="col-lg-12 col-md-12 col-sm-12 py-5" >
-                        <h1 className="fs-1 fw-bolder mb-3">
+                        <h1 className="fs-1 fw-bolder mb-3 text-dark">
                             Riski-Brothers Society
                         </h1>
                         <div>
@@ -223,44 +223,44 @@ const Review = () => {
                                   }}
                                 spaceBetween={30}
                                 modules={[Autoplay]}
-            //   autoplay={{
-            //     delay: 5000,
-            //     disableOnInteraction: false
-            //   }}
+              autoplay={{
+                delay: 10000,
+                disableOnInteraction: false
+              }}
                                 className="mySwiper"
                               >
                                 {comments.map((item, index) => (
-                                  <SwiperSlide key={index} className='review_slide'>
-                                    <div className='card border p-2' style={{ width: "270px" }}>
+                                  <SwiperSlide key={index} className='review_slide p-2'>
+                                    <div className='card border border-0 border-bottom border-primary shadow-sm' 
+                                    style={{ width: "270px" }}>
                                       <div className="card_img mb-2" style={{ background: "transparent" }}>
                                         {item?.mediaUrl ? (
                                           item.mediaUrl.endsWith('.jpg') || item.mediaUrl.endsWith('.png') ? (
                                             <img
                                               src={item.mediaUrl}
                                               alt={item.title}
-                                              style={{ maxWidth: '100%', height: '95%' }}
+                                              style={{ maxWidth: '100%', maxHeight: '100%' }}
                                             />
                                           ) : (
                                             <video
                                               controls
                                               autoPlay={false}
-                                              style={{ maxWidth: '100%', maxHeight: '95%' }}
+                                              style={{ maxWidth: '100%', maxHeight: '100%' }}
                                             >
                                               <source
                                             src={item.mediaUrl.startsWith('http:') ? item.mediaUrl.replace('http:', 'https:') : item.mediaUrl}
  type="video/mp4" />
-                                              Your browser does not support the video tag.
                                             </video>
                                           )
                                         ) : (
                                           <img
                                             src="/feedback.png"
                                             alt={item?.title}
-                                            style={{ maxWidth: '100%', height: '95%' }}
+                                            style={{ maxWidth: '100%', maxHeight: '100%' }}
                                           />
                                         )}
                                       </div>
-                                      <p className='text-center text-muted'>{item?.comment}</p>
+                                      <p className='text-center text-light'>{item?.comment}</p>
                                       <p className='text-center fs-6 fw-bold'>{item?.name}</p>
                                     </div>
                                   </SwiperSlide>

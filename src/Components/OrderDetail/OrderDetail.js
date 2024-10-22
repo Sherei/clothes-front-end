@@ -218,7 +218,7 @@ const OrderDetail = () => {
                                 <div className="table-responsive">
                                     <table className="table table-bordered" style={{ tableLayout: 'auto' }}>
                                         <thead>
-                                            <tr>
+                                            <tr className='text-light'>
                                                 <th>Sr#</th>
                                                 {/* <th>Code</th> */}
                                                 <th>Picture</th>
@@ -235,7 +235,7 @@ const OrderDetail = () => {
                                         <tbody>
                                             {order?.orderItems ? (
                                                 order?.orderItems?.map((data, index) => (
-                                                    <tr key={index} >
+                                                    <tr key={index}  className='text-light'>
                                                         <td>{index + 1}</td>
                                                         {/* <td>{data?.sn}</td> */}
                                                         <td>
@@ -273,7 +273,7 @@ const OrderDetail = () => {
                 </div>
 
                 <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
-                    <div className='update mb-3 p-3 border' >
+                    <div className='update mb-3 p-3 border text-dark' >
                         <div className='d-flex justify-content-between'>
                             <p className='fw-bolder fs-4' >Summary</p>
                         </div>

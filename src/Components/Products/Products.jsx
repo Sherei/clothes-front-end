@@ -233,7 +233,7 @@ const Products = () => {
 
           <div className="col-lg-2 col_hide border p-3">
             <div>
-              <p className="fs-6 fw-bolder" style={{ color: "#1b2950" }}>Product Categories</p>
+              <p className="fs-6 fw-bolder text-light">Product Categories</p>
             </div>
             <div>
               {collection.map((collections, index) => {

@@ -58,9 +58,9 @@ const Blog = () => {
                         <p className='text-center'>No Blog Uploaded yet...</p>
                     </div>
                 ) : (
-                    <div className="h_box_main">
+                    <div className="h_box_main mx-2">
                         {blog?.slice(0, 3).map((item, index) => {
-                            return <div className='' key={index} >
+                            return <div className='my-3' key={index} >
  <div className="col card border-0 border-bottom border-light shadow-sm"
   style={{ width: "270px" }} data-aos="flip-left"
   key={index}

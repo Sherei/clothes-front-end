@@ -180,24 +180,21 @@
 }
 
 .grid_icon {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.3rem 0.8rem;
+    font-size: 1rem;
     background-color: white;
     color: black;
     cursor: pointer;
 }
 
 .grid_icon.active {
-    background-color: black;
-    color: white;
+    /* background-color: white; */
+    /* color: black; */
 }
 
-.grid_icon {
-    cursor: pointer;
-    width: fit-content;
-    height: fit-content;
-    padding: 0.3rem 0.8rem;
-    background-color: #F6F8FA;
-    font-size: 1rem;
-}
 
 .grid_box{
     display: flex;

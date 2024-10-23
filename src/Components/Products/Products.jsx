@@ -254,7 +254,7 @@ const Products = () => {
                 id="category"
                 onChange={(e) => setSize(e.target.value)}
               >
-                <option value="">Select</option>
+                <option value="">All Sizes</option>
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
                 <option value="large">Large</option>
@@ -270,7 +270,7 @@ const Products = () => {
                 id="category"
                 onChange={(e) => setColor(e.target.value)}
               >
-                <option value="">Select</option>
+                <option value="">All Colors</option>
                 <option value="black">Black</option>
                 <option value="white">White</option>
                 <option value="grey">Grey</option>
@@ -340,7 +340,7 @@ const Products = () => {
             <div className="search_bar1 mt-2 mb-3">
               <input
                 type="search"
-                className="form-control w-100 p-2 border"
+                className="form-control w-100 p-2 border text-dark"
                 placeholder="Search Anything"
                 value={search}
                 onChange={SearchInput}
@@ -358,13 +358,13 @@ const Products = () => {
                 >
                   <BsFillGridFill />
                 </div>
-                <div
+                {/* <div
                   className={`grid_icon ${activeGrid === "list" ? "active" : ""
                     }`}
                   onClick={() => setActiveGrid("list")}
                 >
                   <BsListStars />
-                </div>
+                </div> */}
               </div>
               <p className="fw-bolder m-0">
                 {data?.filter((item) => (item.stock === undefined || item.stock === false)).length} Products
@@ -372,7 +372,7 @@ const Products = () => {
               <div className="search_bar">
                 <input
                   type="search"
-                  className="form-control w-100 p-2 border"
+                  className="form-control w-100 p-2 border text-dark"
                   placeholder="Search Anything"
                   value={search}
                   onChange={SearchInput}

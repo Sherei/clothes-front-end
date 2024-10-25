@@ -70,16 +70,6 @@ export const Dashboard = () => {
         }
     };
 
-    useEffect(() => {
-        setIsLoading(true); // Start loading
-
-        if (cu.role !== "admin") {
-           return move('/'); 
-         }
-
-        setIsLoading(false); // Stop loading
-    }, [cu.role, move]);
-
     return (
         <>
             <div className='container mt-2 mb-5'>

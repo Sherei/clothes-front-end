@@ -13,7 +13,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
 import { AiFillFolderAdd } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi';
 import { Dashboard } from './Dashboard';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Products } from './Products';
@@ -34,10 +34,12 @@ const Sidebar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState('dashboard');
-
+  const userId=useParams()
   const toggle = () => setIsOpen(!isOpen);
   let cu = useSelector(store => store.userSection.cu)
   let dispatch = useDispatch()
+
+
 
   const handleMenuClick = (component) => {
     setActiveComponent(component);

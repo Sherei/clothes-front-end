@@ -112,14 +112,14 @@ const Checkout = () => {
       setLoading(false);
     }
   };
+
+
   async function Order(data) {
-
-    window.scrollTo({
-        top: 0
-    });
-
+    
+   console.log("order working", data)
     try {
-        // setbtnLoading(true);
+        setbtnLoading(true);
+        setLoading(true)
         const orderItems = [];
         const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
         filterCart.forEach((item) => {
@@ -209,48 +209,57 @@ const Checkout = () => {
                         <div className="d-flex justify-content-between align-items-center mb-4">
                         </div>
                         <h4 className="mb-3 fw-bolder" style={{  }}>Delivery Details</h4>
-                            <form action="" onSubmit={handleSubmit(Order)}>
+                            <form action="POST" onSubmit={handleSubmit(Order)}>
                                 <div className="row py-3">
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Personal Information</p>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='First Name*' className="form-control py-2 border  text-dark" {...register('name1', { required: true })} />
-                                        {errors.name1 ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text" 
+                                        required placeholder='First Name*' className="form-control py-2 border  text-dark" {...register('name1', { required: true })} />
+                                        {/* {errors.name1 ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Last Name *' className="form-control py-2 border  text-dark"{...register('name2', { required: true })} />
-                                        {errors.name2 ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text"
+                                        placeholder='Last Name' className="form-control py-2 border  text-dark"{...register('name2', { required: true })} />
+                                        {/* {errors.name2 ? <div className='error'>This Field is required</div> : null} */}
 
                                     </div>
                                     <div className="col-12 mb-3">
-                                        <input type="number" placeholder='Contact Number*' min={0} className="form-control py-2 border  text-dark" {...register('number1', { required: true })} />
-                                        {errors.number1 ? <div className='error'>This Field is required</div> : null}
+                                        <input type="number"
+                                        required placeholder='Contact Number*' min={0} className="form-control py-2 border  text-dark" {...register('number1', { required: true })} />
+                                        {/* {errors.number1 ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="row py-3">
                                     <p className='fs-6' style={{ fontWeight: "600",  }}>Shipping Address</p>
                                     <div className="col-md-12 mb-3">
-                                        <input type="text" placeholder='House Number & Street Name*' className="form-control py-2 border text-dark" {...register('street', { required: true })} />
-                                        {errors.street ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text"
+                                        required placeholder='House Number & Street Name*' className="form-control py-2 border text-dark" {...register('street', { required: true })} />
+                                        {/* {errors.street ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
                                     <div className="col-md-12 mb-3">
-                                        <input type="text" placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border  text-dark" {...register('appartment')} />
+                                        <input type="text"
+                                        required placeholder='Appartment, Suite, Unit, etc' className="form-control py-2 border  text-dark" {...register('appartment')} />
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Country*' className="form-control py-2 border  text-dark" {...register('country', { required: true })} />
-                                        {errors.country ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text"
+                                        required placeholder='Country*' className="form-control py-2 border  text-dark" {...register('country', { required: true })} />
+                                        {/* {errors.country ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Town/City*' className="form-control py-2 border  text-dark" {...register('city', { required: true })} />
-                                        {errors.city ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text"
+                                        required placeholder='Town/City*' className="form-control py-2 border  text-dark" {...register('city', { required: true })} />
+                                        {/* {errors.city ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <input type="text" placeholder='Postcode*' min={0} className="form-control py-2 border  text-dark" {...register('postal', { required: true })} />
-                                        {errors.postal ? <div className='error'>This Field is required</div> : null}
+                                        <input type="text"
+                                        required placeholder='Postcode*' min={0} className="form-control py-2 border  text-dark" {...register('postal', { required: true })} />
+                                        {/* {errors.postal ? <div className='error'>This Field is required</div> : null} */}
                                     </div>
 
                                     <div className="col-md-6 mb-3">
-                                        <input type="email" placeholder='E-mail' className="form-control py-2 border  text-dark" {...register('email')} />
+                                        <input type="email"
+                                        required placeholder='E-mail' className="form-control py-2 border  text-dark" {...register('email')} />
                                    </div>
                                 </div>
 
@@ -300,7 +309,7 @@ const Checkout = () => {
       
     }
 {!payment &&
-<button type="button"
+<button type="submit"
           className="button-submit w-100"
         >
           Order Now

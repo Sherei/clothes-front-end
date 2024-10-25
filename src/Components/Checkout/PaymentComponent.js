@@ -159,6 +159,7 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
           </div>
         </div>
         <button
+          type="submit"
           className="button-submit"
           disabled={!stripe || btnLoading}
         >

@@ -165,7 +165,7 @@ const Navbar = () => {
               <>
                 <NavLink
                   className="nav-link"
-                  to={cu?.role === "admin" ? `/admin-dashboard` : `/user-profile/${cu._id}`}
+                  to={cu?.role === "admin" ? `/admin-dashboard/${cu._id}` : `/user-profile/${cu._id}`}
                 >
                   <FiUser />
                 </NavLink>
@@ -231,7 +231,7 @@ const Navbar = () => {
               <>
                 <NavLink
                   className="nav-link"
-                  to={cu?.role === "admin" ? `/admin-dashboard` : `/user-profile/${cu._id}`}
+                  to={cu?.role === "admin" ? `/admin-dashboard/${cu._id}` : `/user-profile/${cu._id}`}
                 >
                   <FiUser />
                 </NavLink>

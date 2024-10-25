@@ -47,7 +47,7 @@ export const Login = () => {
         });
         toast.success("Login Successful");
         if (loginUser.user.role === "admin") {
-          return move('/admin-dashboard');
+          return move(`/admin-dashboard/${cu._id}`);
         }else if (loginUser.user.role != "admin") {
           return move(`/user-profile/${cu._id}`);
         } else if (productId) {

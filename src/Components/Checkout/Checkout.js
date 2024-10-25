@@ -13,113 +13,143 @@ import "./checkout.css";
 
 const Checkout = () => {
 
-
-  const { userId } = useParams();
-  const navigate = useNavigate();
-  const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
-  const cu = useSelector((store) => store.userSection.cu);
-  const allCartItems = useSelector((store) => store.Cart.cart);
-    const move = useNavigate()
-    const dispatch = useDispatch();
-
-    const [payment, setPayment] = useState(true)
-  const [setbtnLoading, btnLoading]=useState(false)
-
-    const togglePayment = () => {
-        setPayment(!payment)
-    }
   useEffect(() => {
-    setLoading(true);
-    axios.get(`${process.env.REACT_APP_BASE_URL}/addToCart`).then((res) => {
-      try {
-        if (res) {
-          dispatch({
-            type: "ADD_TO_CART",
-            payload: res.data,
-          });
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
+    window.scrollTo({
+        top: 0
     });
-  }, [dispatch]);
+}, []);
 
-  useEffect(() => {
-    if (allCartItems) {
-      setCart(allCartItems);
-    }
-  }, [allCartItems]);
+const cu = useSelector(store => store.userSection.cu)
+const allCartItems = useSelector((store) => store.Cart.cart);
+const { userId } = useParams();
+const dispatch = useDispatch()
 
-  const filterCart = cart.filter((item) => item.userId === userId);
+const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  const subtotal = filterCart.reduce((acc, item) => acc + item.total, 0);
-  const total = subtotal;
+const move = useNavigate()
+const [loading, setLoading] = useState(false);
+const [btnLoading, setBtnLoading] = useState(false);
+const [cart, setCart] = useState([])
+const [expandedItems, setExpandedItems] = useState({});
+const [payment, setPayment] = useState(false)
 
-  const totalQuantity = filterCart.reduce(
-    (acc, item) => acc + item.quantity,
-    0
-  );
+const togglePayment = () => {
+    setPayment(!payment)
+}
 
-  const DeleteCartItem = async (itemId) => {
-    try {
-      setbtnLoading(true);
-      const response = await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/deleteCart?id=${itemId}`
-      );
-      if (response.data.status === "success") {
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: response.data.alldata,
-        });
-        setbtnLoading(false);
-        // toast.success("Item Removed");
-      }
-    } catch (e) {
-      // console.log(e);
-    }
-  };
+const sendWhatsAppMessage = () => {
+    const message = `I want to place this order \n\n${window.location.href}`;
+    const whatsappURL = `https://wa.me/+447392608087?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+};
 
-  const handlePaymentSuccess = async (paymentIntent) => {
-    try {
-      // setLoading(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/create-order`,
-        {
-          userId: cu._id,
-          items: filterCart,
-          total: total,
-          paymentIntentId: paymentIntent.id,
+const toggleDetails = (index) => {
+    setExpandedItems((prev) => ({
+        ...prev,
+        [index]: !prev[index],
+    }));
+};
+
+useEffect(() => {
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BASE_URL}/checkout?userId=${userId}`).then((res) => {
+        try {
+            if (res) {
+                // dispatch({
+                //     type: "BEGIN_CHECKOUT",
+                //     payload: res.data,
+                // });
+                dispatch({
+                    type: "ADD_TO_CART",
+                    payload: res.data,
+                });
+                setLoading(false);
+                const totalSum = res.data.reduce((accumulator, item) => {
+                    return accumulator + item.total;
+                }, 0);
+                const totalQuantity = res.data.reduce((accumulator, item) => {
+                    return accumulator + item.quantity;
+                }, 0);
+                const shippingFee = () => {
+                    if (totalQuantity === 1) {
+                        return 0;
+                    } else if (totalQuantity === 2) {
+                        return 0;
+                    } else {
+                        return 0;
+                    }
+                };
+                const shippingFeeAmount = shippingFee();
+                const total = totalSum + shippingFeeAmount;
+            }
+        } catch (e) {
+            // console.log(e);
+        } finally {
+            setLoading(false);
         }
-      );
+    });
+}, []);
 
-      if (response.data.status === "success") {
-        await axios.delete(
-          `${process.env.REACT_APP_BASE_URL}/api/clear-cart/${cu._id}`
-        );
-        toast.success("Order placed successfully!");
-        // navigate("/order-confirmation", {
-        //   state: { orderId: response.data.orderId },
-        // });
-      }
-    } catch (error) {
-      toast.error("Failed to create order. Please try again.");
-    } finally {
-      setLoading(false);
+useEffect(() => {
+    if (allCartItems) {
+        setCart(allCartItems);
     }
-  };
 
+}, [allCartItems]);
 
-  async function Order(data) {
-    
-   console.log("order working", data)
+const filterCart = cart.filter((item) => item.userId === userId)
+
+const DeleteCartItem = async (itemId, userId) => {
     try {
-        setbtnLoading(true);
-        setLoading(true)
+        setLoading(true);
+        const response = await axios.delete(
+            `${process.env.REACT_APP_BASE_URL}/chkdeleteCart?userId=${userId}&id=${itemId}`
+        );
+        if (response.data.status === "success") {
+
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: response.data.alldata,
+            });
+
+            setLoading(false);
+            // toast.success("Item Removed");
+        }
+    } catch (e) {
+        // console.log(e);
+    } finally {
+        setLoading(false);
+    }
+};
+
+const totalSum = filterCart.reduce((accumulator, item) => {
+    return accumulator + item.total;
+}, 0);
+const totalQuantity = filterCart.reduce((accumulator, item) => {
+    return accumulator + item.quantity;
+}, 0);
+
+const shippingFee = () => {
+    if (totalQuantity === 1) {
+        return 0;
+    } else if (totalQuantity === 2) {
+        return 0;
+    } else {
+        return 0;
+    }
+};
+const shippingFeeAmount = shippingFee();
+
+const total = totalSum + shippingFeeAmount;
+
+async function Order(data) {
+
+    window.scrollTo({
+        top: 0
+    });
+
+    try {
+        setBtnLoading(true);
         const orderItems = [];
         const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
         filterCart.forEach((item) => {
@@ -176,7 +206,7 @@ const Checkout = () => {
                 type: "ADD_TO_CART",
                 payload: response.data.alldata,
             });
-            setbtnLoading(false);
+            setBtnLoading(false);
             move(`/order-placed/${userId}`)
         }
 
@@ -184,7 +214,6 @@ const Checkout = () => {
         // console.log(e);
     }
 };
-
 
   return (
     <div>
@@ -300,18 +329,20 @@ const Checkout = () => {
                                 </div>
 
                                 <hr className="mb-4" />
-                                {payment &&
+                                {/* {payment &&
 
                                 <StripePayment
         amount={total}
         onPaymentSuccess={handlePaymentSuccess}
       />
       
-    }
+    } */}
 {!payment &&
 <button type="submit"
           className="button-submit w-100"
+         
         >
+          {btnLoading? "Please wait":"Order Now"}
           Order Now
         </button>
 

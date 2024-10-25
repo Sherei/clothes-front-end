@@ -64,6 +64,9 @@ const Arrivals = () => {
                             <a href={`/product/${item.title.replace(/ /g, '-')}/${item._id}`}>
                                 <div className="card_img">
                                     <img src={item?.images[0]} className="text-center" alt={item?.title} />
+                                    <div className='overlay'>
+                                                {item.images[1] && <img src={item?.images[1]} alt="" />}
+                                            </div>
                                 </div>
                                 <p className="card_title">{item?.title}</p>
                                 <p className="final_price">

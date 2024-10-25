@@ -227,9 +227,10 @@ const Products = () => {
         </div>
 
         {/* Small Screem Filter End */}
+        
+          {/* Large screen filters Start */}
 
         <div className="row">
-          {/* Large screen filters Start */}
 
           <div className="col-lg-2 col_hide border p-3">
             <div>

@@ -402,6 +402,9 @@ const Products = () => {
                     <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
                       <div className="card_img">
                         <img src={product?.images[0]} className="text-center" alt={product?.title} />
+                        <div className='overlay'>
+                                                {product.images[1] && <img src={product?.images[1]} alt="" />}
+                                            </div>
                       </div>
                       <p className="card_title">{product?.title}</p>
                       <p className="final_price">

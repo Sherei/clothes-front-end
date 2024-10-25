@@ -85,6 +85,12 @@ const Arrivals = () => {
                     ))
                 )}
             </div>
+            <div className="text-center mt-2">
+            <a href="/products/all">
+                        <button className='button-submit px-5'>View All </button>
+                    </a>
+                    </div>
+
         </div>
     );
 };

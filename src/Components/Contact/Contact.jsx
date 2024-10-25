@@ -53,7 +53,7 @@ const Contact = () => {
             <div className="container">
               <div className="row justify-content-lg-center">
                 <div className="col-12 col-lg-9">
-                  <div className="bg-white border rounded shadow-sm overflow-hidden">
+                  <div className="  rounded shadow-sm overflow-hidden" style={{backgroundColor:"rgba(0,0,0,0.5"}}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="row gy-4 gy-xl-3 p-4 p-xl-5">
                         <div className="col-12">
@@ -62,11 +62,12 @@ const Contact = () => {
                           </label>
                           <input
                             type="text"
+                            required
                             className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
                             id="fullname"
                             {...register('fullname', { required: true })}
                           />
-                          {errors.fullname && <span className="text-danger">Full name is required</span>}
+                          {/* {errors.fullname && <span className="text-danger">Full name is required</span>} */}
                         </div>
                         <div className="col-12 col-md-6">
                           <label htmlFor="email" className="form-label">
@@ -80,11 +81,12 @@ const Contact = () => {
                             </span>
                             <input
                               type="email"
+                              required
                               className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                               id="email"
                               {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
                             />
-                            {errors.email && <span className="text-danger">Valid email is required</span>}
+                            {/* {errors.email && <span className="text-danger">Valid email is required</span>} */}
 
                           </div>
                         </div>
@@ -99,11 +101,12 @@ const Contact = () => {
                             </span>
                             <input
                               type="tel"
+                              required
                               className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
                               id="phone"
                               {...register('phone', { pattern: /^[0-9]+$/ })}
                             />
-                            {errors.phone && <span className="text-danger">Enter a valid phone number</span>}
+                            {/* {errors.phone && <span className="text-danger">Enter a valid phone number</span>} */}
                           </div>
                         </div>
                         <div className="col-12">
@@ -113,10 +116,11 @@ const Contact = () => {
                           <textarea
                             className={`form-control ${errors.message ? 'is-invalid' : ''}`}
                             id="message"
-                            rows={3}
+                            required
+                            rows={5}
                             {...register('message', { required: true })}
                           />
-                          {errors.message && <span className="text-danger">Message is required</span>}
+                          {/* {errors.message && <span className="text-danger">Message is required</span>} */}
                         </div>
 
                         <div className="col-12">

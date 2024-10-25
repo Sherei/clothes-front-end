@@ -266,18 +266,18 @@ export const AddProduct = () => {
 
             <form>
               <div className='row'>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
                   <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2 border" />
                   {errors.title && errors.title.type == "required" ? <div className='error'> Title is required </div> : null}
                 </div>
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Serial Number *</label>
                   <input type="number" {...register('sn', { required: true })} min={"1"} className="border form-control mb-2 mr-sm-2" />
                   {errors.sn && errors.sn.type == "required" ? <div className='error'>Serail Number is required</div> : null}
                 </div>
 
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Select Category *</label>
                   <select  {...register('category', {
                     required: true, validate: function (selectedValue) {
@@ -302,7 +302,7 @@ export const AddProduct = () => {
                 </div>
                 
                 {/* Select Colors */}
-                <div className="col-lg-6 col-md-6 col-sm-12 my-2">
+                <div className="col-lg-4 col-md-6 col-sm-12 my-2">
                   <label style={{ fontSize: '17px', fontWeight: '600' }}>Select Colors</label>
                   <select multiple className="form-select" onChange={handleColorChange}>
                     <option value="black">Black</option>
@@ -317,7 +317,7 @@ export const AddProduct = () => {
                 </div>
 
                 {/* Size Select */}
-                <div className="col-lg-6 col-md-6 col-sm-12 my-2">
+                <div className="col-lg-4 col-md-6 col-sm-12 my-2">
         <label style={{ fontSize: '17px', fontWeight: '600' }}>Sizes</label>
         <select
           multiple
@@ -336,7 +336,7 @@ export const AddProduct = () => {
 
                 {/* Pricing */}
 
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
                   <input type="number" {...register('price', { required: true })} min={1}
                     className="border form-control mb-2 mr-sm-2"
@@ -345,7 +345,7 @@ export const AddProduct = () => {
                   {errors.price && errors.price.type == "required" ? <div className='error'>Price is required</div> : null}
                 </div>
 
-                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
                   <input type="number" {...register('discount')} min={0}
                     className="border form-control mb-2 mr-sm-2"
@@ -353,7 +353,7 @@ export const AddProduct = () => {
                     onChange={handleDiscountChange} />
                 </div>
 
-                <div className='col-lg-6 col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4 col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Final Price *</label>
                   <input
                     type="number"
@@ -366,13 +366,13 @@ export const AddProduct = () => {
 
                 {/* Description */}
 
-                <div className='col-lg-6  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
                   <input type="text"{...register('description')} className="border form-control" />
                 </div>
 
                 {/* Pictures */}
-                <div className='col-lg-6  col-md-6 col-sm-12 my-2'>
+                <div className='col-lg-4  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
                   <input
                     type='file'

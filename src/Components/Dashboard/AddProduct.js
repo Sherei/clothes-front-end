@@ -38,6 +38,8 @@ export const AddProduct = () => {
 
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const[size, setSize]=useState(false)
+  const[color, setColor]=useState(false)
 
   const handleSizeChange = (e) => {
     const value = Array.from(e.target.selectedOptions, (option) => option.value);
@@ -191,8 +193,6 @@ export const AddProduct = () => {
       data.discount = discount;
       data.price = price;
       data.Fprice = finalPrice;
-      data.sizes = selectedSizes;
-      data.colors = selectedColors;
 
       try {
         const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data);
@@ -268,12 +268,14 @@ export const AddProduct = () => {
               <div className='row'>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Title *</label>
-                  <input type="text" {...register('title', { required: true })} className="form-control mb-2 mr-sm-2 border" />
+                  <input type="text" {...register('title', { required: true })} className="form-control 
+                  mb-2 mr-sm-2 border text-dark" />
                   {errors.title && errors.title.type == "required" ? <div className='error'> Title is required </div> : null}
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Serial Number *</label>
-                  <input type="number" {...register('sn', { required: true })} min={"1"} className="border form-control mb-2 mr-sm-2" />
+                  <input type="number" {...register('sn', { required: true })} min={"1"} className="border 
+                  form-control mb-2 mr-sm-2 text-dark" />
                   {errors.sn && errors.sn.type == "required" ? <div className='error'>Serail Number is required</div> : null}
                 </div>
 
@@ -302,44 +304,102 @@ export const AddProduct = () => {
                 </div>
                 
                 {/* Select Colors */}
-                <div className="col-lg-4 col-md-6 col-sm-12 my-2">
-                  <label style={{ fontSize: '17px', fontWeight: '600' }}>Select Colors</label>
-                  <select multiple className="form-select" onChange={handleColorChange}>
-                    <option value="black">Black</option>
-                    <option value="white">White</option>
-                    <option value="grey">Grey</option>
-                    <option value="mustard">Mustard</option>
-                    <option value="blue">Blue</option>
-                    <option value="royalBlue">Royal Blue</option>
-                    <option value="red">Red</option>
-                    <option value="pink">Pink</option>
-                  </select>
+
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color1 *</label>
+                  <input type="text" {...register('color1', { required: true })}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
                 </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color2 *</label>
+                  <input type="text" {...register('color2')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
 
+                </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color3 *</label>
+                  <input type="text" {...register('color3')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                {!color &&
+                <button className='button-submit px-3' onClick={()=>setColor(true)}>Add more</button>
+                }
+                </div>
+                {color && <>
+                  
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color4 *</label>
+                  <input type="text" {...register('color4')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color5 *</label>
+                  <input type="text" {...register('color5')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                                {color &&
+                <button className='button-submit px-3' onClick={()=>setColor(false)}>Show less</button>
+                }
+                </div>
+                </>
+
+                }
+                
                 {/* Size Select */}
-                <div className="col-lg-4 col-md-6 col-sm-12 my-2">
-        <label style={{ fontSize: '17px', fontWeight: '600' }}>Sizes</label>
-        <select
-          multiple
-          className="form-select"
-          onChange={handleSizeChange}
-          value={selectedSizes}
-        >
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-          <option value="xlarge">X-Large</option>
-          <option value="xxlarge">XX-Large</option>
-        </select>
-      </div>
 
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size1 *</label>
+                  <input type="text" {...register('size1', { required: true })}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size2 *</label>
+                  <input type="text" {...register('size2')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size3 *</label>
+                  <input type="text" {...register('size3')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                
+                {!size &&
+                <button className='button-submit px-3' onClick={()=>setSize(true)}>Add more</button>
+                }
+                </div>
+{size &&
+<>
+
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size4 *</label>
+                  <input type="text" {...register('size4')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                </div>
+                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size5 *</label>
+                  <input type="text" {...register('size5')}
+                    className="border form-control mb-2 mr-sm-2 text-dark"
+                />
+                                {size &&
+                <button className='button-submit px-3' onClick={()=>setSize(false)}>Show less</button>
+                }
+                </div>
+</>
+
+}
 
                 {/* Pricing */}
 
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
                   <input type="number" {...register('price', { required: true })} min={1}
-                    className="border form-control mb-2 mr-sm-2"
+                    className="border form-control mb-2 mr-sm-2 text-dark"
                     defaultValue={product ? product.price : price}
                     onChange={handlePriceChange} />
                   {errors.price && errors.price.type == "required" ? <div className='error'>Price is required</div> : null}
@@ -348,7 +408,7 @@ export const AddProduct = () => {
                 <div className='col-lg-4  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
                   <input type="number" {...register('discount')} min={0}
-                    className="border form-control mb-2 mr-sm-2"
+                    className="border form-control mb-2 mr-sm-2 text-dark"
                     defaultValue={product ? product.discount : discount}
                     onChange={handleDiscountChange} />
                 </div>
@@ -360,15 +420,15 @@ export const AddProduct = () => {
                     {...register('Fprice')}
                     min="1"
                     value={finalPrice}
-                    className="border form-control mb-2 mr-sm-2"
+                    className="border form-control mb-2 mr-sm-2 text-dark"
                   />
                 </div>
 
                 {/* Description */}
 
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Description 1</label>
-                  <input type="text"{...register('description')} className="border form-control" />
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Description</label>
+                  <input type="text"{...register('description')} className="border form-control text-dark" />
                 </div>
 
                 {/* Pictures */}

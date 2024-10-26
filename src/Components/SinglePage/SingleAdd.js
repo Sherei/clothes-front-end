@@ -631,7 +631,7 @@ const handleVideoChange = (e) => {
                     <s className="mx-2">{`$${product?.price.toFixed()}`}</s>
                   </span>}
               </div>
-{product.sizes.length>0 &&
+{product.size1 &&
   <div className="my-2">
         <select
           name="size"
@@ -641,16 +641,16 @@ const handleVideoChange = (e) => {
           onChange={(e)=>setSize(e.target.value)}
         >
           <option value="">Select a size</option>
-          {product.sizes.map((size, index) => (
-            <option key={index} value={size}>
-              {size}
-            </option>
-          ))}
+          {product.size1 && <option value={product.size1}>{product.size1}</option>}
+          {product.size2 && <option value={product.size2}>{product.size2}</option>}
+          {product.size3 && <option value={product.size3}>{product.size3}</option>}
+          {product.size4 && <option value={product.size4}>{product.size4}</option>}
+          {product.size5 && <option value={product.size5}>{product.size5}</option>}
         </select>
       </div>
 }
 
-      {product.colors.length>0 &&
+      {product.color1 &&
       <div className="my-2">
       <select
         name="color"
@@ -660,11 +660,11 @@ const handleVideoChange = (e) => {
         onChange={(e)=>setColor(e.target.value)}
       >
         <option value="">Select a Color</option>
-        {product.colors.map((color, index) => (
-          <option key={index} value={color}>
-            {color}
-          </option>
-        ))}
+        {product.color1 &&<option value={product.color1}>{product.color1}</option>}
+        {product.color2 &&<option value={product.color2}>{product.color2}</option>}
+        {product.color3 &&<option value={product.color3}>{product.color3}</option>}
+        {product.color4 &&<option value={product.color4}>{product.color4}</option>}
+        {product.color5 &&<option value={product.color5}>{product.color5}</option>}
       </select>
     </div>
       }

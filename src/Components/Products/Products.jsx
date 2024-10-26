@@ -50,44 +50,37 @@ const Products = () => {
   const SearchInput = (e) => {
     setSearch(e.target.value);
   };
+
+
   useEffect(() => {
-    const source = axios.CancelToken.source();
-
-    const fetchData = async () => {
+    setLoading(true);
+    const fetchProducts = async () => {
       try {
-        setLoading(true)
-        const apiUrl = `${process.env.REACT_APP_BASE_URL}/products`;
-        const params = {
-          name: category,
-          sort: sort,
-          minPrice: minPrice,
-          maxPrice: maxPrice,
-          search: search,
-          size: size,
-          color: color
-        };
-        const res = await axios.get(apiUrl, { params, cancelToken: source.token });
-        setData(res?.data);
-        console.log(res.data)
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/products`,
+          {
+            params: {
+              category,
+              minPrice: minPrice || undefined,
+              maxPrice: maxPrice || undefined,
+              size: size || undefined,
+              color: color || undefined,
+              search: search || undefined,
+            },
+          }
+        );
+        setData(response.data);
         setLoading(false);
-
       } catch (error) {
-        if (axios.isCancel(error)) {
-        } else { }
+        console.error("Error fetching products:", error);
+        setLoading(false);
       }
     };
-    fetchData();
-    return () => {
-      source.cancel();
-    };
+  
+    fetchProducts();
   }, [category, sort, minPrice, maxPrice, search, size, color]);
 
-  // const handleMinRangeChange = (e) => {
-  //   const value = parseInt(e.target.value);
-  //   setMinPrice(value);
-  // };
-  console.log("category is =", category)
-
+  
 
   const RemoveFilter=()=> {
     setCategory("all");
@@ -99,6 +92,7 @@ const Products = () => {
     setSize('')
     setColor("")
   }
+
   useEffect(() => {
     setLoading(true)
     axios
@@ -388,7 +382,7 @@ const Products = () => {
             {/* Card Grid */}
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4 my-4">
 
-              {(data?.filter((item) => (item.stock === undefined || item.stock === false)).length === 0 || loading) && (
+              {(data?.length === 0 || loading) && (
                 <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
                   {loading ? <Loader /> : (
                     data?.length === 0 ? "No Product available" : null
@@ -396,7 +390,7 @@ const Products = () => {
                 </div>
               )}
               {(activeGrid === "grid" && !loading && data?.length > 0) &&
-                data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => (
+                data.map((product, index) => (
                   <div className='p-2' key={index} >
                  <div className="col card border-0 border-bottom border-light shadow-sm">
                     <a href={`/product/${product.title.replace(/ /g, '-')}/${product._id}`}>
@@ -425,7 +419,7 @@ const Products = () => {
             {/* Card List */}
             <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2 my-4">
               {(activeGrid === "list" && !loading && data?.length > 0) &&
-                data.filter((item) => (item.stock === undefined || item.stock === false)).map((product, index) => {
+                data.map((product, index) => {
                   return (
                     <>
                       <div className="col card px-4" key={index} style={{maxHeight:"200px"}}>

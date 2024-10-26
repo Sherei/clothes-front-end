@@ -99,12 +99,12 @@ const AddBlog = () => {
                 <div className='col-lg-12 col-sm-12'>
                     <div className='d-flex justify-content-between'>
                         {!blog &&
-                            <h1 className='p_head' style={{ color: "darkblue" }}> Add Blog </h1>
+                            <h1 className='p_head'> Add Blog </h1>
                         }
                         {blog &&
-                            <h1 className='p_head' style={{ color: "rgb(2, 2, 94)" }}> Edit Blog </h1>
+                            <h1 className='p_head'> Edit Blog </h1>
                         }
-                        <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
+                        <p className='panel_btn' onClick={() => move(`/admin-dashboard/${cu._id}`)}>Admin Panel</p>
                     </div>
                     {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >

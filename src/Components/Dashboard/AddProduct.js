@@ -248,7 +248,7 @@ export const AddProduct = () => {
             {product &&
               <h1 className='p_head fw-bolder'> Edit Product </h1>
             }
-            <a href="/admin-dashboard">
+            <a href={`/admin-dashboard/${cu._id}`}>
               <p className='panel_btn'>Admin Panel</p>
             </a>
           </div>
@@ -312,14 +312,14 @@ export const AddProduct = () => {
                 />
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color2 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color2</label>
                   <input type="text" {...register('color2')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
 
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color3 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color3</label>
                   <input type="text" {...register('color3')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
@@ -330,13 +330,13 @@ export const AddProduct = () => {
                 {color && <>
                   
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color4 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color4</label>
                   <input type="text" {...register('color4')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color5 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Color5</label>
                   <input type="text" {...register('color5')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
@@ -357,13 +357,13 @@ export const AddProduct = () => {
                 />
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size2 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size2</label>
                   <input type="text" {...register('size2')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size3 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size3</label>
                   <input type="text" {...register('size3')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
@@ -376,13 +376,13 @@ export const AddProduct = () => {
 <>
 
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size4 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size4</label>
                   <input type="text" {...register('size4')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
-                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size5 *</label>
+                  <label style={{ fontSize: "17px", fontWeight: "600" }}>Size5</label>
                   <input type="text" {...register('size5')}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />

@@ -30,7 +30,7 @@
   overflow: hidden;
     display: flex;
     justify-content: center !important;
-    align-items: center !important;
+    /* align-items: center !important; */
 }
 
 .card_img .overlay {

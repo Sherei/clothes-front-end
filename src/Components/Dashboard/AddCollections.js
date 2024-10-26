@@ -24,13 +24,11 @@ const AddCollections = () => {
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm({
         defaultValues: {
             category: collection?.category || "",
-            subCategory: collection?.subCategory || [{ name: '' }]
         },
     });
 
     const { fields, append, remove } = useFieldArray({
         control,
-        name: 'subCategory'
     });
 
     useEffect(() => {
@@ -79,7 +77,7 @@ const AddCollections = () => {
                 await axios.post(`${process.env.REACT_APP_BASE_URL}/collection`, data);
                 toast.success("Collection created");
             }
-            move('/admin-dashboard');
+            move(`/admin-dashboard/${cu._id}`);
         } catch (error) {
             console.error("Error submitting collection:", error);
         } finally {
@@ -94,7 +92,7 @@ const AddCollections = () => {
                     <div className='col-lg-12 col-sm-12'>
                         <div className='d-flex justify-content-between'>
                             {!collection ? <h1 className='p_head'>Add Collection</h1> : <h1 className='p_head'>Edit Collection</h1>}
-                            <p className='panel_btn' onClick={() => move("/admin-dashboard")}>Admin Panel</p>
+                            <p className='panel_btn' onClick={() => move(`/admin-dashboard/${cu._id}`)}>Admin Panel</p>
                         </div>
                         {loading ? (
                             <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
@@ -105,7 +103,8 @@ const AddCollections = () => {
                                 <div className='row'>
                                     <div className='col-lg-6 col-md-6 col-sm-12 my-2'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Category Title *</label>
-                                        <input type="text" {...register('category', { required: true })} className="form-control mb-2 mr-sm-2" />
+                                        <input type="text" {...register('category', { required: true })}
+                                         className="form-control mb-2 mr-sm-2 text-dark" />
                                         {errors.category && <div className='error'>Title is required</div>}
                                     </div>
                                     {/* <div className='col-lg-6 col-md-6 col-sm-12 my-2'>

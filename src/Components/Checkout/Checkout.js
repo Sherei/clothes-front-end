@@ -142,6 +142,35 @@ const shippingFeeAmount = shippingFee();
 
 const total = totalSum + shippingFeeAmount;
 
+const handlePaymentSuccess = async (paymentIntent) => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/create-order`,
+        {
+          userId: cu._id,
+          items: filterCart,
+          total: total,
+          paymentIntentId: paymentIntent.id,
+        }
+      );
+
+      if (response.data.status === "success") {
+        await axios.delete(
+          `${process.env.REACT_APP_BASE_URL}/api/clear-cart/${cu._id}`
+        );
+        toast.success("Order placed successfully!");
+        move(`/order-placed/${userId}`)
+
+      }
+    } catch (error) {
+      toast.error("Failed to create order. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 async function Order(data) {
 
     window.scrollTo({
@@ -343,7 +372,6 @@ async function Order(data) {
          
         >
           {btnLoading? "Please wait":"Order Now"}
-          Order Now
         </button>
 
 }

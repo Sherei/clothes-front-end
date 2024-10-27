@@ -38,7 +38,7 @@ const Collections = () => {
                         return (
                             <div className='p-2'>
  <div className="col card border-0 border-bottom border-light shadow-sm" key={index} data-aos='fade-up'>
-                            <a href={`/Products/${item.category}`}>
+                            <a href={`/Products/${item.category.replace(/ /g, '-')}`}>
                                 <div className="card_img">
                                     <img src={item?.image} className="text-center" alt={item?.title} />
                                 </div>

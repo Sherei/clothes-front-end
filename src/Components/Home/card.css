@@ -27,7 +27,7 @@
     border-radius: 20px;
     box-shadow: 10px 10ox 10px #F2F0F1;
     position: relative;
-  overflow: hidden;
+  overflow: hidden !important;
     display: flex;
     justify-content: center !important;
     /* align-items: center !important; */

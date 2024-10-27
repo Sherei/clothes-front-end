@@ -39,8 +39,9 @@ const Products = () => {
   };
 
   useEffect(() => {
-    setCategory(prodctName?.toLowerCase());
+    setCategory(prodctName?.toLowerCase().replace(/-/g, ' '));
   }, [prodctName]);
+  
 
   const handleMaxRangeChange = (e) => {
     const value = parseInt(e.target.value);

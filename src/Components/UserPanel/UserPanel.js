@@ -136,7 +136,7 @@ const UserPanel = () => {
                                                 });
                                                 return <>
                                                 
-                                                <div className='card card border-0 border-bottom border-light shadow-sm m-3' key={index} style={{  position: "relative" }}>
+                                                <div className='card border-0 border-bottom border-light shadow-sm m-3' key={index} style={{  position: "relative", maxWidth:"250px" }}>
                                                 <p className='panel_index'>{index + 1}</p>
                                                   
                                                     <img src={item?.orderItems[0]?.image} style={{ maxHeight: '150px' }} className='rounded-3 img-fluid mb-1' alt="" />

@@ -118,11 +118,12 @@ const Products = () => {
               <RxCross1 />
             </p>
           </div>
-          <p className="fs-4" style={{ color: "black", fontWeight: "500" }}>Product Categories</p>
+          <p className="fs-4 fw-bold text-dark">Product Categories</p>
           <div>
             {collection.map((collections, index) => {
               return <div key={index}
-                className={`cursor d-flex justify-content-between ${category == collections.category ? "activeCategory" : ""}`}
+                className={`cursor d-flex justify-content-between text-dark 
+                  ${category == collections.category ? "activeCategory" : ""}`}
                 onClick={() => setCategory(collections?.category)}
               >
                 <p>{collections?.category}</p>
@@ -130,7 +131,7 @@ const Products = () => {
               </div>
             })}
           </div>
-          <div className="mb-2">
+          <div className="mb-2 text-dark">
             <p className="fw-bolder mt-1 p-0">Select Size</p>
             <select
               name="category"
@@ -146,7 +147,7 @@ const Products = () => {
               <option value="xxlarge">XX-Large</option>
             </select>
           </div>
-          <div className="mb-2">
+          <div className="mb-2 text-dark">
             <p className="fw-bolder mt-1 p-0">Select Color</p>
             <select
               name="category"
@@ -165,7 +166,7 @@ const Products = () => {
               <option value="pink">Pink</option>
             </select>
           </div>
-          <div className="mb-2">
+          <div className="mb-2 text-dark">
             <p className="fw-bolder mt-1 p-0">Sort By</p>
             <select
               name="category"
@@ -178,7 +179,7 @@ const Products = () => {
               <option value="desc">Price (Lowest)</option>
             </select>
           </div>
-          <div className="mt-2">
+          <div className="mt-2 text-dark">
             <p className="mb-2" style={{ fontSize: "16px", fontWeight: "500" }}>Price Range</p>
             <div className="px-2" style={{ position: "relative" }}>
               <div className="d-flex">
@@ -211,7 +212,7 @@ const Products = () => {
               </p>
 
             </div>
-            <button className="button-submit w-100 px-5" onClick={RemoveFilter}>Remove Filter</button>
+            <button className="button-submit w-100 px-5 border border-dark" onClick={RemoveFilter}>Remove Filter</button>
           </div>
           {/* <button
             className="btn btn-danger text-uppercase my-4 w-100"
@@ -375,7 +376,7 @@ const Products = () => {
                 />
 
               </div>
-              <button className="fs-4 filter_btn_display" role="button" onClick={Filter}>
+              <button className="fs-4 filter_btn_display text-light" role="button" onClick={Filter}>
                 <FaFilter />
               </button>
             </div>

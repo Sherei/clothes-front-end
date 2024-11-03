@@ -102,7 +102,7 @@ const Products = () => {
     fetchProducts();
   }, [category, minPrice, maxPrice, search, size, color]);
 
-  
+
   const RemoveFilter=()=> {
     setCategory("all");
     setSortOrder("");
@@ -159,12 +159,10 @@ const Products = () => {
               id="category"
               onChange={(e) => setSize(e.target.value)}
             >
-              <option value="">Select</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-              <option value="xlarge">X-Large</option>
-              <option value="xxlarge">XX-Large</option>
+              <option value="">All Sizes</option>
+              {uniqueSizes.map((size, index) => (
+                <option key={index} value={size}>{size}</option>
+              ))}
             </select>
           </div>
           <div className="mb-2 text-dark">
@@ -175,16 +173,11 @@ const Products = () => {
               id="category"
               onChange={(e) => setColor(e.target.value)}
             >
-              <option value="">Select</option>
-              <option value="black">Black</option>
-              <option value="white">White</option>
-              <option value="grey">Grey</option>
-              <option value="mustard">Mustard</option>
-              <option value="blue">Blue</option>
-              <option value="royalBlue">Royal Blue</option>
-              <option value="red">Red</option>
-              <option value="pink">Pink</option>
-            </select>
+              <option value="">All Colors</option>
+              {uniqueColors.map((color, index) => (
+                <option key={index} value={color}>{color}</option>
+              ))}
+              </select>
           </div>
           <div className="mb-2 text-dark">
             <p className="fw-bolder mt-1 p-0">Sort By</p>

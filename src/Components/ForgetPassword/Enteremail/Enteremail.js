@@ -4,8 +4,8 @@ import { toast } from 'react-toastify'; // For better user notifications
 import { useNavigate } from 'react-router-dom';
 
 const Enteremail = () => {
-  const [loading,setLoading]=useState(false)
 
+  const [loading,setLoading]=useState(false)
   const [email, setEmail] = useState('');
 const navigate = useNavigate()
   const handleInputChange = (e) => {
@@ -17,7 +17,7 @@ const navigate = useNavigate()
 
     try {
       setLoading(true)
-      const response = await axios.post(`https://backend-web-phi.vercel.app/forgot-password`, { email });
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/forgot-password`, { email });
 
       // If the request was successful
       toast.success('Password reset email sent successfully!');
@@ -38,15 +38,16 @@ const navigate = useNavigate()
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="background-dark">
       <div style={styles.formContainer}>
-        <h2 style={styles.heading}>Enter Your Email</h2>
+        <h2 style={styles.heading} className="text-light">Enter Your Email</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="email"
-              className="form-control"
+              className="form-control text-dark"
               id="email"
+              
               placeholder="Enter your email"
               value={email}
               onChange={handleInputChange}
@@ -70,9 +71,7 @@ const navigate = useNavigate()
           width: "2rem",
           height: "2rem",
           borderTop: "4px solid white",
-        //   borderBottom: "4px solid white",
-        //   borderRight: "4px solid white",
-          borderLeft: "4px solid white",
+        borderLeft: "4px solid white",
           borderRadius: "50%",
           animation: "spin 1s linear infinite",  // Applying the spin animation
         }}
@@ -93,7 +92,6 @@ const navigate = useNavigate()
 // Custom styles using inline CSS
 const styles = {
   container: {
-    backgroundColor: '#F2F0F1',
     color: 'white',
     height: '80vh',
     display: 'flex',

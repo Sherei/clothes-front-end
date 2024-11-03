@@ -69,7 +69,6 @@ const Review = () => {
             toast.warning("Login to give feedback")
             return move('/login')
         }
-                setLoading(true);
         let mediaUrl = "";
 
         if (cmnt.image && cmnt.image[0] && cmnt.video && cmnt.video[0]) {
@@ -78,7 +77,6 @@ const Review = () => {
         }
 
         if (cmnt.image && cmnt.image[0]) {
-        setLoading(true);
             
             const imageType = cmnt.image[0].type;
 
@@ -99,7 +97,6 @@ const Review = () => {
         }
 
         if (cmnt.video && cmnt.video[0]) {
-        setLoading(true);
             
             const videoType = cmnt.video[0].type;
 
@@ -111,7 +108,6 @@ const Review = () => {
             formData.append('file', cmnt.video[0]);
             formData.append('upload_preset', 'zonfnjjo');
             try {
-        setLoading(true);
 
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
                 mediaUrl = response.data.url;
@@ -123,7 +119,6 @@ const Review = () => {
 
         try {
             if(!mediaUrl){
-                setLoading(false)
                 return toast.error("Media uploaded failed")
             }
             setLoading(true);
@@ -199,14 +194,7 @@ const Review = () => {
                             Riski-Brothers Society
                         </h1>
                         <div>
-                            {loading ? (
-                                <div
-                                    className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                                    style={{ height: "80vh" }}
-                                >
-                                    <Loader />
-                                </div>
-                            ) : comments?.length === 0 ? (
+                            {comments?.length === 0 ? (
                                 <div
                                     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
                                     style={{ height: "50vh" }}
@@ -269,8 +257,12 @@ const Review = () => {
                             )}
                         </div>
                     </div>
-                    {(
-                        <div
+                    {loading? (
+            <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+              <Loader />
+            </div>
+          ) :(
+            <div
   className="modal fade"
   id="exampleModal"
   onHide={resetMediaSelection}
@@ -373,9 +365,11 @@ const Review = () => {
   </div>
 </div>
 
-                    )
-                    }
+          )
 
+                    }    
+            
+                    
                 </div>
             </div>
         </div>

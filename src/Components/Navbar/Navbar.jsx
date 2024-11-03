@@ -19,7 +19,7 @@ import Loader from "../Loader/Loader";
 
 const Navbar = () => {
 
-  const move = useNavigate();
+  const navigate = useNavigate();
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);
 
@@ -89,10 +89,11 @@ const Navbar = () => {
 
 
   function Logout() {
+    
     dispatch({
       type: "LOGOUT_USER",
     });
-    move("/login");
+    navigate("/login");
   }
 
 

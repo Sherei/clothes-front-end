@@ -35,17 +35,16 @@ const [loading,setLoading]=useState(false)
         try {
             setLoading(true)
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
-            console.log(response.data.message)
-            console.log(response.data , "here is data ")
-            console.log(response.data.email,"user email is this")
-            console.log(response.data._id,"user id is this")
+            // console.log(response.data.message)
+            // console.log(response.data , "here is data ")
+            // console.log(response.data.email,"user email is this")
+            // console.log(response.data._id,"user id is this")
             if (response.data.message === "User Created. Please verify your email using the OTP sent.") {                
                 // if (productId) {
                 //     move(`/login/${title.replace(/ /g, '-')}/${productId}`)
                 // } else {
                 //     move('/login')
                 // }
-
                 setLoading(false)
                 move(`/enterotp/${response.data.email}`)
                 toast.success("Account Created Please verify")

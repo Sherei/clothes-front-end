@@ -104,7 +104,6 @@ return <>
               <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
 
               {/* Order */}
-              <Route path='/placed' element={<Orderplaced />} />
               <Route path='/order-placed/:userId' element={<Orderplaced />} />
               <Route path='/order-detail/:OrderId' element={<OrderDetail />} />
 

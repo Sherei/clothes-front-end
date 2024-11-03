@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const EnterOTP = () => {
+
   const [loading,setLoading]=useState(false)
   const [otp, setOtp] = useState('');
   const { email } = useParams();

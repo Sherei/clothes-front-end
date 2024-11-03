@@ -12,7 +12,6 @@ const Products = () => {
 
   const cu = useSelector((store) => store.userSection.cu);
   const { prodctName } = useParams();
-
   const [data, setData] = useState([]);
   const [collection, setCollection] = useState([]);
   const [search, setSearch] = useState("");
@@ -20,12 +19,14 @@ const Products = () => {
   const [sort, setSortOrder] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(3000);
   const [filter, setFilter] = useState(false);
+  const [uniqueSizes, setUniqueSizes] = useState([]);
+  const [uniqueColors, setUniqueColors] = useState([]);
+
   const move = useNavigate();
 
   const sendWhatsAppMessage = (title) => {
@@ -64,13 +65,33 @@ const Products = () => {
               category,
               minPrice: minPrice || undefined,
               maxPrice: maxPrice || undefined,
-              size: size || undefined,
-              color: color || undefined,
+              size: size || undefined,  // Only pass size if it's defined and not an empty string
+              color: color || undefined, // Only pass color if it's defined and not an empty string
               search: search || undefined,
             },
           }
         );
-        setData(response.data);
+  
+        const products = response.data;
+        setData(products);
+  
+        // Extract unique sizes and colors
+        const sizesSet = new Set();
+        const colorsSet = new Set();
+  
+        products.forEach((product) => {
+          [product.size1, product.size2, product.size3, product.size4, product.size5]
+            .forEach((size) => {
+              if (size) sizesSet.add(size);
+            });
+          [product.color1, product.color2, product.color3, product.color4, product.color5]
+            .forEach((color) => {
+              if (color) colorsSet.add(color);
+            });
+        });
+  
+        setUniqueSizes([...sizesSet]);  // Convert Set to array for unique sizes
+        setUniqueColors([...colorsSet]);  // Convert Set to array for unique colors
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -79,10 +100,9 @@ const Products = () => {
     };
   
     fetchProducts();
-  }, [category, sort, minPrice, maxPrice, search, size, color]);
+  }, [category, minPrice, maxPrice, search, size, color]);
 
   
-
   const RemoveFilter=()=> {
     setCategory("all");
     setSortOrder("");
@@ -252,11 +272,9 @@ const Products = () => {
                 onChange={(e) => setSize(e.target.value)}
               >
                 <option value="">All Sizes</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="xlarge">X-Large</option>
-                <option value="xxlarge">XX-Large</option>
+              {uniqueSizes.map((size, index) => (
+                <option key={index} value={size}>{size}</option>
+              ))}
               </select>
             </div>
             <div className="mb-2">
@@ -268,14 +286,9 @@ const Products = () => {
                 onChange={(e) => setColor(e.target.value)}
               >
                 <option value="">All Colors</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
-                <option value="grey">Grey</option>
-                <option value="mustard">Mustard</option>
-                <option value="blue">Blue</option>
-                <option value="royalBlue">Royal Blue</option>
-                <option value="red">Red</option>
-                <option value="pink">Pink</option>
+                {uniqueColors.map((color, index) => (
+                <option key={index} value={color}>{color}</option>
+              ))}
               </select>
             </div>
 
@@ -454,6 +467,8 @@ const Products = () => {
           </div>
 
         </div>
+
+
       </div >
     </>
   );

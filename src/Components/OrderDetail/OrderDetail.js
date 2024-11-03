@@ -73,19 +73,18 @@ const OrderDetail = () => {
             </div >
         ) : (
             <div className='container my-5'>
+                    
+            
                 <div className='row'>
-                    <div className='col'>
-                        <center className='font' >
-                            <p className='fw-bolder fs-3'
-                                style={{ textDecoration: "underline black", fontFamily: "Times New Roman" }}
+                <div className='col-lg-4 col-md-12 col-sm-12  text-dark border rounded-3 
+                border-dark order-lg-2 order-md-1 p-lg-2 p-md-4'
+                     id="orderDetail" style={{background:"#F2F0F1"}}>
+                    <div className='font' >
+                        <p className='fw-bolder fs-3'
+                                style={{ textDecoration: "underline black" }}
                             >Order Detail</p>
                             <p ><b >Tracking ID: </b>{order?.orderId}</p>
-                        <p className='text-left fs-' F><b >Date: </b>{formatDateTime(order?.date)}</p >
-                        </center>
-                    </div>
-                </div>
-                <div className='row' id="orderDetail">
-                    <div className='col-12 font' >
+                        
                         <p ><b style={{ }}>Name:</b> {order?.name1} {order?.name2}</p>
                         {order?.email && <p ><b style={{  }}>E-mail: </b>{order?.email}</p>}
                         <p ><b style={{  }}>Mobile Number: </b>{order?.number1}</p>
@@ -96,9 +95,12 @@ const OrderDetail = () => {
                         {order?.postal && <p ><b style={{  }}>Postcode: </b>{order?.postal}</p>}
                         {/* <p><b style={{  }}>TOTAL ITEMS: </b>{order?.orderItems?.length}</p > */}
                         {order?.note && <p ><b style={{  }}>Note: </b>{order?.note}</p >}
+                        <p className='text-left fs-' F><b >Date: </b>{formatDateTime(order?.date)}</p >
+
                     </div>
-                </div>
-                <div className='col-12'>
+                    </div>
+
+                    <div className='col-lg-8 col-md-12 col-sm-12'>
                     {loading ? (
                         <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
                             <Loader />
@@ -216,7 +218,7 @@ const OrderDetail = () => {
                             {/*For Large screen */}
                             <div className='table_display1'>
                                 <div className="table-responsive">
-                                    <table className="table table-bordered" style={{ tableLayout: 'auto' }}>
+                                    <table className="table" style={{ tableLayout: 'auto' }}>
                                         <thead>
                                             <tr className='text-light'>
                                                 <th>Sr#</th>
@@ -268,12 +270,9 @@ const OrderDetail = () => {
                                     </table>
                                 </div>
                             </div>
-                        </>
-                    )}
-                </div>
 
-                <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
-                    <div className='update mb-3 p-3 border text-dark' >
+                            <div className='col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end'>
+                    <div className='update mb-3 p-3 border text-dark' style={{background:"#F2F0F1"}} >
                         <div className='d-flex justify-content-between'>
                             <p className='fw-bolder fs-4' >Summary</p>
                         </div>
@@ -289,16 +288,12 @@ const OrderDetail = () => {
                             <p >Net Total:</p>
                             <p>${order?.total.toFixed()}.00</p>
                         </div>
-                        {/* <div className=''>
-                        <a href="https://wa.me/+447392608087">
-                            <button className='btn review_btn'>
-                                Cancel Order
-                            </button>
-                        </a>
-                    </div> */}
                     </div>
                 </div>
-                <div>
+
+                        </>
+                    )}
+                                    <div>
                     {cu.role === "admin" &&
                         <a href={`/admin-dashboard`}>
                             <button className='button-submit px-5'>
@@ -314,6 +309,9 @@ const OrderDetail = () => {
                         </a>
                     }
                 </div>
+                    </div>
+                </div>
+              
             </div>
         )}
     </>

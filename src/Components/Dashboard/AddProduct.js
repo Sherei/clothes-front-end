@@ -27,6 +27,10 @@ export const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [formData, setFormData] = useState(new FormData());
   const [open, setOpen] = useState(false);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const[size, setSize]=useState(false)
+  const[color, setColor]=useState(false)
 
   const toggleMore = () => {
     setOpen(!open);
@@ -36,10 +40,6 @@ export const AddProduct = () => {
 
   const { productId } = useParams();
 
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const[size, setSize]=useState(false)
-  const[color, setColor]=useState(false)
 
   const handleSizeChange = (e) => {
     const value = Array.from(e.target.selectedOptions, (option) => option.value);
@@ -64,10 +64,7 @@ export const AddProduct = () => {
     setPrice(newPrice);
     setFinalPrice(newFinalPrice);
   };
-
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
+  
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: product,
@@ -104,6 +101,15 @@ export const AddProduct = () => {
       .catch((error) => {
       });
   }, []);
+
+const [selectedCollectionId, setSelectedCollectionId]=useState("")
+  const handleCategoryChange = (e) => {
+    const selectedValue = JSON.parse(e.target.value);
+    setSelectedCategory(selectedValue.category);        // Set the category name
+    setSelectedCollectionId(selectedValue.collectionId); // Set the collection ID
+  };
+  
+
 
   const handleImageChange = async (e) => {
 
@@ -166,11 +172,6 @@ export const AddProduct = () => {
       top: 0,
     });
 
-    if (imagePreviews.length > 10) {
-      setError('images');
-      return;
-    }
-
     setLoading(true);
 
     const cloudinaryUrls = [];
@@ -193,7 +194,9 @@ export const AddProduct = () => {
       data.discount = discount;
       data.price = price;
       data.Fprice = finalPrice;
-
+      data.category = selectedCategory;
+      data.collectionId = selectedCollectionId; 
+    
       try {
         const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/product-update`, data);
         setLoading(false);
@@ -209,9 +212,10 @@ export const AddProduct = () => {
       data.discount = discount;
       data.price = price;
       data.Fprice = finalPrice;
-      data.sizes = selectedSizes;
-      data.colors = selectedColors;
+      data.category = selectedCategory;
+      data.collectionId = selectedCollectionId; 
       try {
+        console.log("product data is = ", data)
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
         if (response.data) {
           toast.success("Product Uploaded");
@@ -233,8 +237,6 @@ export const AddProduct = () => {
       }
     }
   }
-
-
 
   return <>
     <div className='container my-4'>
@@ -295,7 +297,9 @@ export const AddProduct = () => {
                     <option value="select category">Select Category</option>
                     {collection.map((item, index) => {
                       return <>
-                        <option style={{ color: 'black' }} value={item.title} key={index}>{item.category}</option>
+                        <option style={{ color: 'black' }}
+                          value={JSON.stringify({ category: item.category, collectionId: item._id })}
+                         key={index}>{item.category}</option>
                       </>
                     })
                     }

@@ -8,57 +8,50 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const stripePromise = loadStripe(
-  "pk_test_51Px4aqRsoQBPHlEDA15MLzUtHFbmsa9CSIidItQMaMQuNOjSsD7ywDaagl2YmlbZyq7OFOZdrSf8EESQ26voDAnI00xT47XSkh"
-);
+const stripePromise = loadStripe("pk_test_51Px4aqRsoQBPHlEDA15MLzUtHFbmsa9CSIidItQMaMQuNOjSsD7ywDaagl2YmlbZyq7OFOZdrSf8EESQ26voDAnI00xT47XSkh");
 
-const PaymentComponent = ({ amount, onPaymentSuccess }) => {
+const PaymentComponent = ({ amount, currency = "usd", onPaymentSuccess }) => {
   const [btnLoading, setBtnLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const cu = useSelector((store) => store.userSection.cu);
-  const move = useNavigate();
+  const user = useSelector((store) => store.userSection.cu);
 
   const handleSubmit = async (e) => {
+    // console.log("first")
+    // return
     e.preventDefault();
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     setBtnLoading(true);
-
+    const body = {
+      amount: amount * 100, currency
+    }
+    console.log('body=>', body);
     try {
-      // First, create the payment intent on the backend
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/create-payment-intent`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: amount * 100, currency: "usd" }), // Send amount in cents
-        }
-      );
+
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/create-payment-intent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) throw new Error("Failed to create payment intent");
 
       const { clientSecret } = await res.json();
-
       const cardNumberElement = elements.getElement(CardNumberElement);
 
-      // Confirm the payment and attach the card details
-      const { error, paymentIntent } = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: cardNumberElement,
-            billing_details: {
-              name: "Customer Name", // Add the customer's name dynamically
-            },
+
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardNumberElement,
+          billing_details: {
+            name: user?.name || "Customer",
           },
-        }
-      );
+        },
+      });
 
       setBtnLoading(false);
 
@@ -67,21 +60,9 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
       } else if (paymentIntent.status === "succeeded") {
         toast.success("Payment Successful!", { position: "top-center" });
 
-        // Send payment details and status to the backend
-        await fetch(
-          `${process.env.REACT_APP_BASE_URL}/api/save-payment-status`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              paymentId: paymentIntent.id,
-              status: "paid", // Set the status to "paid" after successful payment
-            }),
-          }
-        );
 
+        await savePaymentStatus(paymentIntent.id);
         onPaymentSuccess(paymentIntent);
-       
       }
     } catch (err) {
       setBtnLoading(false);
@@ -89,17 +70,28 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
     }
   };
 
+  const savePaymentStatus = async (paymentId) => {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/save-payment-status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paymentId, status: "paid" }),
+      });
+
+      if (!res.ok) throw new Error("Failed to save payment status");
+    } catch (error) {
+      console.error("Error saving payment status:", error);
+      toast.error("Could not save payment status. Please try again later.", { position: "top-center" });
+    }
+  };
+
+
   const handleError = (error) => {
     console.error(error);
-    if (error.type === "card_error" || error.type === "validation_error") {
-      toast.error(`Payment failed: ${error.message}`, {
-        position: "top-center",
-      });
-    } else {
-      toast.error("An unexpected error occurred. Please try again later.", {
-        position: "top-center",
-      });
-    }
+    const message = error?.type === "card_error" || error?.type === "validation_error"
+      ? `Payment failed: ${error.message}`
+      : "An unexpected error occurred. Please try again later.";
+    toast.error(message, { position: "top-center" });
   };
 
   const inputStyle = {
@@ -109,70 +101,47 @@ const PaymentComponent = ({ amount, onPaymentSuccess }) => {
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "16px",
-        "::placeholder": {
-          color: "#aab7c4",
-        },
+        "::placeholder": { color: "#aab7c4" },
       },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
+      invalid: { color: "#fa755a", iconColor: "#fa755a" },
     },
   };
 
-
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
-      <div data-mdb-input-init="" className="form-outline form-white mb-4">
-        <label className="form-label" htmlFor="typeText">
-          Card Number
-        </label>
-        <CardNumberElement
-          options={inputStyle}
-          className="form-control p-3"
-          id="cardNumber"
-        />
+      <div className="form-outline form-white mb-4">
+        <label className="form-label" htmlFor="cardNumber">Card Number</label>
+        <CardNumberElement options={inputStyle} className="form-control p-3" id="cardNumber" />
       </div>
       <div className="row mb-4">
         <div className="col-6">
-          <div data-mdb-input-init="" className="form-outline form-white">
-            <label className="form-label" htmlFor="typeExp">
-              Expiration
-            </label>
-            <CardExpiryElement
-              options={inputStyle}
-              id="cardExpiry"
-              className="form-control p-3"
-            />
+          <div className="form-outline form-white">
+            <label className="form-label" htmlFor="cardExpiry">Expiration</label>
+            <CardExpiryElement options={inputStyle} className="form-control p-3" id="cardExpiry" />
           </div>
         </div>
         <div className="col-6">
-          <div data-mdb-input-init="" className="form-outline form-white">
-            <label className="form-label" htmlFor="typeText">
-              Cvv
-            </label>
-            <CardCvcElement
-              options={inputStyle}
-              id="cardCvc"
-              className="form-control p-3"
-            />
+          <div className="form-outline form-white">
+            <label className="form-label" htmlFor="cardCvc">Cvv</label>
+            <CardCvcElement options={inputStyle} className="form-control p-3" id="cardCvc" />
           </div>
         </div>
-        <button
-          type="submit"
-          className="button-submit"
-          disabled={!stripe || btnLoading}
-        >
-          {btnLoading ? "Processing..." : "Pay Now"}
-        </button>
       </div>
+      <button
+        className="button-submit w-100"
+        type="button"
+        onClick={handleSubmit}
+        disabled={!stripe || btnLoading}
+      >
+        {btnLoading ? "Processing..." : "Pay Now"}
+      </button>
     </form>
   );
 };
 
-const StripePayment = ({ amount, onPaymentSuccess }) => (
+const StripePayment = ({ amount, currency, onPaymentSuccess }) => (
   <Elements stripe={stripePromise}>
-    <PaymentComponent amount={amount} onPaymentSuccess={onPaymentSuccess} />
+    <PaymentComponent amount={amount} currency={currency} onPaymentSuccess={onPaymentSuccess} />
   </Elements>
 );
 

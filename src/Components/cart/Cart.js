@@ -436,7 +436,7 @@ const [btnLoading, setBtnLoading]=useState(false);
 
         {filterCart?.length > 0 && (
           <div className="col-lg-3 col-md-12 col-sm-12">
-            <div className="update mb-3 py-3 px-3 border text-dark">
+            <div className="update mb-3 py-3 px-3 border text-dark"  style={{background:"#F2F0F1"}}>
               <div className="d-flex justify-content-between">
                 <p className="fw-bolder fs-4" >
                   CART TOTALS

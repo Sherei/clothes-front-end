@@ -38,7 +38,7 @@ export const Login = () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
       let loginUser = response.data;
-      console.log(loginUser)
+      // console.log(loginUser)
       if (loginUser) {
         localStorage.setItem('userToken', loginUser.myToken);
         dispatch({

@@ -120,7 +120,7 @@ const UserPanel = () => {
                         </div>
                         {component === "orders" &&
                             <>
-                                {isLoading ? (
+                                {isLoading  ? (
                                     <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
                                         <Loader />
                                     </div>
@@ -136,10 +136,17 @@ const UserPanel = () => {
                                                 });
                                                 return <>
                                                 
-                                                <div className='card border-0 border-bottom border-light shadow-sm m-3' key={index} style={{  position: "relative", maxWidth:"250px" }}>
+                                                <div className='card border-0 border-bottom border-light shadow-sm m-3' key={index} 
+                                                style={{  position: "relative", maxWidth:"250px" }}>
+                                                    <a href={`/order-detail/${item?._id}`}>
                                                 <p className='panel_index'>{index + 1}</p>
                                                   
-                                                    <img src={item?.orderItems[0]?.image} style={{ maxHeight: '150px' }} className='rounded-3 img-fluid mb-1' alt="" />
+                                                    <img src={item?.orderItems[0]?.image} 
+                                                    style={{ maxHeight: '150px' }} 
+                                                    className='rounded-3 img-fluid mb-1'
+                                                    alt={item.title}
+                                                    />
+                                                    <div className='p-2 text-light'>
                                                     <p className='mb-0 mt-2'>
                                                                     Tracking ID: {item?.orderId}
                                                                 </p>
@@ -150,8 +157,11 @@ const UserPanel = () => {
                                                                     Date: {formatDateTime(item?.date)}
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                    <a className='text-light' href={`/order-detail/${item?._id}`}>Detail</a>
+                                                                    <a className='text-light' >Detail</a>
                                                                 </p>
+                                                        
+                                                        </div>                             
+                                                        </a>                       
                                                     </div>
                                                 </>
                                             })}
@@ -202,7 +212,9 @@ const UserPanel = () => {
                                             {item?.mediaUrl && (
                                                 <>
                                                     {item?.mediaUrl.endsWith('.jpg') || item?.mediaUrl.endsWith('.png') ? (
-                                                        <img src={item?.mediaUrl} alt={item.title} style={{ maxWidth: '100%', height: '95%' }} />
+                                                        <img src={item?.mediaUrl} 
+                                                        alt={item.title}
+                                                         style={{ maxWidth: '100%', height: '95%' }} />
                                                     ) : (
                                                         <video controls autoPlay style={{ maxWidth: '100%', maxHeight: '95%' }}>
                                                             <source src={item?.mediaUrl} type="video/mp4" />

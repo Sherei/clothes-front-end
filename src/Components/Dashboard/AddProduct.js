@@ -314,6 +314,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                   <input type="text" {...register('color1', { required: true })}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
+                  {errors.color1 ? <div className='error'>At least 1 color is required</div> : null}
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Color2</label>
@@ -359,6 +360,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                   <input type="text" {...register('size1', { required: true })}
                     className="border form-control mb-2 mr-sm-2 text-dark"
                 />
+                  {errors.size1 ? <div className='error'>At least add 1 size</div> : null}
                 </div>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Size2</label>
@@ -411,7 +413,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
 
                 <div className='col-lg-4  col-md-6 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Discount</label>
-                  <input type="number" {...register('discount')} min={0}
+                  <input type="number" {...register('discount')} min="0"
                     className="border form-control mb-2 mr-sm-2 text-dark"
                     defaultValue={product ? product.discount : discount}
                     onChange={handleDiscountChange} />

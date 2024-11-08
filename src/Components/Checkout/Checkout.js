@@ -119,7 +119,7 @@ const Checkout = () => {
     });
 
     try {
-      // setbtnLoading(true);
+      setbtnLoading(true);
       const orderItems = [];
       const orderId = uuidv4().replace(/\D/g, '').substr(0, 10);
       filterCart.forEach((item) => {
@@ -181,7 +181,10 @@ const Checkout = () => {
       }
 
     } catch (e) {
-      // console.log(e);
+      setbtnLoading(false);
+    }finally{
+      setbtnLoading(false);
+
     }
   };
 
@@ -189,11 +192,8 @@ const Checkout = () => {
   return (
     <div>
       {loading ? (
-        <div
-          className="col-12 d-flex justify-content-center align-items-center"
-          style={{ height: "80vh" }}
-        >
-          <Loader />
+        <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+        <Loader />
         </div>
       ) : filterCart?.length > 0 ? (
         <section
@@ -295,12 +295,10 @@ const Checkout = () => {
                             <StripePayment amount={total} onPaymentSuccess={handlePaymentSuccess} />
                           }
                           {!payment &&
-                            <button
-                              className="button-submit w-100"
-                            >
-                              Order Now
-                            </button>
-
+                          <button className={`button-submit w-100 ${btnLoading ? "btn_loading" : ""}`}
+                          disabled={btnLoading}>
+                              {btnLoading ? <div className="spinner"></div> : " Order Now"}
+                          </button>
                           }
                         </form>
 

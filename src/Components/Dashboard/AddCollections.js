@@ -94,11 +94,7 @@ const AddCollections = () => {
                             {!collection ? <h1 className='p_head'>Add Collection</h1> : <h1 className='p_head'>Edit Collection</h1>}
                             <p className='panel_btn' onClick={() => move(`/admin-dashboard/${cu._id}`)}>Admin Panel</p>
                         </div>
-                        {loading ? (
-                            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                                <Loader />
-                            </div>
-                        ) : (
+                      
                             <form onSubmit={handleSubmit(submitCollection)}>
                                 <div className='row'>
                                     <div className='col-lg-6 col-md-6 col-sm-12 my-2'>
@@ -127,13 +123,23 @@ const AddCollections = () => {
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                        <button type="submit" className="button-submit px-4" style={{ width: "200px" }}>
-                                            {collection ? "Update" : "Submit"}
-                                        </button>
+                                    <button 
+  type="submit" 
+  className={`button-submit px-4 ${loading ? "btn_loading" : ""}`} 
+  disabled={loading}
+>
+  {loading ? (
+    <div className="spinner"></div>
+  ) : (
+    collection ? "Update" : "Submit"
+  )}
+</button>
+
+                                      
                                     </div>
                                 </div>
                             </form>
-                        )}
+
                     </div>
                 </div>
             </div>

@@ -47,11 +47,8 @@ const Blog = () => {
                     </div>
                 </div>
                 {loading ? (
-                    <div
-                        className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                        style={{ height: "50vh" }}
-                    >
-                        <Loader />
+                    <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                    <Loader />
                     </div>
                 ) : blog.length === 0 ? (
                     <div className="col-12" style={{ height: "300px" }}>

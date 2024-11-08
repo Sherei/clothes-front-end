@@ -121,8 +121,8 @@ const UserPanel = () => {
                         {component === "orders" &&
                             <>
                                 {isLoading  ? (
-                                    <div className='col-lg col-sm-12 d-flex align-items-center justify-content-center' style={{ height: '50vh' }}>
-                                        <Loader />
+                                    <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                                    <Loader />
                                     </div>
                                 ) : filterOrder.length > 0 ? (
                                     <>
@@ -186,11 +186,8 @@ const UserPanel = () => {
                             <>
                                 <div className='h_box_main'>
                                     {loading ? (
-                                        <div
-                                            className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                                            style={{ height: "80vh" }}
-                                        >
-                                            <Loader />
+                                        <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                                        <Loader />
                                         </div>
                                     ) : comments?.filter((item) => item.userId === cu._id).length === 0 ? (
                                         <div

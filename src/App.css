@@ -52,3 +52,32 @@ a{
     padding: 5px 10px;
     background-color: white;
   }
+
+  .btn_loading {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .spinner {
+    width: 2rem;
+    height: 2rem;
+    border-top: 4px solid black;
+    border-left: 4px solid black;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .button-submit:hover .spinner{
+    border-top: 4px solid white;
+    border-left: 4px solid white;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -107,11 +107,11 @@ const [btnLoading, setBtnLoading]=useState(false);
 
   const shippingFee = () => {
     if (totalQuantity === 1) {
-      return 50;
+      return 0;
     } else if (totalQuantity === 2) {
-      return 70;
+      return 0;
     } else {
-      return 99;
+      return 0;
     }
   };
   const shippingFeeAmount = shippingFee();
@@ -164,9 +164,9 @@ const [btnLoading, setBtnLoading]=useState(false);
 
         <div className="col-lg-8 col-md-12 col-sm-12 my-4">
           {loading ? (
-            <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-              <Loader />
-            </div>
+           <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+           <Loader />
+           </div>
           ) : filterCart.length > 0 ? (
             <>
               <div className="" style={{ minHeight: "50vh" }}>
@@ -226,7 +226,7 @@ const [btnLoading, setBtnLoading]=useState(false);
                                 className="cross_btn m-0 p-0 fs-6 text-center"
                                 onClick={() => DeleteCartItem(item._id)}
                               >
-                                {btnLoading? "Removing...":<RxCross1/>}
+                                {btnLoading? <div className="spinner"></div> :<RxCross1/>}
                               </p>
                             </div>
                             <hr className="m-0 p-0" />
@@ -386,8 +386,7 @@ const [btnLoading, setBtnLoading]=useState(false);
                                   className="m-0 p-0 fs-6 text-center"
                                   onClick={() => DeleteCartItem(item._id)}
                                 >
-                                 {btnLoading? "Removing...":<RxCross1/>}
-
+                                 {btnLoading? <div className="spinner"></div>:<RxCross1/>}
                                 </p>
                               </td>
                             </tr>

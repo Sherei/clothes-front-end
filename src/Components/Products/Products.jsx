@@ -391,7 +391,7 @@ const Products = () => {
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 g-4 my-4">
 
               {(data?.length === 0 || loading) && (
-                <div className='col-12 d-flex justify-content-center align-items-center' style={{ height: "80vh" }}>
+                <div className='d-flex justify-content-center align-items-center' style={{ minHeight: "50vh" }}>
                   {loading ? <Loader /> : (
                     data?.length === 0 ? "No Product available" : null
                   )}

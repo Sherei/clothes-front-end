@@ -4,9 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router'
 import { FaEye, FaEyeSlash, FaRegUser, FaPhoneAlt, FaAddressBook,FaLock } from 'react-icons/fa';
 import { MdOutlineAlternateEmail } from "react-icons/md";
-
 import { toast } from "react-toastify";
-
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import "./signup.css"
 
@@ -18,8 +17,10 @@ const Signup = () => {
             behavior: 'smooth'
         });
     }, []);
+  const cu = useSelector(store => store.userSection.cu);
+
     const { title, productId } = useParams();
-const [loading,setLoading]=useState(false)
+    const [btnLoading,setBtnLoading]=useState(false)
     const [Error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -33,7 +34,7 @@ const [loading,setLoading]=useState(false)
     async function SignUp(data) {
         // console.log(data,'data here')
         try {
-            setLoading(true)
+            setBtnLoading(true)
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signUp`, data);
             // console.log(response.data.message)
             // console.log(response.data , "here is data ")
@@ -45,7 +46,7 @@ const [loading,setLoading]=useState(false)
                 // } else {
                 //     move('/login')
                 // }
-                setLoading(false)
+                setBtnLoading(false)
                 move(`/enterotp/${response.data.email}`)
                 toast.success("Account Created Please verify")
                 reset();
@@ -53,19 +54,23 @@ const [loading,setLoading]=useState(false)
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 setError('This E-mail is already registered. Please login')
-                setLoading(false)
+                setBtnLoading(false)
             } else {
                 setError('This E-mail is already registered. Please login')
-                setLoading(false)
+                setBtnLoading(false)
             }
-            setLoading(false)
+            setBtnLoading(false)
         }
     }
 
+    if(cu._id !=undefined){
+        return move("/")
+       }
+     
     return <>
         <div className='container my-5'>
             <div className='row d-flex justify-content-center px-2'>
-                <div className='col-lg-6 col-md-8 col-sm-12 border rounded-3 p-lg-5 p-sm-2'>
+                <div className='col-lg-6 col-md-10 col-sm-12 border rounded-3 p-lg-5 p-sm-2'>
                     <div>
                     <p className='fs-2 fw-bold text-center m-0'>Create your Account</p>
                     <p className='text-center text-muted'>Please fill in the infromation below</p>
@@ -186,35 +191,12 @@ const [loading,setLoading]=useState(false)
                                 {showPassword ? <FaEye /> : <FaEyeSlash />}
                             </span>
                         </div>
-                        <button className="button-submit">
-                            {loading ?
-                                <>
 
-                            <style>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-      <div
-        style={{
-          margin:'auto',  
-          width: "2rem",
-          height: "2rem",
-          borderTop: "4px solid white",
-          borderLeft: "4px solid white",
-          borderRadius: "50%",
-          animation: "spin 1s linear infinite", 
-        }}
-      ></div>
-    </>
-      :
-      <div>
-      Signup
-      </div>
-    }
+                        <button className={`button-submit ${btnLoading ? "btn_loading" : ""}`}
+                        disabled={btnLoading}>
+                            {btnLoading ? <div className="spinner"></div> : "Signup"}
+                        </button>
 
-      </button>
                         <p className="text-light">
                             Already have an account?  &nbsp;&nbsp;
                             {productId && <a href={`/login/${title}/${productId}`}>

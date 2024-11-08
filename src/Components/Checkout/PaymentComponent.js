@@ -128,12 +128,12 @@ const PaymentComponent = ({ amount, currency = "usd", onPaymentSuccess }) => {
         </div>
       </div>
       <button
-        className="button-submit w-100"
+        className="button-submit w-100 d-flex justify-content-center align-items-center"
         type="button"
         onClick={handleSubmit}
         disabled={!stripe || btnLoading}
       >
-        {btnLoading ? "Processing..." : "Pay Now"}
+        {btnLoading ? <div className="spinner"></div> : "Pay Now"}
       </button>
     </form>
   );

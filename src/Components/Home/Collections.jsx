@@ -32,7 +32,9 @@ const Collections = () => {
             </div>
             <div className='d-flex flex-wrap align-center justify-content-center'>
                 {isLoading ? (
+                    <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
                     <Loader />
+                    </div>
                 ) : (
                     collection.map((item, index) => {
                         return (

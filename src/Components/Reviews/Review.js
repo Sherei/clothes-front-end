@@ -32,6 +32,8 @@ const Review = () => {
 
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(false);
+    const [btnLoading,setBtnLoading]=useState(false)
+
     const [form, setForm] = useState(false)
     const [imageSelected, setImageSelected] = useState(false);
     const [videoSelected, setVideoSelected] = useState(false);
@@ -72,7 +74,7 @@ const Review = () => {
         let mediaUrl = "";
 
         if (cmnt.image && cmnt.image[0] && cmnt.video && cmnt.video[0]) {
-            setLoading(false);
+            setBtnLoading(false)
             return toast.warning("Select each media");
         }
 
@@ -81,18 +83,21 @@ const Review = () => {
             const imageType = cmnt.image[0].type;
 
             if (!imageType.startsWith("image/")) {
-                setLoading(false);
+            setBtnLoading(false)
+                
                 return toast.warning("Select valid image file");
             }
             const formData = new FormData();
             formData.append('file', cmnt.image[0]);
             formData.append('upload_preset', 'zonfnjjo');
             try {
+            setBtnLoading(true)
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/image/upload", formData);
                 mediaUrl = response.data.url;
-                console.log("Image uploaded successfully");
-            } catch (error) {
-                // console.error("Image upload failed", error);
+                setBtnLoading(false)
+            } catch (error) {    
+            setBtnLoading(false)
+            // console.error("Image upload failed", error);
             }
         }
 
@@ -101,28 +106,31 @@ const Review = () => {
             const videoType = cmnt.video[0].type;
 
             if (!videoType.startsWith("video/")) {
-                setLoading(false);
+            setBtnLoading(false)
                 return toast.warning("Select valid video format");
             }
             const formData = new FormData();
             formData.append('file', cmnt.video[0]);
             formData.append('upload_preset', 'zonfnjjo');
             try {
-
+            setBtnLoading(true)
                 const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
                 mediaUrl = response.data.url;
-                console.log("video url is =", mediaUrl)
-                reset();
+            
+            setBtnLoading(false)
             } catch (error) {
+            setBtnLoading(false)
             }
         }
 
         try {
+            setBtnLoading(true)
             if(!mediaUrl){
+            setBtnLoading(false)
+
                 return toast.error("Media uploaded failed")
             }
-            setLoading(true);
-
+            setBtnLoading(true)
             cmnt.mediaUrl = mediaUrl;
             cmnt.userId = cu._id;
 
@@ -141,13 +149,15 @@ const Review = () => {
                 reset();
                 setImageSelected(false)
                 setVideoSelected(false)
-                setLoading(false);
+            setBtnLoading(false)
                 toast.success("Feedback submitted");
                 // window.location.reload();
             }
         } catch (e) {
-            //   console.error("Comment submission failed", e);
+            setBtnLoading(false)
         }   
+        setBtnLoading(false)
+
     };
 
 
@@ -211,10 +221,10 @@ const Review = () => {
                                   }}
                                 spaceBetween={30}
                                 modules={[Autoplay]}
-              autoplay={{
-                delay: 10000,
-                disableOnInteraction: false
-              }}
+            //   autoplay={{
+            //     delay: 10000,
+            //     disableOnInteraction: false
+            //   }}
                                 className="mySwiper"
                               >
                                 {comments.map((item, index) => (
@@ -258,8 +268,8 @@ const Review = () => {
                         </div>
                     </div>
                     {loading? (
-            <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-              <Loader />
+            <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+            <Loader />
             </div>
           ) :(
             <div
@@ -354,9 +364,11 @@ const Review = () => {
                                                     {...register('comment')}
                                                 />
                                             </div>
-                                            <button type="submit" className="button-submit w-100 bg-dark text-white">
-                                                Submit
-                                            </button>
+                                            <button type="submit"  
+                                            className={`button-submit w-100 bg-dark text-light  d-flex justify-content-center align-items-center${btnLoading ? "btn_loading" : ""}`}
+                                            disabled={btnLoading}>
+                                            {btnLoading ? <div className="spinner"></div> : "Submit"}
+                                        </button>
                                         </form>
                                     </div>
       </div>

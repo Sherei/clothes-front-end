@@ -102,9 +102,9 @@ const OrderDetail = () => {
 
                     <div className='col-lg-8 col-md-12 col-sm-12'>
                     {loading ? (
-                        <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }}>
-                            <Loader />
-                        </div>
+                       <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                       <Loader />
+                       </div>
                     ) : (
                         <>
                             <div className='cart_display_layout1'>

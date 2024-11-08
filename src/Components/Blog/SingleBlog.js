@@ -46,8 +46,8 @@ const SingleBlog = () => {
 
     return <>
         {loading ? (
-            <div className='d-flex align-items-center justify-content-center' style={{ height: "80vh" }}>
-                <Loader />
+            <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+            <Loader />
             </div>
         ) : (
             <div className='container my-5'>

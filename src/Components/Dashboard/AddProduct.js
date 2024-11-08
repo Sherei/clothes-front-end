@@ -481,20 +481,21 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                 </div>
               </div>
               <div className='row'>
-                {!product &&
-                  <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
-                      Submit
-                    </button>
-                  </div>
-                }
-                {product &&
-                  <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
-                      Update
-                    </button>
-                  </div>
-                }
+              <div className='col-lg-12 col-sm-12 my-5'>
+                                    <button 
+  type="submit" 
+  className={`button-submit px-4 ${loading ? "btn_loading" : ""}`} 
+  disabled={loading}
+>
+  {loading ? (
+    <div className="spinner"></div>
+  ) : (
+    product ? "Update" : "Submit"
+  )}
+</button>
+
+                                      
+                                    </div>
               </div>
             </form>
           )}

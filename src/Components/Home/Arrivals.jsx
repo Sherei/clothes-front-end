@@ -52,9 +52,9 @@ const Arrivals = () => {
             </div>
             <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
                 {isLoading ? (
-                    <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-                        <Loader />
-                    </div>
+                   <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                   <Loader />
+                   </div>
                 ) : error ? (
                     <p>Check your internet connection and try again!</p>
                 ) : (

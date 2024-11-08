@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
+import Loader from "../Loader/Loader"
 import axios from 'axios';
 import "./login.css"
 
@@ -26,6 +27,7 @@ export const Login = () => {
   const [Error, setError] = useState("");
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [btnLoading, setBtnLoading]=useState(false)
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -35,7 +37,9 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const Login = async (data) => {
-    try {
+
+  setBtnLoading(true)  
+  try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, data);
       let loginUser = response.data;
       // console.log(loginUser)
@@ -45,6 +49,7 @@ export const Login = () => {
           type: "LOGIN_USER",
           payload: loginUser.user,
         });
+  setBtnLoading(false)
         toast.success("Login Successful");
         if (loginUser.user.role === "admin") {
           return move(`/admin-dashboard/${cu._id}`);
@@ -59,15 +64,23 @@ export const Login = () => {
     } catch (e) {
       if (e.response && e.response.status === 404) {
         setError("Invalid Credentials");
+  setBtnLoading(false)
+      
       }
     }
+  setBtnLoading(false)
+
   };
+
+  if(cu._id !=undefined){
+   return move("/")
+  }
 
   return (
     <>
       <div className='container my-5'>
         <div className='row login_row d-flex justify-content-center'>
-          <div className='col-lg-6 col-md-6 col-sm-12 border rounded-3 p-lg-5 p-sm-3'>
+          <div className='col-lg-6 col-md-10 col-sm-12 border rounded-3 p-lg-5 p-sm-3'>
             <div>
               <p className='fs-2 fw-bold text-center m-0'>Login to my Account</p>
               <p className='text-center text-muted'>Enter your E-mail and Password</p>
@@ -125,7 +138,11 @@ export const Login = () => {
                 </a>
               </div>
 
-              <button className="button-submit">Login</button>
+              <button className={`button-submit ${btnLoading ? "btn_loading" : ""}`}
+              disabled={btnLoading}>
+                  {btnLoading ? <div className="spinner"></div> : "Login"}
+              </button>
+
 
               <p className="text-light">
                 Don't have an account?&nbsp;&nbsp;

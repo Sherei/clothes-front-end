@@ -67,6 +67,7 @@ const SingleAdd = () => {
   const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [btnLoading, setBtnLoading]=useState(false)
   const [Error, setError] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
@@ -259,10 +260,10 @@ const handleVideoChange = (e) => {
     color,
     size,
   ) {
-  
     if ((product?.sizes?.length > 0 && product?.colors?.length > 0)|| (product?.sizes?.length > 0 || product?.colors?.length > 0)) {
       if (!size || !color) {
         return toast.warning("All options are required");
+
       }
     }
     
@@ -278,6 +279,8 @@ const handleVideoChange = (e) => {
     } else {
 
       try {
+        setBtnLoading(true)
+
         product.userId = cu?._id;
         product.productId = product?._id;
         product.total = totalPrice;
@@ -287,26 +290,22 @@ const handleVideoChange = (e) => {
         product.size = size;
         product.image = product?.images[0];
         product.discount = product?.discount;
-
-        console.log("product data is", product)
         let response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/addToCart`,
           product
         );
-
         if (response.data.message === "Product Added") {
           dispatch({
             type: "ADD_TO_CART",
             payload: response.data.alldata,
-
           });
         toast.success("Added to cart")
-          // setSucess("cart")
+          setBtnLoading(false)
         }
       } catch (error) {
-        // toast.warning("Server Error Try Again Later...")
+          setBtnLoading(false)
       } finally {
-        setLoading(false);
+          setBtnLoading(false)
       }
     }
   }
@@ -335,13 +334,11 @@ const handleVideoChange = (e) => {
       size,
       color,
     )
-
     //  if ((product?.sizes?.length > 0 && product?.colors?.length > 0)|| (product?.sizes?.length > 0 || product?.colors?.length > 0)) {
     //   if (!size || !color) {
     //     return toast.warning("Select Options");
     //   }
     // }
-
     if (cu._id && cu.role !== "admin") {
       move(`/cart-checkout/${cu._id}`);
     } else {
@@ -373,21 +370,20 @@ const handleVideoChange = (e) => {
       toast.warning("Login to give feedback")
       return move('/login')
   }
-
+  setBtnLoading(true);
     let mediaUrl = "";
 
     if (cmnt.image && cmnt.image[0] && cmnt.video && cmnt.video[0]) {
-        setLoading(false);
+        setBtnLoading(false);
         return toast.warning("Select each media");
     }
 
     if (cmnt.image && cmnt.image[0]) {
-    setLoading(true);
-        
+      setBtnLoading(true);
         const imageType = cmnt.image[0].type;
 
         if (!imageType.startsWith("image/")) {
-            setLoading(false);
+  setBtnLoading(false);
             return toast.warning("Select valid image file");
         }
 
@@ -404,43 +400,41 @@ const handleVideoChange = (e) => {
     }
 
     if (cmnt.video && cmnt.video[0]) {
-    setLoading(true);
-        
+  setBtnLoading(true);
         const videoType = cmnt.video[0].type;
 
 
         if (!videoType.startsWith("video/")) {
-            setLoading(false);
+  setBtnLoading(false);
+            
             return toast.warning("Select valid video format");
         }
         const formData = new FormData();
         formData.append('file', cmnt.video[0]);
         formData.append('upload_preset', 'zonfnjjo');
         try {
-    setLoading(true);
+  setBtnLoading(true);
             const response = await axios.post("https://api.cloudinary.com/v1_1/dlw9hxjr4/video/upload", formData);
             mediaUrl = response.data.url;
             reset();
             // console.log("Video uploaded successfully");
         } catch (error) {
+  setBtnLoading(false);
             // console.error("Video upload failed", error);
         }
     }
 
     try {
       if(!mediaUrl){
-        setLoading(false)
+  setBtnLoading(false);
         return toast.error("Media uploaded failed")
     }
-      setLoading(true);
+  setBtnLoading(true);
         cmnt.mediaUrl = mediaUrl;
         cmnt.userId = cu._id;
-
         const commentWithProductId = { ...cmnt, productId };
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comments`, commentWithProductId);
-  
         if (response.data.message === "Comment Added") {
-
             dispatch({
                 type: "ADD_COMMENT",
                 payload: response.data.alldata,
@@ -451,13 +445,17 @@ const handleVideoChange = (e) => {
                 reset();
                 setImageSelected(false)
                 setVideoSelected(false)
-                setLoading(false);
+  setBtnLoading(false);
                 toast.success("Feedback submitted");
              }
     } catch (e) {
+  setBtnLoading(false);
+
         //   console.error("Comment submission failed", e);
     }
-};
+    setBtnLoading(false);
+
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -721,17 +719,11 @@ const handleVideoChange = (e) => {
 
             <div className="s_btn my-3">
               <button
-                className="button-submit px-5 py-3 fw-bolder"
-                onClick={() =>
-                  AddToCart(
-                    product,
-                    totalPrice,
-                    size,
-                    color,
-                  )
-                }
+              className={`button-submit px-5 py-3 fw-bolder ${btnLoading ? "btn_loading" : ""}`}
+              disabled={btnLoading}
+                onClick={() =>AddToCart(product,totalPrice,size,color)}
               >
-                Add to Cart
+                {btnLoading ? <div className="spinner"></div> : "Add to cart"}
               </button>
               <button className="button-submit px-5 py-3 fw-bolder" onClick={Order}>
                 Order Now
@@ -762,11 +754,8 @@ const handleVideoChange = (e) => {
             <p className="fs-3 fw-bolder">Related Products
             </p>
             {loading ? (
-              <div
-                className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                style={{ height: "80vh" }}
-              >
-                <Loader />
+              <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+              <Loader />
               </div>
             ) : (
               <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-sm-2 my-5">
@@ -829,11 +818,8 @@ const handleVideoChange = (e) => {
 
 <div className='h_box_main'>
  {loading ? (
-   <div
-     className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-     style={{ height: "80vh" }}
-   >
-     <Loader />
+   <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+   <Loader />
    </div>
  ) : comments.filter((item) => item.productId === productId)
    .length === 0 ? (
@@ -861,8 +847,8 @@ const handleVideoChange = (e) => {
 >
 {comments.filter((item) => item.productId === productId)
 .map((item, index) => (
-                                  <SwiperSlide key={index} className='review_slide'>
-                                    <div className='card border p-2' style={{ width: "270px" }}>
+                                  <SwiperSlide key={index} className='review_slide mt-2'>
+                                    <div className='card border-0 border-bottom border-light shadow-sm p-2' style={{ width: "270px" }}>
                                       <div className="card_img mb-2" style={{ background: "transparent" }}>
                                         {item?.mediaUrl ? (
                                           item.mediaUrl.endsWith('.jpg') || item.mediaUrl.endsWith('.png') ? (
@@ -902,9 +888,8 @@ const handleVideoChange = (e) => {
          }
        
              {loading ? (
-                     <div className='min-vh-50 d-flex justify-content-center align-items-center'>
-                         <Loader />
-
+                     <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                     <Loader />
                      </div>
                  ) : (
                      <div
@@ -997,9 +982,12 @@ aria-hidden="true"
                                                  {...register('comment')}
                                              />
                                          </div>
-                                         <button type="submit" className="button-submit w-100 bg-dark text-light">
-                                             Submit
-                                         </button>
+                                         <button type="submit"  className={`button-submit w-100 bg-dark text-light  d-flex justify-content-center align-items-center
+                                         ${btnLoading ? "btn_loading" : ""}`}
+                                            disabled={btnLoading}>
+                                            {btnLoading ? <div className="spinner"></div> : "Submit"}
+                                        </button>
+
                                      </form>
                                  </div>
    </div>
@@ -1025,9 +1013,9 @@ aria-hidden="true"
      </div>
 </>  
   ) : (
-      <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "80vh" }} >
-        <Loader />
-      </div >
+    <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+    <Loader />
+    </div>
     )
     }
 

@@ -44,9 +44,9 @@ const Orderplaced = () => {
         <div className="container my-4">
             <div className="row">
                 {loading ? (
-                    <div className="col-12 my-5 d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
-                        <Loader />
-                    </div>
+                   <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                   <Loader />
+                   </div>
 
                 ) : filterOrder.length > 0 ? (
                     <div className="col-12 d-flex flex-column  align-items-center mb-5">

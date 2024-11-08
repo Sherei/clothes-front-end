@@ -44,12 +44,9 @@ const Reviews = () => {
                     </div>
                     <div className='h_box_main'>
                         {loading ? (
-                            <div
-                                className="col-lg-12 col-sm-12 d-flex align-items-center justify-content-center"
-                                style={{ height: "80vh" }}
-                            >
-                                <Loader />
-                            </div>
+                           <div className='d-flex justify-content-center align-items-center' style={{minHeight:"50vh"}}>
+                           <Loader />
+                           </div>
                         ) : (comments.map((item, index) => {
                             return <>
                                 <div className='card border rounded-2 p-1' style={{ width: "270px" }} key={index}>

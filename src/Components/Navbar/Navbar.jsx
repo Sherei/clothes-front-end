@@ -19,12 +19,11 @@ import Loader from "../Loader/Loader";
 
 const Navbar = () => {
 
+  const dispatch = useDispatch();
   const move = useNavigate();
   const cu = useSelector((store) => store.userSection.cu);
   const allCartItems = useSelector((store) => store.Cart.cart);
-
-
-  const dispatch = useDispatch();
+  
   const [open, setOpen] = useState(false);
   const { userId } = useParams();
   const [cart, setCart] = useState([]);
@@ -87,15 +86,12 @@ const Navbar = () => {
   }, [open]);
 
 
+  
   function Logout() {
-    move("/login");
-
     dispatch({
-        type: "LOGOUT_USER",
+      type: "LOGOUT_USER",
     });
-}
-
-
+  }
 
   return <>
     {/* For large screen */}
@@ -158,7 +154,7 @@ const Navbar = () => {
             {cu.role === "admin" &&
               <NavLink
                 className="nav-link"
-                type="button"
+                to="/login"
                 onClick={Logout}>
                <IoLogOutOutline />
               </NavLink>
@@ -225,7 +221,7 @@ const Navbar = () => {
             {cu.role === "admin" &&
               <NavLink
                 className="nav-link"
-                type="button"
+                to="/login"
                 onClick={Logout}>
                 <IoLogOutOutline />
               </NavLink>

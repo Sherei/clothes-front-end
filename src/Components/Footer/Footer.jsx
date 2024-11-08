@@ -98,9 +98,9 @@ const Footer = () => {
                                                 </NavLink>
                                             </p>
                                             <p>
-                                                <Link to="review" className="text-reset">
+                                                <NavLink to="/reviews" className="text-reset">
                                                     Review
-                                                </Link>
+                                                </NavLink>
                                             </p>
                                             <p>
                                                 <NavLink to="/faqs" className="text-reset">

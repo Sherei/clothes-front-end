@@ -8,7 +8,7 @@ const Faq = () => {
             <div className='container mx-0'>
                 <div className='row py-5'>
                     <div className='col-12'>
-                        <h1 className='home_heading  text-center'>Frequently Asked Questions</h1>
+                        <h1 className='home_heading  text-center text-light'>Frequently Asked Questions</h1>
                     </div>
                     <div className='col-12'>
                         <div className='row faq_row_direction mt-3'>
@@ -17,14 +17,18 @@ const Faq = () => {
                                     <div className="accordion-item mb-4">
                                         <h2 className="accordion-header custom_header">
                                             <button
-                                                className="accordion-button"
+                                                className="accordion-button text-light"
                                                 type="button"
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#collapseOne"
                                                 aria-expanded="true"
                                                 aria-controls="collapseOne"
+                                                
                                             >
-                                                <span className='accordian_counting'>1.</span> What materials do you use for your T-shirts?
+                                                <span className='accordian_counting text-light'>1.</span> 
+                                                <span className='text-light'>
+                                                What materials do you use for your T-shirts?
+                                                </span>
                                             </button>
                                         </h2>
                                         <div
@@ -48,7 +52,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseTwo"
                                             >
-                                                <span className='accordian_counting'>2.</span>  How do I determine my T-shirt size?
+                                                <span className='accordian_counting text-light'>2.</span> 
+                                                <span className='text-light'>How do I determine my T-shirt size?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -72,7 +77,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseThree"
                                             >
-                                                <span className='accordian_counting'>3.</span> Can I customize my T-shirt?
+                                                <span className='accordian_counting text-light'>3.</span>
+                                                <span className='text-light'>Can I customize my T-shirt?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -97,7 +103,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseFour"
                                             >
-                                                <span className='accordian_counting'>4.</span> How long does shipping take?
+                                                <span className='accordian_counting text-light'>4.</span>
+                                                <span className='text-light'>How long does shipping take?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -122,7 +129,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseFive"
                                             >
-                                                <span className='accordian_counting'>5.</span> What payment methods do you accept?
+                                                <span className='accordian_counting text-light'>5.</span>
+                                                <span className='text-light'>What payment methods do you accept?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -146,7 +154,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseSix"
                                             >
-                                                <span className='accordian_counting'>6.</span> How do I contact customer support?
+                                                <span className='accordian_counting text-light'>6.</span>
+                                                <span className='text-light'>How do I contact customer support?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -171,7 +180,8 @@ const Faq = () => {
                                                 aria-expanded="false"
                                                 aria-controls="collapseSeven"
                                             >
-                                                <span className='accordian_counting'>7.</span> What is your return policy?
+                                                <span className='accordian_counting text-light'>7.</span>
+                                                <span className='text-light'>What is your return policy?</span> 
                                             </button>
                                         </h2>
                                         <div
@@ -190,14 +200,14 @@ const Faq = () => {
                             </div>
                             <div className='col-lg-6 col-md-12 col-sm-12  my-3 d-flex justify-content-around flex-wrap align-items-end gap-4'>
                                 <div>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span>Quality Material.</p>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span>Provide Size Chart.</p>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span> Customization Options Available.</p>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span>Fast Delivery.</p>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span>Customer Support.</p>
-                                    <p><span className='mx-2' style={{ color: "rgba(45, 149, 253, 1)" }}><FaCheck /></span>Return Accepted.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span>Quality Material.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span>Provide Size Chart.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span> Customization Options Available.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span>Fast Delivery.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span>Customer Support.</p>
+                                    <p><span className='mx-2' ><FaCheck /></span>Return Accepted.</p>
                                 </div>
-                                <div className='faq_box'>
+                                <div className='faq_box card border-0 border-bottom border-light shadow-sm'>
                                     <p className='faq_box_number'>05</p>
                                     <p>Years of <br /> experience</p>
                                 </div>

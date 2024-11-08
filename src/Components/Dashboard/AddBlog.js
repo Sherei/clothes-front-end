@@ -177,19 +177,20 @@ const AddBlog = () => {
                             </div>
                             <div className='row'>
                             <div className='col-lg-12 col-sm-12 my-5'>
-                                    <button 
-  type="submit" 
-  className={`button-submit px-4 ${loading ? "btn_loading" : ""}`} 
-  disabled={loading}
->
-  {loading ? (
-    <div className="spinner"></div>
-  ) : (
-    blog ? "Update" : "Submit"
-  )}
-</button>
-
-                                      
+                            {!blog &&
+                                    <div className='col-lg-12 col-sm-12 my-5'>
+                                        <button type="button" className="button-submit px-4" onClick={handleSubmit(submitBlog)}>
+                                            Submit
+                                        </button>
+                                    </div>
+                                }
+                                {blog &&
+                                    <div className='col-lg-12 col-sm-12 my-5'>
+                                        <button type="button" className="button-submit px-4"  onClick={handleSubmit(submitBlog)}>
+                                            Update
+                                        </button>
+                                    </div>
+                                }     
                                     </div>
                             </div>
                         </form>

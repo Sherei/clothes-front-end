@@ -402,7 +402,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
 
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Price *</label>
-                  <input type="number" {...register('price', { required: true })} min={1}
+                  <input type="number" {...register('price', { required: true })} min="1"
                     className="border form-control mb-2 mr-sm-2 text-dark"
                     defaultValue={product ? product.price : price}
                     onChange={handlePriceChange} />
@@ -481,21 +481,20 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                 </div>
               </div>
               <div className='row'>
-              <div className='col-lg-12 col-sm-12 my-5'>
-                                    <button 
-  type="submit" 
-  className={`button-submit px-4 ${loading ? "btn_loading" : ""}`} 
-  disabled={loading}
->
-  {loading ? (
-    <div className="spinner"></div>
-  ) : (
-    product ? "Update" : "Submit"
-  )}
-</button>
-
-                                      
-                                    </div>
+              {!product &&
+                  <div className='col-lg-12 col-sm-12 my-5'>
+                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
+                      Submit
+                    </button>
+                  </div>
+                }
+                {product &&
+                  <div className='col-lg-12 col-sm-12 my-5'>
+                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
+                      Update
+                    </button>
+                  </div>
+                }
               </div>
             </form>
           )}

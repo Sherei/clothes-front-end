@@ -123,17 +123,9 @@ const AddCollections = () => {
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                    <button 
-  type="submit" 
-  className={`button-submit px-4 ${loading ? "btn_loading" : ""}`} 
-  disabled={loading}
->
-  {loading ? (
-    <div className="spinner"></div>
-  ) : (
-    collection ? "Update" : "Submit"
-  )}
-</button>
+                                    <button type="submit" className="button-submit px-4" style={{ width: "200px" }}>
+                                            {collection ? "Update" : "Submit"}
+                                        </button>
 
                                       
                                     </div>

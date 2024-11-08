@@ -8,8 +8,12 @@ const Contact = () => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [confirm, setConfirm] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (data) => {
+
+    setLoading(true);
+    
     const serviceID = 'service_op1jipu';
     const templateID = 'template_6pyip08';
     const userID = 'RE_1IZhWlDQCV8uyJ';
@@ -21,15 +25,17 @@ const Contact = () => {
       message: data.message,
       from_email: data.email
     }, userID)
-
-      .then((result) => {
+    .then((result) => {
         setConfirm(true);
         toast.success("Message has been send")
         reset();
+        setLoading(false)
       }, (error) => {
-        alert('Failed to send email: ', error.text);
+        setLoading(false)
       });
+      setLoading(false)
   };
+
   return (
     <>
       <section className="contact-section">
@@ -53,7 +59,7 @@ const Contact = () => {
             <div className="container">
               <div className="row justify-content-lg-center">
                 <div className="col-12 col-lg-9">
-                  <div className="  rounded shadow-sm overflow-hidden" style={{backgroundColor:"rgba(0,0,0,0.5"}}>
+                  <div className="card border-0 border-bottom border-light shadow-sm  rounded shadow-sm overflow-hidden" style={{backgroundColor:"rgba(0,0,0,0.5"}}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="row gy-4 gy-xl-3 p-4 p-xl-5">
                         <div className="col-12">
@@ -63,8 +69,9 @@ const Contact = () => {
                           <input
                             type="text"
                             required
-                            className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
+                            className={`form-control text-dark ${errors.fullname ? 'is-invalid' : ''}`}
                             id="fullname"
+                            placeholder='Rose merrie'
                             {...register('fullname', { required: true })}
                           />
                           {/* {errors.fullname && <span className="text-danger">Full name is required</span>} */}
@@ -82,8 +89,9 @@ const Contact = () => {
                             <input
                               type="email"
                               required
-                              className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                              className={`form-control text-dark${errors.email ? 'is-invalid' : ''}`}
                               id="email"
+                              placeholder='asd@gmail.com'
                               {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
                             />
                             {/* {errors.email && <span className="text-danger">Valid email is required</span>} */}
@@ -102,8 +110,9 @@ const Contact = () => {
                             <input
                               type="tel"
                               required
-                              className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                              className={`form-control text-dark${errors.phone ? 'is-invalid' : ''}`}
                               id="phone"
+                              placeholder='xxxxxxxxxx'
                               {...register('phone', { pattern: /^[0-9]+$/ })}
                             />
                             {/* {errors.phone && <span className="text-danger">Enter a valid phone number</span>} */}
@@ -114,8 +123,9 @@ const Contact = () => {
                             Message <span className="text-danger">*</span>
                           </label>
                           <textarea
-                            className={`form-control ${errors.message ? 'is-invalid' : ''}`}
+                            className={`form-control text-dark${errors.message ? 'is-invalid' : ''}`}
                             id="message"
+                            placeholder='Write a message'
                             required
                             rows={5}
                             {...register('message', { required: true })}
@@ -125,8 +135,9 @@ const Contact = () => {
 
                         <div className="col-12">
                           <div className="d-grid d-flex justify-content-end">
-                            <button className="button-submit px-4" style={{ width: "fit-content" }} type="submit">
-                              Send
+                            <button className="button-submit px-4" 
+                            style={{ width: "fit-content" }} type="submit">
+                              {loading? <div className="spinner"></div>:"Send"}
                             </button>
                           </div>
                         </div>

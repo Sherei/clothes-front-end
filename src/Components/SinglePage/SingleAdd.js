@@ -838,7 +838,6 @@ const handleVideoChange = (e) => {
       1024: { slidesPerView: 4, spaceBetween: 30 },
     }}
   spaceBetween={30}
-  modules={[Autoplay]}
 // autoplay={{
 // delay: 5000,
 // disableOnInteraction: false

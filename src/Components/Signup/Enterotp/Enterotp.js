@@ -53,7 +53,7 @@ setLoading(false);
     <div style={containerStyle}>
       <h2 style={headingStyle}>Check Your Email</h2>
       <p style={textStyle}>We have sent an <b>OTP</b> to your provided email. Please enter it below:</p>
-      <form onSubmit={handleSubmit} style={formStyle}>
+      <form onSubmit={handleSubmit} style={formStyle} className='card border-0 border-bottom border-light shadow-sm'>
         <input
           type="text"
           value={otp}

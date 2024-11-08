@@ -80,7 +80,7 @@ export const Login = () => {
     <>
       <div className='container my-5'>
         <div className='row login_row d-flex justify-content-center'>
-          <div className='col-lg-6 col-md-10 col-sm-12 border rounded-3 p-lg-5 p-sm-3'>
+          <div className='col-lg-6 col-md-10 col-sm-12 card border-0 border-bottom border-light shadow-sm p-lg-5 p-sm-3'>
             <div>
               <p className='fs-2 fw-bold text-center m-0'>Login to my Account</p>
               <p className='text-center text-muted'>Enter your E-mail and Password</p>

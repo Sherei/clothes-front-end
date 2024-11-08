@@ -38,8 +38,8 @@ const navigate = useNavigate()
   };
 
   return (
-    <div style={styles.container} className="background-dark">
-      <div style={styles.formContainer}>
+    <div className="d-flex justify-content-center align-items-center" style={{minHeight:"80vh"}}>
+      <div style={styles.formContainer} className='card border-0 border-bottom border-light shadow-sm'>
         <h2 style={styles.heading} className="text-light">Enter Your Email</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -89,17 +89,9 @@ const navigate = useNavigate()
   );
 };
 
-// Custom styles using inline CSS
 const styles = {
-  container: {
-    color: 'white',
-    height: '80vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   formContainer: {
-    backgroundColor: '#343a40',
+    // backgroundColor: '#343a40',
     padding: '40px',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',

@@ -117,11 +117,11 @@ const Footer = () => {
                                 <p className='text-light'>
                                     <i className="fas fa-home " /> Back side CUST University sihala Islamabad
                                 </p>
-                                <a href="mailto:riskibrothers00@gmail.com" target='_blank'>
-                                    <p className='text-light'>
-                                        <i className="fas fa-envelope" /> riskibrothers00@gmail.com
-                                    </p>
-                                </a>
+                                
+                                <p className='text-light'>
+                                <a href="mailto:riskibrothers00@gmail.com" className='text-light'>riskibrothers00@gmail.com</a>
+                                </p>
+
                                 <a href="tel:+923259053922">
                                     <p className='text-light'>
                                         <i className="fas fa-phone" /> +923259053922

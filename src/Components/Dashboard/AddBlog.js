@@ -179,15 +179,19 @@ const AddBlog = () => {
                             <div className='col-lg-12 col-sm-12 my-5'>
                             {!blog &&
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                        <button type="button" className="button-submit px-4" onClick={handleSubmit(submitBlog)}>
-                                            Submit
+                                        <button type="button" 
+                    disabled={loading} 
+                                        className="button-submit px-4 w-100 d-flex justify-content-center align-items-center" onClick={handleSubmit(submitBlog)}>
+                      {loading? <div className="spinner"></div> :"Submit"}
                                         </button>
                                     </div>
                                 }
                                 {blog &&
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                        <button type="button" className="button-submit px-4"  onClick={handleSubmit(submitBlog)}>
-                                            Update
+                                        <button type="button"
+                    disabled={loading} 
+                                        className="button-submit px-4 w-100 d-flex justify-content-center align-items-center"  onClick={handleSubmit(submitBlog)}>
+                      {loading? <div className="spinner"></div> :"Update"}
                                         </button>
                                     </div>
                                 }     

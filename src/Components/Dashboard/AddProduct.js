@@ -260,12 +260,8 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
           {Error === "images" &&
             <div className='error'>Invalid number of images. Must be between 1 and 10</div>
           }
-          {loading ? (
-            <div className='col-lg-12 col-sm-12 d-flex align-items-center justify-content-center' style={{ height: "50vh" }} >
-              <Loader />
-            </div>
-          ) : (
 
+         
             <form>
               <div className='row'>
                 <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
@@ -446,14 +442,12 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                     {...register('images', {
                       required: productId ? false : true,
                       minLength: 1,
-                      maxLength: 10,
                     })}
                     className="border form-control mb-2 mr-sm-2"
                     onChange={handleImageChange}
                   />
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
-                  {errors.images && errors.images.type === 'maxLength' && <div className='error'>Only Ten images allowed</div>}
-                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
+                 {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
                   <div className='img_preview d-flex flex-wrap px-3 gap-3'>
                     {(imagePreviews).map((preview, index) => (
                       <div className='p-1' key={index}
@@ -485,21 +479,26 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
               <div className='row'>
               {!product &&
                   <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
-                      Submit
+                    <button type="button"
+                    disabled={loading} 
+                    className="button-submit px-4 w-100 d-flex justify-content-center align-items-center" onClick={handleSubmit(submitProduct)}>
+                      {loading? <div className="spinner"></div> :"Submit"}
                     </button>
                   </div>
                 }
                 {product &&
                   <div className='col-lg-12 col-sm-12 my-5'>
-                    <button type="button" className="button-submit px-4" style={{ width: "200px" }} onClick={handleSubmit(submitProduct)}>
-                      Update
+                    <button type="button" 
+                    disabled={loading} 
+                    className="button-submit px-4 w-100 d-flex justify-content-center align-items-center" onClick={handleSubmit(submitProduct)}>
+                    {loading? <div className="spinner"></div> :"Update"}
+                      
                     </button>
                   </div>
                 }
               </div>
             </form>
-          )}
+        
         </div>
       </div>
     </div>

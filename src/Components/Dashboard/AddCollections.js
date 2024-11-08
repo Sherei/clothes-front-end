@@ -111,11 +111,11 @@ const AddCollections = () => {
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12 col-sm-12 my-5'>
-                                    <button type="submit" className="button-submit px-4" style={{ width: "200px" }}>
+                                    <button type="submit"
+                    disabled={loading} 
+                    className="button-submit px-4 w-100 d-fkex justify-content-center align-items-center">
                                             {collection ? "Update" : "Submit"}
                                         </button>
-
-                                      
                                     </div>
                                 </div>
                             </form>

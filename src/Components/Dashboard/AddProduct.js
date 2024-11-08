@@ -168,10 +168,6 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
 
   async function submitProduct(data) {
 
-    window.scrollTo({
-      top: 0,
-    });
-
     setLoading(true);
 
     const cloudinaryUrls = [];
@@ -215,7 +211,6 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
       data.category = selectedCategory;
       data.collectionId = selectedCollectionId; 
       try {
-        console.log("product data is = ", data)
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/product`, data);
         if (response.data) {
           toast.success("Product Uploaded");
@@ -474,6 +469,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                     ))}
                   </div>
                 </div>
+                {Error?<div className='error'>Select required detail</div> :""}
               </div>
               <div className='row'>
               {!product &&

@@ -152,8 +152,8 @@ export const Orders = () => {
                               <td className='text-center'>{orderItemsLength}</td>
                               <td className='text-center'>&pound;{data.total?.toFixed()}</td>
                               <td className='text-center'>{formatDateTime(data.date)}</td>
-                              <td className='text-center'>
-                                <a href={`/order-detail/${data._id}`}>Detail</a>
+                              <td className='text-center text-light'>
+                                <a href={`/order-detail/${data._id}`} className='text-light'>Detail</a>
                               </td>
                               <td className='text-center'>
                                 <button className='delete_btn' onClick={() => DeleteOrder(data._id)}>

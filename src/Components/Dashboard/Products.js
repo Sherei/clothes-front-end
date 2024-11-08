@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import { AiFillDelete } from 'react-icons/ai';
-import { FaPencilAlt } from 'react-icons/fa'
+import { FaPencilAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -126,7 +127,7 @@ export const Products = () => {
                           {/* <td className='text-center'>{data.stock ? 'Yes' : 'No'}</td>
                           <td className='text-center'>{data.home ? 'Yes' : 'No'}</td> */}
 
-                          <td><a href={"/product/" + data._id} className='text-light'>{data.title}</a></td>
+                          <td><Link to={`/product/${data.title.replace(/ /g, '-')}/${data._id}`} className='text-light'>{data.title}</Link></td>
                           <td >{data?.category}</td>
                           {/* <td className='text-center'>
                             {data.subCategory === undefined || data.subCategory === "" ? "No subCategory" : data.subCategory}

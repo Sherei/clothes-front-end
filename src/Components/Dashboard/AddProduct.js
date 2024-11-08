@@ -453,7 +453,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                       <div className='p-1' key={index}
                         style={{
                           position: "relative",
-                          border: "2px dashed rgb(2,2,94)",
+                          border: "2px dashed white",
                         }}>
                         <img src={preview} alt={`Preview ${index}`}
                           style={{ height: "80px", width: "80px" }} />
@@ -464,7 +464,6 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                             position: "absolute", top: "4px",
                             right: "5px",
                             border: "none",
-                            backgroundColor: "rgb(0,0,0,0.2)",
                             color: "white",
                           }}
                           onClick={() => handleImageDelete(index)}

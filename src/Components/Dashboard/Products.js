@@ -106,8 +106,8 @@ export const Products = () => {
                         <th>Category</th>
                         {/* <th>Sub Category</th> */}
                         <th>Price</th>
-                        <th>Final Price</th>
                         <th>Discount</th>
+                        <th>Final Price</th>
                         <th>Date</th>
                         {/* <th>Delete</th> */}
                         <th>Delete</th>
@@ -132,8 +132,8 @@ export const Products = () => {
                             {data.subCategory === undefined || data.subCategory === "" ? "No subCategory" : data.subCategory}
                           </td> */}
                           <td className='text-center'>&pound;{data?.price?.toFixed()}</td>
-                          <td className='text-center'>&pound;{data?.Fprice?.toFixed()}</td>
                           <td className='text-center'>{data.discount ? data.discount + '%' : '0%'}</td>
+                          <td className='text-center'>&pound;{data?.Fprice?.toFixed()}</td>
                           <td className='text-center'>{formatDateTime(data.date)}</td>
                           <td className='text-center'>
                             <button

@@ -103,18 +103,6 @@ const AddCollections = () => {
                                          className="form-control mb-2 mr-sm-2 text-dark" />
                                         {errors.category && <div className='error'>Title is required</div>}
                                     </div>
-                                    {/* <div className='col-lg-6 col-md-6 col-sm-12 my-2'>
-                                        <label style={{ fontSize: "17px", fontWeight: "600" }}>Add Sub Category</label>
-                                        {fields.map((field, index) => (
-                                            <div key={field.id} className='d-flex mb-2'>
-                                                <input type="text" {...register(`subCategory.${index}.name`)} className="form-control" />
-                                                <button type="button" className="ml-2" onClick={() => remove(index)}>Remove</button>
-                                            </div>
-                                        ))}
-                                        <button type="button" className="button-submit px-4" onClick={() => append({ name: '' })}>
-                                            Add Subcategory
-                                        </button>
-                                    </div> */}
                                     <div className='col-lg-6 col-md-6 col-sm-12 my-2'>
                                         <label style={{ fontSize: "17px", fontWeight: "600" }}>Image *</label>
                                         <input type="file" {...register('image', { required: collectionId ? false : true })} className="form-control mb-2 mr-sm-2" />

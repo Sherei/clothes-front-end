@@ -36,6 +36,7 @@ import EnterOTP from './Components/Signup/Enterotp/Enterotp';
 import Checkinbox from './Components/Signup/Checkinbox/Checkinbox';
 import CategoriesProducts from './Components/CategoriesProducts/CategoriesProducts';
 import { IoLogoWhatsapp } from "react-icons/io5";
+import Review from './Components/Reviews/Review';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
@@ -99,6 +100,8 @@ return <>
               <Route path='/product/:title/:productId' element={<SingleAdd />} />
               <Route exact path='/Products/:prodctName' element={<Products />} />
 
+              <Route exact path='/reviews' element={<Review />} />
+
               {/* Cart */}
               <Route exact path='/cart/:userId' element={<Cart />} />
               <Route exact path='/cart-checkout/:userId' element={<Checkout />} />
@@ -116,6 +119,7 @@ return <>
               <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
               <Route path='/all-blog' element={<AllBlog />} />
                 {/* Collection */}
+
                 <Route exact path='/admin-dashboard-add-collection' element={<AddCollections />} />
               <Route exact path='/admin-dashboard-add-collection/:collectionId' element={<AddCollections />} />
 

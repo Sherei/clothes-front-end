@@ -114,9 +114,9 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div>
-            <Link className="nav-link cursor" to="review">
+            <NavLink className="nav-link cursor" to="/reviews">
               Reviews
-            </Link>
+            </NavLink>
           </div>
           <div>
             <NavLink className="nav-link" to="/contact">

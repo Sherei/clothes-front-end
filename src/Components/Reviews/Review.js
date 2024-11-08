@@ -196,11 +196,11 @@ const Review = () => {
     };
 
     return <>
-        <div className='container-fluid my-5'  id='review' style={{ backgroundColor: "#F2F0F1" }}>
+        <div className='container-fluid my-5'  id='review'>
             <div className='px-lg-4 px-md-3 px-2'>
                 <div className="row d-flex justify-content-center">
                     <div className="col-lg-12 col-md-12 col-sm-12 py-5" >
-                        <h1 className="fs-1 fw-bolder mb-3 text-dark">
+                        <h1 className="fs-1 fw-bolder  text-light">
                             Riski-Brothers Society
                         </h1>
                         <div>
@@ -228,7 +228,7 @@ const Review = () => {
                                 className="mySwiper"
                               >
                                 {comments.map((item, index) => (
-                                  <SwiperSlide key={index} className='review_slide'>
+                                  <SwiperSlide key={index} className='review_slide my-4'>
                                     <div className='card border border-0 border-bottom border-light shadow-sm' 
                                     style={{ width: "270px" }}>
                                       <div className="card_img mb-2">

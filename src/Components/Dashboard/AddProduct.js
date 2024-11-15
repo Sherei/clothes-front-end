@@ -115,10 +115,10 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
 
     const files = Array.from(e.target.files);
 
-    if (files.length + imagePreviews.length > 10) {
-      setError('images');
-      return;
-    }
+    // if (files.length + imagePreviews.length > 100) {
+    //   setError('images');
+    //   return;
+    // }
 
     const newFormData = new FormData();
 
@@ -423,13 +423,15 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
 
                 {/* Description */}
 
-                <div className='col-lg-4  col-md-6 col-sm-12  my-2'>
+                <div className='col-lg-12  col-md-12 col-sm-12  my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Description</label>
-                  <input type="text"{...register('description')} className="border form-control text-dark" />
+                  <textarea type="text" rows={5} {...register('description')}
+                   className="border form-control text-dark"
+                   placeholder='Write product detail' />
                 </div>
 
                 {/* Pictures */}
-                <div className='col-lg-4  col-md-6 col-sm-12 my-2'>
+                <div className='col-lg-12  col-md-12 col-sm-12 my-2'>
                   <label style={{ fontSize: "17px", fontWeight: "600" }}>Product Pics *</label>
                   <input
                     type='file'
@@ -443,7 +445,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                   />
                   {errors.images && errors.images.type === 'required' && <div className='error'>At least one image is required</div>}
                  {errors.images && errors.images.type === 'minLength' && <div className='error'>At least one image is required</div>}
-                  <div className='img_preview d-flex flex-wrap px-3 gap-3'>
+                  <div className='img_preview d-flex flex-wrap px-3 gap-3 mt-3'>
                     {(imagePreviews).map((preview, index) => (
                       <div className='p-1' key={index}
                         style={{
@@ -460,6 +462,7 @@ const [selectedCollectionId, setSelectedCollectionId]=useState("")
                             right: "5px",
                             border: "none",
                             color: "white",
+                            background:"black"
                           }}
                           onClick={() => handleImageDelete(index)}
                         >

@@ -10,8 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
-const stripePromise = loadStripe("pk_test_51Px4aqRsoQBPHlEDA15MLzUtHFbmsa9CSIidItQMaMQuNOjSsD7ywDaagl2YmlbZyq7OFOZdrSf8EESQ26voDAnI00xT47XSkh");
+const stripePromise = loadStripe("pk_test_51QLKByHFaD4Mizu7LmDngZMs34UaEgY9qrWgOgLe5TQotWvwk6gtH3x65GdCwUj5VTA9b3vK2hLiR5MOkKvMXP3X00IGrfobHY");
 
 const PaymentComponent = ({ amount, currency = "usd", onPaymentSuccess }) => {
   const [btnLoading, setBtnLoading] = useState(false);

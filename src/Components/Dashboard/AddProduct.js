@@ -95,7 +95,7 @@ export const AddProduct = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/collection`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setCollection(res?.data);
       })
       .catch((error) => {

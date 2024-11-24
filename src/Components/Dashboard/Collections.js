@@ -9,7 +9,7 @@ import axios from 'axios';
 const Collections = () => {
 
     const [collection, setCollection] = useState([]);
-    console.log(collection)
+    // console.log(collection)
     const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState('');
 

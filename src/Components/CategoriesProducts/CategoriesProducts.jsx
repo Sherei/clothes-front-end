@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 const CategoriesProducts = () => {
     const {category}=useParams()
-    console.log(category)
+    // console.log(category)
     const [minPrice, setMinPrice] = useState(1);
     const [maxPrice, setMaxPrice] = useState(3000);
     const [openPrice, setopenPrice] = useState(true)
@@ -26,7 +26,7 @@ const CategoriesProducts = () => {
             setError(null);
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/Product/byCategory/${category}`);
-                console.log(response,"response")
+                // console.log(response,"response")
                 setProducts(response.data);
             } catch (error) {
                 setError("Failed to fetch products. Please try again later.");

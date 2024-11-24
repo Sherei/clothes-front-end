@@ -26,7 +26,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
 
   const [payment, setPayment] = useState(true)
-  const [setbtnLoading, btnLoading] = useState(false)
+  const [btnLoading,setbtnLoading] = useState(false)
 
   const togglePayment = () => {
     setPayment(!payment)
@@ -182,9 +182,6 @@ const Checkout = () => {
 
     } catch (e) {
       setbtnLoading(false);
-    }finally{
-      setbtnLoading(false);
-
     }
   };
 
@@ -295,9 +292,9 @@ const Checkout = () => {
                             <StripePayment amount={total} onPaymentSuccess={handlePaymentSuccess} />
                           }
                           {!payment &&
-                          <button className={`button-submit w-100 ${btnLoading ? "btn_loading" : ""}`}
-                          disabled={btnLoading}>
+                          <button className={`button-submit w-100 ${btnLoading ? "btn_loading" : ""}`}>
                               {btnLoading ? <div className="spinner"></div> : " Order Now"}
+                              {/* Order Now */}
                           </button>
                           }
                         </form>

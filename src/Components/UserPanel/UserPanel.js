@@ -86,13 +86,13 @@ const UserPanel = () => {
                 <div className="row">
 
                     <div className="col-lg-4 col-md-4 col-sm-12">
-                        <div className="card border border-0 border-bottom border-light shadow-sm mb-4">
-                            <div className="card-body text-center">
+                        <div className="card border border-0 border-bottom border-light shadow-sm mb-4 p-3">
+                            <div className="text-center">
                                 <img
                                     src="/profile.png"
                                     alt="avatar"
-                                    className="rounded-circle img-fluid"
-                                    style={{ width: 150 }}
+                                    className="rounded-circle"
+                                    style={{ width: "110px", height:"110px" }}
                                 />
                                 <h5 className="my-3">{cu.name}</h5>
                                 <p className="text-muted mb-1">{cu.number}</p>

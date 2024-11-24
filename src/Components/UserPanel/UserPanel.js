@@ -142,7 +142,7 @@ const UserPanel = () => {
                                                 <p className='panel_index'>{index + 1}</p>
                                                   
                                                     <img src={item?.orderItems[0]?.image} 
-                                                    style={{ maxHeight: '150px' }} 
+                                                    style={{ height: '200px' }} 
                                                     className='rounded-3 img-fluid mb-1'
                                                     alt={item.title}
                                                     />
@@ -151,7 +151,7 @@ const UserPanel = () => {
                                                                     Tracking ID: {item?.orderId}
                                                                 </p>
                                                                 <p className='m-0'>
-                                                                    Total: $;{item?.total?.toFixed()}
+                                                                    Total: ${item?.total?.toFixed()}
                                                                 </p>
                                                                 <p className='m-0'>
                                                                     Date: {formatDateTime(item?.date)}

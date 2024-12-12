@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { MdDeveloperBoardOff } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import StripePayment from "./PaymentComponent";
@@ -25,7 +26,7 @@ const Checkout = () => {
   const move = useNavigate()
   const dispatch = useDispatch();
 
-  const [payment, setPayment] = useState(true)
+  const [payment, setPayment] = useState(false)
   const [btnLoading,setbtnLoading] = useState(false)
 
   const togglePayment = () => {
@@ -262,7 +263,7 @@ const Checkout = () => {
                                     type="radio"
                                     name="flexRadioDefault"
                                     id="flexRadioDefault2"
-                                    defaultChecked="true"
+                                    
 
                                   />
                                   <p className="m-0" htmlFor="flexRadioDefault2">
@@ -275,7 +276,7 @@ const Checkout = () => {
                                     type="radio"
                                     name="flexRadioDefault"
                                     id="flexRadioDefault1"
-
+                                    defaultChecked="true"
                                   />
                                   <p className="m-0" htmlFor="flexRadioDefault1">
                                     Cash on delivery
@@ -289,7 +290,20 @@ const Checkout = () => {
 
                           <hr className="mb-4" />
                           {payment &&
-                            <StripePayment amount={total} onPaymentSuccess={handlePaymentSuccess} />
+                            <div className="row">
+                                <div className="col-12 p-4">
+                                  <div className="border border-dotted border-light  d-flex justify-content-center align-items-center flex-column"style={{minHeight:"150px", width:"100%"}}>
+                                    <p className="fs-2 text-light text-center">
+                                    <MdDeveloperBoardOff />
+                                    </p>
+                                    <p className="text-center">
+                                    This payment method is under development. <br /> Kindly select cash on delivery as your payment method.
+                                    </p>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+                            // <StripePayment amount={total} onPaymentSuccess={handlePaymentSuccess} />
                           }
                           {!payment &&
                           <button className={`button-submit w-100 ${btnLoading ? "btn_loading" : ""}`}>

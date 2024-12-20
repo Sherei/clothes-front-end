@@ -37,6 +37,7 @@ import Checkinbox from './Components/Signup/Checkinbox/Checkinbox';
 import CategoriesProducts from './Components/CategoriesProducts/CategoriesProducts';
 import { IoLogoWhatsapp } from "react-icons/io5";
 import Review from './Components/Reviews/Review';
+import AddBanner from './Components/Dashboard/AddBanner';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
@@ -118,10 +119,12 @@ return <>
               <Route exact path='/admin-dashboard-add-blog/:blogId' element={<AddBlog />} />
               <Route path='/blog_detail/:blogId' element={<SingleBlog />} />
               <Route path='/all-blog' element={<AllBlog />} />
+               
                 {/* Collection */}
-
                 <Route exact path='/admin-dashboard-add-collection' element={<AddCollections />} />
-              <Route exact path='/admin-dashboard-add-collection/:collectionId' element={<AddCollections />} />
+                <Route exact path='/admin-dashboard-add-collection/:collectionId' element={<AddCollections />} />
+                <Route exact path='/admin-dashboard-add-banner' element={<AddBanner />} />
+                <Route exact path='/admin-dashboard-add-banner/:bannerId' element={<AddBanner />} />
 
               <Route exact path='*' element={<Home />} />
               

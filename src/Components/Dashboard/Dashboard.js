@@ -25,6 +25,7 @@ import Collections from './Collections';
 import AddCollections from './AddCollections';
 import { Link } from 'react-scroll';
 import { toast } from 'react-toastify';
+import Banner from './Banner';
 
 export const Dashboard = () => {
 
@@ -43,6 +44,7 @@ export const Dashboard = () => {
     const [order, setOrder] = useState([])
     const [blog, setBlog] = useState([])
     const [collection, setCollection] = useState([])
+    const [banner, setBanner] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState('users')
 
@@ -55,13 +57,13 @@ export const Dashboard = () => {
                 setOrder(res.data.allOrder)
                 setBlog(res.data.allBlog)
                 setCollection(res.data.allCollection)
+                setBanner(res.data.allBanner)
             })
         } catch (e) { } finally {
             setIsLoading(false)
         }
     }, [])
-
-
+    
     const handleItemClick = (id) => {
         setFile(id);
         const element = document.getElementById(id);
@@ -101,6 +103,22 @@ export const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Add Banner */}
+                            <div className='dash_card'>
+                                <div className='p-3 admin_card' onClick={() => move('/admin-dashboard-add-banner')}>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <div>
+                                            <p className='admin_card_title m-0'>Add Banner</p>
+                                            {/* <p className='admin_card_number'>{collection.length}</p> */}
+                                        </div>
+                                        <div className='card_icon'>
+                                            <FaCameraRetro />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             {/* Add Products */}
                             <div className='dash_card'>
@@ -150,6 +168,25 @@ export const Dashboard = () => {
                                 
                             </div>
                             
+  {/* Banners    */}
+  <div className='dash_card'>
+                                <Link to='banner'>
+                                <div className='p-3 admin_card' >
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <div>
+                                            <p className='admin_card_title'>Banners</p>
+                                            <p className='admin_card_number'>{banner.length}</p>
+                                        </div>
+                                        <div className='card_icon'>
+                                            <FaCameraRetro />
+                                        </div>
+                                    </div>
+                                </div>
+                                </Link>
+                                
+                            </div>
+                            
+
                             {/* Orders */}
                             <div className='dash_card'>
                                 <Link to='orders'>
@@ -253,7 +290,9 @@ export const Dashboard = () => {
                         <div className='col-12' id="collections">
                             <Collections />
                         </div>
-
+                        <div className='col-12' id="banner">
+                            <Banner />
+                        </div>
                         <div className='col-12' id='products'>
                             <Products />
                         </div>

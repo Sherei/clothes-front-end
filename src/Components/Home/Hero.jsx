@@ -11,11 +11,10 @@ const Hero = () => {
 
   const [banner, setBanner] = useState([]);
       const [isLoading, setIsLoading] = useState(false);
-      let move = useNavigate()
-
+    
   useEffect(() => {
     setIsLoading(true)
-    axios.get(`${process.env.REACT_APP_BASE_URL}/collection`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/banner`)
         .then((res) => {
             setBanner(res?.data);
             setIsLoading(false);

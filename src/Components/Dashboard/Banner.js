@@ -18,7 +18,7 @@ const Banner = () => {
     useEffect(() => {
         setIsLoading(true)
         axios
-            .get(`${process.env.REACT_APP_BASE_URL}/collection`, {
+            .get(`${process.env.REACT_APP_BASE_URL}/banner`, {
                 params: { search }
             })
             .then((res) => {
@@ -72,7 +72,7 @@ const Banner = () => {
                             Banners
                         </h1>
                     </div>
-                    <div>
+                    {/* <div>
                         <input
                             type="search"
                             className="w-100 form-control mb-2 mr-sm-2"
@@ -80,7 +80,7 @@ const Banner = () => {
                             value={search}
                             onChange={handleSearchInputChange}
                         />
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

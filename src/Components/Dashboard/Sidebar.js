@@ -6,6 +6,7 @@ import {
   FaClipboardList,
   FaUsers,
   FaCommentDots,
+  FaCameraRetro,
 } from 'react-icons/fa';
 import { FaBlog } from "react-icons/fa6";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io"
@@ -21,6 +22,7 @@ import Comments from './Comments';
 import { Orders } from './Orders';
 import "./sidebar.css"
 import Collections from './Collections';
+import Banner from './Banner';
 
 
 const Sidebar = () => {
@@ -97,6 +99,16 @@ const Sidebar = () => {
             </div>
             <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
           Collections
+            </div>
+          </div>
+
+          <div className={`link ${activeComponent === 'banner' ? 'active' : ''}`} 
+          onClick={() => handleMenuClick('banner')}>
+            <div className="icon">
+              <FaCameraRetro />
+            </div>
+            <div style={{ display: isOpen ? 'block' : 'none' }} className="link_text">
+          Banners
             </div>
           </div>
 
@@ -204,6 +216,9 @@ const Sidebar = () => {
           }
           {activeComponent ==="collections" &&
           <Collections/>
+          }
+                    {activeComponent ==="banner" &&
+          <Banner/>
           }
 
           {activeComponent === 'orders' && 
